@@ -19,7 +19,7 @@ Welcome to the source code for my professional portfolio. This site is designed 
 
 ## 🔗 Connected Nodes
 * **Nexara9 Industries:** [nexara9.me](https://nexara9.me)
-* **LinkedIn:** [Sujal Negi](https://www.linkedin.com/in/sujal-negi-17b55839b/)
+* **LinkedIn:** [Sujal Negi](https://linkedin.com/in/sujalnegi128005)
 
 ---
 © 2026 // SUJAL NEGI // IIITDM KURNOOL

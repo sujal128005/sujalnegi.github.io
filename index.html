@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUJAL NEGI // SYSTEM ARCHITECT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #3b82f6;
+            --bg: #050505;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .noise::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .blueprint-border {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .blueprint-border::after {
+            content: "+";
+            position: absolute;
+            top: -10px; right: -10px;
+            color: var(--accent);
+            font-family: 'JetBrains Mono';
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            position: absolute;
+            opacity: 0.15;
+            animation: scan 4s linear infinite;
+            z-index: 20;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        .project-number {
+            font-size: 8rem;
+            line-height: 1;
+            font-weight: 800;
+            opacity: 0.03;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .data-point {
+            border-left: 1px solid rgba(59, 130, 246, 0.3);
+            padding-left: 1rem;
+        }
+
+        .v-line {
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(59, 130, 246, 0.2), transparent);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .rail {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+        .rail-node {
+            position: absolute;
+            left: -4px;
+            width: 9px;
+            height: 9px;
+            background: var(--bg);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+    </style>
+</head>
+<body class="noise grid-bg">
+
+    <!-- Header / Nav -->
+    <nav class="fixed top-0 w-full z-50 mix-blend-difference py-5 px-6 md:px-12 flex justify-between items-end">
+        <div>
+            <a href="mailto:offsujal128005@gmail.com" class="text-xl font-bold tracking-tighter block leading-none hover:text-blue-500 transition-colors">SUJAL NEGI</a>
+            <span class="mono text-[10px] text-gray-500 uppercase tracking-widest text-left block">Mechanical x Autonomous</span>
+        </div>
+        <div class="flex items-center space-x-12">
+            <div class="hidden md:flex flex-col items-end mono text-[10px] uppercase tracking-[0.3em] space-y-1">
+                <a href="#projects" class="hover:text-blue-500 transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-blue-500 transition-colors">Experience</a>
+                <a href="#skills" class="hover:text-blue-500 transition-colors">Stack</a>
+            </div>
+            
+            <!-- Unique Status Uplink Button -->
+            <a href="nexara9.html" target="_blank" class="group flex items-center space-x-2 mono text-[10px] border border-emerald-500/30 px-4 py-2 rounded hover:border-emerald-500 hover:bg-emerald-500/10 transition-all duration-500 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                <span class="text-gray-400 group-hover:text-white transition-colors">NEXARA9:</span>
+                <span class="text-emerald-400 font-bold flex items-center gap-2">
+                    LAUNCHING SOON
+                    <span class="relative flex h-1.5 w-1.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                    </span>
+                </span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="min-h-[90vh] flex flex-col justify-center px-6 md:px-12 pt-16 relative">
+        <div class="max-w-7xl mx-auto w-full relative z-10">
+            <div class="grid md:grid-cols-12 gap-10 items-center">
+                <div class="md:col-span-8">
+                    <div class="mono text-blue-500 text-xs mb-4 flex items-center space-x-2">
+                        <span class="w-12 h-[1px] bg-blue-500"></span>
+                        <span>MISSION_LOG // 2024.02</span>
+                    </div>
+                    <h1 class="text-6xl md:text-[8.5rem] font-bold leading-[0.85] tracking-tighter mb-8">
+                        ENGINEERING <br>
+                        <span class="text-blue-500 italic">PERCEPTION.</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-400 font-light leading-snug max-w-2xl">
+                        Mechanical Engineering undergraduate at IIITDM Kurnool. Architecting 
+                        <span class="text-white font-medium">autonomous systems</span> through bio-mimetic logic and high-fidelity physics simulation.
+                    </p>
+                </div>
+                
+                <div class="md:col-span-4 flex justify-end relative">
+                    <div class="blueprint-border p-1.5 w-full max-w-[310px] group">
+                        <div class="aspect-[4/5] relative overflow-hidden bg-[#0a0a0a]">
+                            <img src="Sujal_img.jpeg" 
+                                 alt="Sujal Negi" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'"
+                                 class="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700">
+                            <div class="scanline"></div>
+                            
+                            <div class="absolute top-3 left-3 z-20 mono text-[8px] space-y-1">
+                                <div class="bg-blue-600 text-white px-2 py-0.5">AUTH: SUJAL_NEGI</div>
+                                <div class="bg-black/80 text-gray-400 px-2 py-0.5 border border-white/10 italic">123ME0023</div>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex justify-between items-center mono text-[9px] text-gray-500">
+                            <span>LOC: IIITDM KURNOOL</span>
+                            <a href="https://drive.google.com/file/d/1LcqXJCEfSJqA2B_G5mmm3p4LDJbwF31l/view?usp=drive_link" target="_blank" class="text-blue-500 hover:underline">RESUME.PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="v-line h-20 bottom-0"></div>
+    </section>
+
+    <!-- 02 // Projects -->
+    <section id="projects" class="py-16 px-6 md:px-12 bg-white/[0.01] relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="mono text-blue-500 text-xs mb-16 flex items-center space-x-2">
+                <span class="w-12 h-[1px] bg-blue-500"></span>
+                <span>02 // PRIMARY_BREAKTHROUGHS</span>
+            </div>
+
+            <div class="space-y-24">
+                <!-- Project 01 -->
+                <div class="relative group">
+                    <span class="project-number">01</span>
+                    <div class="grid md:grid-cols-12 gap-10">
+                        <div class="md:col-span-7">
+                            <span class="mono text-[10px] text-blue-500 mb-2 block uppercase tracking-[0.4em]">Autonomous Vehicle Architecture</span>
+                            <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6 group-hover:text-blue-500 transition-colors text-left">PROJECT NAVYA</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed mb-8 text-left max-w-2xl">
+                                Leading 19-member team in development of a L3 autonomous vehicle. Managing project strategy and timelines across CV and Control Systems.
+                            </p>
+                            <div class="flex flex-wrap gap-8 mb-8">
+                                <div class="data-point"><div class="mono text-[10px] text-gray-500 mb-1 uppercase">ROLE</div><div class="font-bold">Lead Engineer</div></div>
+                                <div class="data-point"><div class="mono text-[10px] text-gray-500 mb-1 uppercase">CORE_TASK</div><div class="font-bold">Perception Strategy</div></div>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="https://github.com/sujal128005" target="_blank" class="px-5 py-2.5 blueprint-border mono text-[10px] hover:bg-blue-600 hover:text-white transition-all">GITHUB</a>
+                                <a href="https://drive.google.com/drive/folders/1IB0_y3c5C07JU0i_zfCzdftPBniHY7sG" target="_blank" class="px-5 py-2.5 blueprint-border mono text-[10px] hover:bg-white hover:text-black transition-all">DRIVE_DOCS</a>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 flex items-center">
+                            <div class="w-full aspect-video blueprint-border bg-blue-500/5 flex items-center justify-center relative overflow-hidden">
+                                <i data-lucide="navigation" class="w-16 h-16 text-blue-500/20"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 02 -->
+                <div class="relative group">
+                    <span class="project-number">02</span>
+                    <div class="grid md:grid-cols-12 gap-10">
+                        <div class="md:col-span-5 order-2 md:order-1 flex items-center">
+                            <div class="w-full aspect-video blueprint-border bg-purple-500/5 flex items-center justify-center relative overflow-hidden">
+                                <i data-lucide="drone" class="w-16 h-16 text-purple-500/20"></i>
+                            </div>
+                        </div>
+                        <div class="md:col-span-7 order-1 md:order-2 md:pl-12">
+                            <span class="mono text-[10px] text-blue-500 mb-2 block uppercase tracking-[0.4em]">Aerial Robotics</span>
+                            <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6 group-hover:text-blue-500 transition-colors text-left">PROJECT NAVYAM</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed mb-8 text-left max-w-2xl">
+                                Configured Gazebo simulation and authored Python scripts for autonomous drone navigation. Architected self-docking hardware logic.
+                            </p>
+                            <div class="flex flex-wrap gap-8 mb-8">
+                                <div class="data-point"><div class="mono text-[10px] text-gray-500 mb-1 uppercase">ROLE</div><div class="font-bold">System Architect</div></div>
+                                <div class="data-point"><div class="mono text-[10px] text-gray-500 mb-1 uppercase">CORE_TASK</div><div class="font-bold">Simulation & Docking</div></div>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="https://github.com/sujal128005/Navyam" target="_blank" class="px-5 py-2.5 blueprint-border mono text-[10px] hover:bg-blue-600 hover:text-white transition-all">GITHUB</a>
+                                <a href="https://drive.google.com/drive/folders/1Jb5LNdsJ-X_v4gGvG0iUemJZskDlNmx_" target="_blank" class="px-5 py-2.5 blueprint-border mono text-[10px] hover:bg-white hover:text-black transition-all">DRIVE_DOCS</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 03 -->
+                <div class="relative group">
+                    <span class="project-number">03</span>
+                    <div class="grid md:grid-cols-12 gap-10">
+                        <div class="md:col-span-7">
+                            <span class="mono text-[10px] text-blue-500 mb-2 block uppercase tracking-[0.4em]">Bio-Inspired AI</span>
+                            <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6 group-hover:text-blue-500 transition-colors text-left">ECHOSENSE</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed mb-8 text-left max-w-2xl">
+                                Implementing bat-inspired echolocation via TDOA calculations. Formulated NumPy scripts achieving 97% accuracy in spatial mapping.
+                            </p>
+                            <div class="flex flex-wrap gap-8 mb-8">
+                                <div class="data-point"><div class="mono text-[10px] text-gray-500 mb-1 uppercase">ROLE</div><div class="font-bold">Research Lead</div></div>
+                                <div class="data-point"><div class="mono text-[10px] text-gray-500 mb-1 uppercase">CORE_TASK</div><div class="font-bold">TDOA & PRF Logic</div></div>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="https://github.com/sujal128005" target="_blank" class="px-5 py-2.5 blueprint-border mono text-[10px] hover:bg-blue-600 hover:text-white transition-all">GITHUB</a>
+                                <a href="https://drive.google.com/drive/folders/1rXjdlWh8YcZTDRAjBO4Q973cdURbxmR7" target="_blank" class="px-5 py-2.5 blueprint-border mono text-[10px] hover:bg-white hover:text-black transition-all">DRIVE_DOCS</a>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 flex items-center">
+                            <div class="w-full h-32 blueprint-border bg-emerald-500/5 flex items-end justify-between p-6 gap-1">
+                                <div class="w-1.5 bg-blue-500 h-[30%]"></div>
+                                <div class="w-1.5 bg-blue-500 h-[60%]"></div>
+                                <div class="w-1.5 bg-blue-500 h-[90%] animate-pulse"></div>
+                                <div class="w-1.5 bg-blue-500 h-[55%]"></div>
+                                <div class="w-1.5 bg-blue-500 h-[75%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="v-line h-16 bottom-0"></div>
+    </section>
+
+    <!-- 03 // Achievements (Tighter) -->
+    <section id="achievements" class="py-12 px-6 md:px-12 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="mono text-blue-500 text-xs mb-8 flex items-center space-x-2">
+                <span class="w-12 h-[1px] bg-blue-500"></span>
+                <span>03 // HONORS_&_HACKATHONS</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center blueprint-border p-8 md:p-10 bg-blue-600/5 overflow-hidden">
+                <div class="scanline"></div>
+                <div class="md:col-span-9 relative z-10 text-left">
+                    <div class="inline-block bg-blue-600 text-white px-3 py-0.5 mono text-[8px] mb-3 tracking-widest uppercase font-bold">Hackathon Semi-Finalist</div>
+                    <h3 class="text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-left">UPAKRITIN: NavIC-BASED CROWD MANAGEMENT</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed font-light mb-4 max-w-3xl text-left">
+                        Proposed NavIC-based concept for real-time safety at <span class="text-white">Maha Kumbh 2025</span>. Leveraged ML models to mitigate high-density crowd risks.
+                    </p>
+                    <div class="mono text-[10px] text-blue-500 text-left uppercase font-bold tracking-widest">FEB 2024 — MAR 2024</div>
+                </div>
+                <div class="md:col-span-3 flex justify-end opacity-20 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="award" class="w-20 h-20 text-blue-500"></i>
+                </div>
+            </div>
+        </div>
+        <div class="v-line h-16 bottom-0"></div>
+    </section>
+
+    <!-- 04 // Unified Experience Log -->
+    <section id="experience" class="py-16 px-6 md:px-12 relative bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto">
+            <div class="mono text-blue-500 text-xs mb-12 flex items-center space-x-2">
+                <span class="w-12 h-[1px] bg-blue-500"></span>
+                <span>04 // SYSTEM_EXPERIENCE_LOG</span>
+            </div>
+
+            <div class="relative ml-4 md:ml-12 border-l border-white/10 pl-8 md:pl-16 space-y-12">
+                <div class="rail"></div>
+
+                <!-- Log 01 -->
+                <div class="relative group">
+                    <div class="rail-node" style="top: 8px;"></div>
+                    <div class="flex flex-col md:flex-row justify-between gap-4">
+                        <div class="flex-1 text-left">
+                            <span class="mono text-[9px] text-gray-500 uppercase tracking-widest block mb-1">2024 – PRESENT // KURNOOL, AP</span>
+                            <h3 class="text-2xl font-bold tracking-tight mb-1 group-hover:text-blue-500 transition-colors">DataWorks Club, IIITDM Kurnool</h3>
+                            <div class="mono text-blue-500 text-[10px] mb-4 font-bold uppercase tracking-widest">Coordinator // Applied AI Research</div>
+                            <ul class="space-y-1.5 text-gray-400 text-sm max-w-2xl mb-5 leading-relaxed font-medium">
+                                <li>• Leading workshops and initiatives in data science, AI/ML, and applied analytics.</li>
+                                <li>• Coordinating teams, speakers, and technical planning for institute-level events.</li>
+                            </ul>
+                            <div class="flex gap-3">
+                                <a href="https://www.dataworks.iiitk.ac.in/" target="_blank" class="px-3 py-1.5 bg-blue-600/10 border border-blue-600/20 rounded mono text-[8px] hover:bg-blue-600 hover:text-white transition-all">CLUB_SITE</a>
+                                <a href="https://www.linkedin.com/company/dataworks-club-iiitdm-kurnool/" target="_blank" class="px-3 py-1.5 bg-blue-600/10 border border-blue-600/20 rounded mono text-[8px] hover:bg-blue-600 hover:text-white transition-all">LINKEDIN</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Log 02 -->
+                <div class="relative group">
+                    <div class="rail-node" style="top: 8px;"></div>
+                    <div class="flex flex-col md:flex-row justify-between gap-4">
+                        <div class="flex-1 text-left">
+                            <span class="mono text-[9px] text-gray-500 uppercase tracking-widest block mb-1">2025 // IIIT SRI CITY</span>
+                            <h3 class="text-2xl font-bold tracking-tight mb-1 group-hover:text-blue-500 transition-colors">Inter-IIIT Tech Meet "Udbhav"</h3>
+                            <div class="mono text-blue-500 text-[10px] mb-4 font-bold uppercase tracking-widest">SPOC & Coordinator // Institutional Logistics</div>
+                            <ul class="space-y-1.5 text-gray-400 text-sm max-w-2xl mb-5 leading-relaxed font-medium">
+                                <li>• Led and coordinated multiple competition rounds as the Single Point of Contact for IIITDM Kurnool.</li>
+                            </ul>
+                            <div class="flex gap-3">
+                                <a href="https://interiiit.tech/" target="_blank" class="px-3 py-1.5 bg-blue-600/10 border border-blue-600/20 rounded mono text-[8px] hover:bg-blue-600 hover:text-white transition-all">UDBHAV_PORTAL</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Log 03 -->
+                <div class="relative group">
+                    <div class="rail-node" style="top: 8px;"></div>
+                    <div class="flex flex-col md:flex-row justify-between gap-4">
+                        <div class="flex-1 text-left">
+                            <span class="mono text-[9px] text-gray-500 uppercase tracking-widest block mb-1">2025 – PRESENT // KURNOOL, AP</span>
+                            <h3 class="text-2xl font-bold tracking-tight mb-1 group-hover:text-blue-500 transition-colors text-left">Literature Club, IIITDM Kurnool</h3>
+                            <div class="mono text-blue-500 text-[10px] mb-4 font-bold uppercase tracking-widest text-left">Coordinator // Engagement & Operations</div>
+                            <ul class="space-y-1.5 text-gray-400 text-sm max-w-2xl mb-5 text-left leading-relaxed font-medium">
+                                <li>• Managing club operations, events, and student engagement activities.</li>
+                            </ul>
+                            <div class="flex gap-3">
+                                <a href="https://www.instagram.com/literature_iiitk/" target="_blank" class="px-3 py-1.5 bg-pink-600/10 border border-pink-600/20 rounded mono text-[8px] hover:bg-pink-600 hover:text-white transition-all">INSTAGRAM</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="v-line h-16 bottom-0"></div>
+    </section>
+
+    <!-- 05 // Skills (Refined Technical Aesthetic - More Visible) -->
+    <section id="skills" class="py-16 px-6 md:px-12 bg-[#0a0a0a] relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="mono text-gray-500 text-xs mb-10 flex items-center space-x-2">
+                <span class="w-12 h-[1px] bg-gray-800"></span>
+                <span>05 // TECHNICAL_DATA</span>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-10 text-left">
+                <div class="space-y-4">
+                    <h4 class="mono text-[9px] text-gray-400 uppercase tracking-[0.5em] border-b border-white/10 pb-2 font-bold">Coding_Stack</h4>
+                    <ul class="space-y-1.5 mono text-[11px] text-gray-300 font-medium leading-tight">
+                        <li>[01] Python (AI/ML/OpenCV)</li>
+                        <li>[02] C / MySQL / Git / GitHub</li>
+                        <li>[03] HTML / CSS / Prompt Eng.</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="mono text-[9px] text-gray-400 uppercase tracking-[0.5em] border-b border-white/10 pb-2 font-bold">Eng_Modules</h4>
+                    <ul class="space-y-1.5 mono text-[11px] text-gray-300 font-medium leading-tight">
+                        <li>[01] CATIA Architecture</li>
+                        <li>[02] MATLAB Simulation</li>
+                        <li>[03] Gazebo Environment</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="mono text-[9px] text-gray-400 uppercase tracking-[0.5em] border-b border-white/10 pb-2 font-bold">Mech_Hardware</h4>
+                    <ul class="space-y-1.5 mono text-[11px] text-gray-300 font-medium leading-tight">
+                        <li>[01] Design & Manufacturing</li>
+                        <li>[02] Manufacturing Processes</li>
+                        <li>[03] Quality Inspection</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="mono text-[9px] text-gray-400 uppercase tracking-[0.5em] border-b border-white/10 pb-2 font-bold">Comms_Output</h4>
+                    <ul class="space-y-1.5 mono text-[11px] text-gray-300 font-medium leading-tight">
+                        <li>[01] Technical Writing</li>
+                        <li>[02] Public Speaking</li>
+                        <li>[03] Content Design (Canva)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closed Footer -->
+    <footer class="pt-20 pb-10 px-6 md:px-12 bg-black relative">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid md:grid-cols-12 gap-10 items-start mb-16">
+                <div class="md:col-span-7 text-left">
+                    <h2 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-none text-left">
+                        INITIATE <br> <span class="text-blue-500 italic">CONTACT.</span>
+                    </h2>
+                    <div class="flex flex-wrap gap-x-12 gap-y-6 mono text-xs">
+                        <a href="mailto:offsujal128005@gmail.com" class="group block text-left">
+                            <span class="text-gray-600 block mb-1 text-[9px] tracking-widest uppercase font-bold">Email_Station</span>
+                            <span class="text-white group-hover:text-blue-500 transition-colors font-medium">offsujal128005@gmail.com</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sujal-negi-17b55839b/" target="_blank" class="group block text-left">
+                            <span class="text-gray-600 block mb-1 text-[9px] tracking-widest uppercase font-bold">Linkedin_Sys</span>
+                            <span class="text-white group-hover:text-blue-500 transition-colors font-medium">SUJAL NEGI</span>
+                        </a>
+                        <a href="https://github.com/sujal128005" target="_blank" class="group block text-left">
+                            <span class="text-gray-600 block mb-1 text-[9px] tracking-widest uppercase font-bold">Github_Repo</span>
+                            <span class="text-white group-hover:text-blue-500 transition-colors font-medium">sujal128005</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-5">
+                    <div class="blueprint-border bg-white/[0.02] p-6 relative">
+                        <div class="scanline opacity-10"></div>
+                        <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-3">
+                            <span class="mono text-[10px] text-blue-500 font-bold uppercase">Final_Summary_Report</span>
+                            <span class="mono text-[8px] text-gray-600 uppercase tracking-widest" id="current-time">00:00:00 UTC</span>
+                        </div>
+                        <div class="mono text-[10px] text-gray-500 space-y-2">
+                            <div class="flex justify-between font-bold"><span>PROJECTS_STABLE</span><span class="text-blue-500">YES</span></div>
+                            <div class="flex justify-between font-bold"><span>PERCEPTION_CORE</span><span class="text-blue-500">READY</span></div>
+                            <div class="flex justify-between font-bold"><span>OPEN_2_WORK</span><span class="text-blue-500">VERIFIED</span></div>
+                            <div class="pt-3 text-center border-t border-white/5 mt-3">
+                                <span class="text-[8px] tracking-[0.4em] text-gray-700 font-bold uppercase">End of transmission</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-8 h-8 bg-blue-600 flex items-center justify-center font-bold text-black text-xs">S</div>
+                    <span class="mono text-[9px] text-gray-600 uppercase tracking-widest">© 2026 // SUJAL NEGI // IIITDM KURNOOL</span>
+                </div>
+                <div class="mono text-[8px] text-gray-700 space-x-6 uppercase tracking-widest hidden md:flex font-bold">
+                    <span>Lat: 15.8326° N</span>
+                    <span>Long: 78.0578° E</span>
+                </div>
+                <div class="mono text-[9px] text-blue-500/50 font-bold">SUJAL128005_V1_FINAL</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        function updateTime() {
+            const timeEl = document.getElementById('current-time');
+            const now = new Date();
+            timeEl.innerText = now.toISOString().split('T')[1].split('.')[0] + ' UTC';
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>

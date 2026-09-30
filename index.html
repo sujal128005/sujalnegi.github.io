@@ -10,7 +10,11 @@
 <meta property="og:url" content="https://sujalnegi.tech/">
 <meta property="og:image" content="https://sujalnegi.tech/Sujal_img.jpeg">
 <meta name="theme-color" content="#D5D9D1">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='10' fill='%2317202E'/><rect x='10' y='44' width='44' height='8' fill='%23FFC61A'/><text x='32' y='36' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%23ECEEEA'>SN</text></svg>">
+<link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=3" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
+<link rel="manifest" href="site.webmanifest?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
@@ -25,6 +29,8 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.js,.js body{overscroll-behavior:none}
 body{background:var(--frame);color:var(--ink);font-family:var(--font);font-size:1rem;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{max-width:100%;display:block}
 a{color:var(--link);text-underline-offset:3px;text-decoration-thickness:1px}
@@ -38,12 +44,13 @@ button{font:inherit;color:inherit}
 
 /* ---------- presenter frame ---------- */
 .app{display:flex;flex-direction:column}
-.js .app{height:100vh;height:100dvh;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.js .app{height:100vh;height:100dvh;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
 .js body{overflow:hidden}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 var(--m);height:60px;flex:none}
 .mark{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:800;font-variation-settings:"wdth" 118;letter-spacing:-.01em;font-size:1.05rem}
-.mark i{display:block;width:26px;height:26px;background:var(--ink);position:relative;border-radius:3px;flex:none}
-.mark i::after{content:"";position:absolute;left:4px;right:4px;bottom:5px;height:4px;background:var(--hivis)}
+.logo{display:block;width:30px;height:30px;flex:none;transition:transform .35s cubic-bezier(.22,.8,.26,1)}
+@media (hover:hover){a:hover>.logo{transform:rotate(-8deg) scale(1.06)}}
+@media (prefers-reduced-motion:reduce){.logo{transition:none}}
 .bar-right{display:flex;align-items:center;gap:18px}
 .count{font-weight:700;font-variant-numeric:tabular-nums;font-size:.95rem;color:var(--graphite)}
 .count b{color:var(--ink)}
@@ -53,26 +60,31 @@ button{font:inherit;color:inherit}
 .viewport{position:relative;flex:1;min-height:0}
 .js .viewport{overflow:hidden}
 .track{display:flex;flex-direction:column;gap:24px;padding:0 var(--m) 24px}
-.js .track{flex-direction:row;gap:var(--g);height:100%;padding:8px 0 14px;transform:translateX(calc(var(--m) + var(--i,0) * (var(--m) * 2 - var(--g) - 100%)))}
-.js .track.ready{transition:transform .62s cubic-bezier(.72,0,.18,1)}
+.js .track{flex-direction:row;gap:var(--g);height:100%;padding:8px 0 14px;transform:translate3d(calc(var(--m) + var(--i,0) * (var(--m) * 2 - var(--g) - 100%) + var(--drag,0px)),0,0);will-change:transform;backface-visibility:hidden}
+.js .track.ready{transition:transform .5s cubic-bezier(.22,.8,.26,1)}
+.js .track.dragging{transition:none}
 .slide{position:relative;background:var(--sheet);border:2px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);outline:none}
-.js .slide{flex:0 0 calc(100% - var(--m) * 2);height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;transition:opacity .4s}
-.js .slide:not(.on){opacity:.55}
+.js .slide{flex:0 0 calc(100% - var(--m) * 2);height:100%;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;transition:opacity .35s ease;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+.js .track.dragging .slide{transition:none}
+.js .slide:not(.on){opacity:.5}
+.js .slide:not(.on) .inner{pointer-events:none}
 .inner{max-width:1200px;margin:0 auto;padding:clamp(22px,3.4vw,52px);min-height:100%;display:flex;flex-direction:column;justify-content:center}
-.edge{position:absolute;top:8px;bottom:14px;width:var(--m);z-index:3;background:none;border:0;cursor:pointer;display:none}
+.edge{position:absolute;top:8px;bottom:14px;width:var(--m);z-index:3;background:none;border:0;cursor:pointer;display:none;-webkit-tap-highlight-color:transparent}
 .js .edge{display:block}
 .edge.l{left:0}.edge.r{right:0}
 .edge:disabled{cursor:default}
 
 .dock{flex:none;display:flex;align-items:center;gap:14px;padding:4px var(--m) 14px}
 .dock .nav{flex:none;width:42px;height:42px;border:1.5px solid var(--ink);border-radius:4px;background:var(--sheet);cursor:pointer;display:grid;place-items:center}
-.dock .nav:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+@media (hover:hover){.dock .nav:hover:not(:disabled){background:var(--ink);color:var(--paper)}}
+.dock .nav:active:not(:disabled){transform:translateY(1px)}
 .dock .nav:disabled{opacity:.35;cursor:default}
 .dock .nav svg{width:18px;height:18px}
 .rail{flex:1;display:flex;gap:6px;min-width:0}
-.rail button{flex:1 1 0;min-width:0;text-align:left;background:none;border:0;border-top:4px solid var(--rule);padding:7px 2px 0;cursor:pointer;color:var(--graphite);font-size:.8rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:border-color .2s,color .2s}
-.rail button span{font-variant-numeric:tabular-nums;margin-right:5px;color:var(--ink)}
-.rail button:hover{color:var(--ink);border-top-color:var(--graphite)}
+.rail button{flex:1 1 auto;min-width:0;text-align:left;background:none;border:0;border-top:4px solid var(--rule);padding:7px 2px 0;cursor:pointer;color:var(--graphite);font-size:.76rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:border-color .2s,color .2s}
+.rail button span{font-variant-numeric:tabular-nums;margin-right:4px;color:var(--ink)}
+@media (max-width:1240px) and (min-width:961px){.rail button{font-size:.72rem}.rail button span{display:none}}
+@media (hover:hover){.rail button:hover{color:var(--ink);border-top-color:var(--graphite)}}
 .rail button.done{border-top-color:var(--ink)}
 .rail button[aria-current="step"]{border-top-color:var(--hivis);color:var(--ink);font-weight:800}
 .index-btn{display:none}
@@ -81,9 +93,9 @@ button{font:inherit;color:inherit}
 .dock,.edge{visibility:hidden}.js .dock,.js .edge{visibility:visible}
 
 /* ---------- shared type ---------- */
-h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw,3.4rem);line-height:1;letter-spacing:-.02em}
+h2{overflow-wrap:anywhere;hyphens:manual;font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw,3.4rem);line-height:1;letter-spacing:-.02em}
 .lede{color:var(--graphite);max-width:36rem;margin-top:14px}
-.btn{display:inline-flex;align-items:center;gap:8px;font-weight:650;font-size:.95rem;text-decoration:none;padding:11px 18px;border-radius:4px;border:1.5px solid var(--ink);transition:background .15s,color .15s;cursor:pointer;background:transparent;color:var(--ink)}
+.btn{max-width:100%;overflow-wrap:anywhere;display:inline-flex;align-items:center;gap:8px;font-weight:650;font-size:.95rem;text-decoration:none;padding:11px 18px;border-radius:4px;border:1.5px solid var(--ink);transition:background .15s,color .15s;cursor:pointer;background:transparent;color:var(--ink)}
 .btn.solid{background:var(--ink);color:var(--paper)}
 .btn.solid:hover{background:var(--ink-2)}
 .btn.line:hover{background:var(--ink);color:var(--paper)}
@@ -107,7 +119,8 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
 .cover .who{color:var(--on-ink-dim);font-weight:500;margin-bottom:18px}
 .cover h1{font-weight:900;font-variation-settings:"wdth" 125;font-size:clamp(3.4rem,9.4vw,8.6rem);line-height:.86;letter-spacing:-.035em;color:var(--on-ink)}
 .cover h1 span{display:block}
-.cover .claim{font-weight:700;font-variation-settings:"wdth" 108;font-size:clamp(1.25rem,2.3vw,1.85rem);line-height:1.2;margin-top:26px;max-width:24ch;color:var(--hivis)}
+.cover .claim{font-weight:700;font-variation-settings:"wdth" 108;font-size:clamp(1.25rem,2.2vw,1.8rem);line-height:1.2;margin-top:26px;max-width:32ch;color:var(--hivis)}
+.cover .claim span{display:block}
 .cover .sub{color:var(--on-ink-dim);max-width:34rem;margin-top:16px}
 .cover .hint{margin-top:22px;font-size:.9rem;color:var(--on-ink-dim);display:flex;align-items:center;gap:10px}
 .cover .hint kbd{font:700 .8rem var(--font);border:1.5px solid var(--ink-rule);border-radius:4px;padding:2px 7px;color:var(--on-ink)}
@@ -289,9 +302,9 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
   :root{--m:14px;--g:7px}
   .bar{height:54px}
   .count{display:none}
-  .rail{display:none;position:fixed;left:12px;right:12px;bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--sheet);border:2px solid var(--ink);border-radius:8px;box-shadow:5px 5px 0 var(--ink);padding:10px;flex-direction:column;gap:0}
+  .rail{display:none;position:fixed;left:12px;right:12px;bottom:calc(72px + env(safe-area-inset-bottom,0px));max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);overflow-y:auto;overscroll-behavior:contain;z-index:20;background:var(--sheet);border:2px solid var(--ink);border-radius:8px;box-shadow:5px 5px 0 var(--ink);padding:10px;flex-direction:column;gap:0}
   .rail.open{display:flex}
-  .rail button{font-size:1rem;border-top:0;border-bottom:1px solid var(--rule);padding:11px 8px;border-radius:0}
+  .rail button{flex:none;font-size:1rem;border-top:0;border-bottom:1px solid var(--rule);padding:11px 8px;border-radius:0}
   .rail button:last-child{border-bottom:0}
   .rail button span{font-size:1rem;margin-right:10px;color:var(--graphite)}
   .rail button.done{border-top:0}
@@ -332,6 +345,41 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
   .pts li{font-size:.94rem}
   .what{margin:6px 0 10px}
 }
+
+/* very large screens */
+@media (min-width:1700px){html{font-size:calc(10px + .45vw)}.inner{max-width:76rem}:root{--m:56px;--g:20px}.bar{height:68px}}
+/* phones in landscape, short laptop windows */
+@media (max-height:620px){
+  .bar{height:46px}
+  .cv{padding:5px 12px}
+  .dock{padding-top:2px;padding-bottom:8px}
+  .dock .nav,.index-btn{height:36px}
+  .dock .nav{width:36px}
+  .js .track{padding:4px 0 10px}
+  .inner{justify-content:flex-start;padding-top:18px;padding-bottom:20px}
+  .cover h1{font-size:clamp(2.6rem,8vw,5rem)}
+  .cover .claim{margin-top:14px}
+  .rail button{padding-top:5px}
+}
+@media (max-height:620px) and (max-width:960px) and (min-width:761px){.rail button{font-size:0}.rail button span{font-size:.78rem;margin:0}}
+/* narrow phones */
+@media (max-width:360px){
+  :root{--m:10px;--g:5px}
+  .inner{padding:18px 14px 24px}
+  .cover h1{font-size:3rem}
+  .mark{font-size:.98rem}
+  .index-btn{font-size:.9rem;gap:6px}
+  .board a.row{grid-template-columns:12px minmax(0,1fr);}
+  .board .st{grid-column:2;text-align:left}
+  .gate .body{padding:14px}
+  .call li{padding:12px 14px}
+  .org{padding:16px}
+  .org .teams{grid-template-columns:1fr}
+  .reach .btn,.links .btn{padding:10px 12px;font-size:.88rem}
+  .titleblock{grid-template-columns:1fr}
+  .titleblock div,.titleblock div:nth-child(odd){border-right:0;border-bottom:1.5px solid var(--ink)}
+  .titleblock div:last-child{border-bottom:0}
+}
 @media (prefers-reduced-motion:reduce){
   .js .track.ready{transition:none}
   .js .slide{transition:none}
@@ -343,7 +391,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
 <a class="skip" href="#s-cover">Skip to content</a>
 <div class="app">
   <header class="bar">
-    <a class="mark" href="#s-cover" data-go="0"><i aria-hidden="true"></i>Sujal Negi</a>
+    <a class="mark" href="#s-cover" data-go="0"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="15" fill="#17202E"/><path d="M45 17H27.5a7.5 7.5 0 0 0 0 15h9a7.5 7.5 0 0 1 0 15H19" fill="none" stroke="#FFC61A" stroke-width="10"/><path d="M45 17H27.5a7.5 7.5 0 0 0 0 15h9a7.5 7.5 0 0 1 0 15H19" fill="none" stroke="#17202E" stroke-width="2.6"/><circle cx="46.5" cy="17" r="5" fill="#ECEEEA"/></svg>Sujal Negi</a>
     <div class="bar-right">
       <p class="count" aria-hidden="true"><b id="countNow">01</b> / <span id="countAll">11</span></p>
       <a class="cv" href="Sujal_Negi_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
@@ -356,14 +404,14 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
     <div class="track" id="track">
 
       <!-- 1 cover -->
-      <section class="slide ink" id="s-cover" data-title="Cover" aria-roledescription="slide" aria-label="Cover" tabindex="-1">
+      <section class="slide ink" id="s-cover" data-title="Day One" aria-roledescription="slide" aria-label="Day One" tabindex="-1">
         <div class="inner">
           <div class="cover">
             <div>
               <p class="who">B.Tech Mechanical Engineering, IIITDM Kurnool, 2023 to 2027</p>
               <h1><span>Sujal</span><span>Negi</span></h1>
-              <p class="claim">I build the rails first, then let the AI run on them.</p>
-              <p class="sub">I design vehicle hardware, ship live AI products and lead a 19-member autonomous vehicle team. Everything I've built is in this deck.</p>
+              <p class="claim"><span>I don't start things to try them.</span> <span>I start them to finish them.</span></p>
+              <p class="sub">Engineer by training, builder by instinct, founder in the making. When I take on a problem I own all of it: the design, the team, the deadline and the result. Once I'm in, I stay in until it works. This deck is the record so far.</p>
               <p class="hint hint-desk">Scroll, press <kbd aria-label="right arrow">→</kbd> or pick a slide below to move through it.</p>
               <p class="hint hint-touch">Swipe sideways or use the arrows below.</p>
             </div>
@@ -380,10 +428,10 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
       </section>
 
       <!-- 2 about -->
-      <section class="slide pa" id="s-about" data-title="About" aria-roledescription="slide" aria-label="About" tabindex="-1">
+      <section class="slide pa" id="s-about" data-title="Founder" aria-roledescription="slide" aria-label="Founder" tabindex="-1">
         <div class="inner">
           <div class="about">
-            <figure class="portrait"><img src="Sujal_img.jpeg" alt="Portrait of Sujal Negi" width="711" height="1132" loading="lazy"></figure>
+            <figure class="portrait"><img src="Sujal_img.jpeg" alt="Portrait of Sujal Negi" width="711" height="1132" decoding="async"></figure>
             <div class="about-copy">
               <h2>Who's building this.</h2>
               <p>I'm a mechanical engineer who works across <strong>manufacturing, software and program management</strong>. I design vehicle hardware, ship live AI systems and lead a <strong>19-member autonomous vehicle team</strong>.</p>
@@ -395,7 +443,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
               <div><dt>Leading</dt><dd>Navya (19 members), Navyam (8 members), DataWorks Club</dd></div>
               <div><dt>Mentored by</dt><dd>Dolphin Tank India Founder Mentorship Program</dd></div>
               <div><dt>Building next</dt><dd><a href="https://nexara9.me/" target="_blank" rel="noopener">NEXARA9</a>, an autonomous-systems venture</dd></div>
-              <div><dt>Also</dt><dd>Author of 10 books in English and Hindi as <em>alfaazsujalke</em></dd></div>
+              <div><dt>Also</dt><dd>Author of 10 books in English and Hindi as <a href="https://www.instagram.com/sujal128005/" target="_blank" rel="noopener" aria-label="alfaazsujalke on Instagram, @sujal128005"><em>alfaazsujalke</em></a></dd></div>
             </dl>
           </div>
         </div>
@@ -547,7 +595,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
       </section>
 
       <!-- 7 traction -->
-      <section class="slide hv" id="s-traction" data-title="Traction" aria-roledescription="slide" aria-label="Traction" tabindex="-1">
+      <section class="slide hv" id="s-traction" data-title="Proof" aria-roledescription="slide" aria-label="Proof" tabindex="-1">
         <div class="inner">
           <div class="trac-head">
             <div><p class="yr">Bengaluru, 2026</p><h2>Winner, IBM SkillsBuild Hackathon South Region Finale</h2></div>
@@ -555,7 +603,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
           </div>
           <div class="score">
             <div><b>Top 4</b><span>of 25 finalist teams</span></div>
-            <div><b>4,000+</b><span>participants in 1,000+ teams</span></div>
+            <div><b>12,000+</b><span>participants in 1,000+ teams</span></div>
             <div><b>National</b><span>Finale qualified</span></div>
           </div>
           <div class="more">
@@ -567,7 +615,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
       </section>
 
       <!-- 8 teams -->
-      <section class="slide pa" id="s-teams" data-title="Teams" aria-roledescription="slide" aria-label="Teams" tabindex="-1">
+      <section class="slide pa" id="s-teams" data-title="Crew" aria-roledescription="slide" aria-label="Crew" tabindex="-1">
         <div class="inner">
           <div class="head2"><h2>Teams and events I've run.</h2><p class="lede">Beyond the four projects, this is where I've owned budgets, people and delivery.</p></div>
           <ol class="log" reversed>
@@ -579,7 +627,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
       </section>
 
       <!-- 9 playbook -->
-      <section class="slide ink" id="s-playbook" data-title="Playbook" aria-roledescription="slide" aria-label="Playbook" tabindex="-1">
+      <section class="slide ink" id="s-playbook" data-title="Mindset" aria-roledescription="slide" aria-label="Mindset" tabindex="-1">
         <div class="inner">
           <div class="head2"><h2>How I operate.</h2><p class="lede">Four habits I keep coming back to, whether the thing is a drone, a marketplace or a student club.</p></div>
           <div class="rules">
@@ -592,9 +640,9 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
       </section>
 
       <!-- 10 toolkit -->
-      <section class="slide" id="s-toolkit" data-title="Toolkit" aria-roledescription="slide" aria-label="Toolkit" tabindex="-1">
+      <section class="slide" id="s-toolkit" data-title="Workbench" aria-roledescription="slide" aria-label="Workbench" tabindex="-1">
         <div class="inner">
-          <div class="head2"><h2>Toolkit.</h2><p class="lede">What I reach for, from the drawing board to the deploy.</p></div>
+          <div class="head2"><h2>Workbench.</h2><p class="lede">What I reach for, from the drawing board to the deploy.</p></div>
           <table class="kit"><tbody>
             <tr><th scope="row">Management</th><td>Agile and Scrum, project planning, team coordination, Google Analytics, B2B marketing, entrepreneurship</td></tr>
             <tr><th scope="row">Programming</th><td>Python, SQL, TypeScript, JavaScript, Solidity, Node.js, React, Next.js, Git</td></tr>
@@ -606,7 +654,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
       </section>
 
       <!-- 11 contact -->
-      <section class="slide ink contact" id="s-contact" data-title="Contact" aria-roledescription="slide" aria-label="Contact" tabindex="-1">
+      <section class="slide ink contact" id="s-contact" data-title="Next Move" aria-roledescription="slide" aria-label="Next Move" tabindex="-1">
         <div class="inner">
           <h2>Let's build something.</h2>
           <p class="lede">A product, a team or a hard engineering problem, I'd like to hear about it. Email is the fastest way to reach me.</p>
@@ -633,7 +681,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
   <div class="dock">
     <button class="nav" id="prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6"/></svg></button>
     <nav class="rail" id="rail" aria-label="Slides"></nav>
-    <button class="index-btn" id="indexBtn" type="button" aria-expanded="false" aria-controls="rail"><b id="idxNum">1 / 11</b><span id="idxTitle">Cover</span></button>
+    <button class="index-btn" id="indexBtn" type="button" aria-expanded="false" aria-controls="rail"><b id="idxNum">1 / 11</b><span id="idxTitle">Day One</span></button>
     <button class="nav" id="next" type="button" aria-label="Next slide"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m7.5 4 6 6-6 6"/></svg></button>
   </div>
   <p class="sr" id="live" aria-live="polite"></p>
@@ -654,7 +702,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
     var b=document.createElement('button');b.type='button';
     b.innerHTML='<span>'+pad(k+1)+'</span>'+s.dataset.title;
     b.setAttribute('aria-label','Slide '+(k+1)+': '+s.dataset.title);
-    b.addEventListener('click',function(){go(k,true);rail.classList.remove('open');indexBtn.setAttribute('aria-expanded','false')});
+    b.addEventListener('click',function(){go(k,true);closeIndex()});
     rail.appendChild(b);tabs.push(b);
   });
 
@@ -681,7 +729,7 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
   next.addEventListener('click',function(){go(cur+1)});
   document.getElementById('edgeL').addEventListener('click',function(){go(cur-1)});
   document.getElementById('edgeR').addEventListener('click',function(){go(cur+1)});
-  indexBtn.addEventListener('click',function(){var o=rail.classList.toggle('open');indexBtn.setAttribute('aria-expanded',o)});
+  indexBtn.addEventListener('click',function(){var o=rail.classList.toggle('open');indexBtn.setAttribute('aria-expanded',o);if(o){var a=rail.querySelector('[aria-current]');a&&a.scrollIntoView({block:'nearest'})}});
   viewport.addEventListener('scroll',function(){if(viewport.scrollLeft)viewport.scrollLeft=0});
 
   // in-page links jump to slides instead of scrolling the frame
@@ -691,42 +739,77 @@ h2{font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2rem,4.2vw
   });
   addEventListener('hashchange',function(){go(byHash(location.hash))});
 
-  // keyboard
+  function canScroll(el,dir){return dir>0?el.scrollTop+el.clientHeight<el.scrollHeight-2:el.scrollTop>1}
+
+  // keyboard: arrows, page keys, space, home/end
   addEventListener('keydown',function(e){
     if(e.altKey||e.ctrlKey||e.metaKey)return;
     var t=e.target;if(t.closest&&t.closest('input,textarea,select,[contenteditable="true"]'))return;
-    var k=e.key;
+    var k=e.key,s=slides[cur];
     if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();go(cur+1)}
     else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();go(cur-1)}
+    else if(k==='ArrowDown'||k==='ArrowUp'||(k===' '&&!t.closest('a,button'))){
+      var dir=(k==='ArrowUp'||(k===' '&&e.shiftKey))?-1:1;
+      if(canScroll(s,dir))return; // let the slide scroll first
+      e.preventDefault();go(cur+dir);
+    }
     else if(k==='Home'){e.preventDefault();go(0)}
     else if(k==='End'){e.preventDefault();go(N-1)}
-    else if(k==='Escape'){rail.classList.remove('open');indexBtn.setAttribute('aria-expanded','false')}
+    else if(k==='Escape'){closeIndex()}
   });
 
-  // wheel / trackpad: scroll inside a tall slide first, then turn the page
+  // wheel and trackpad: one gesture turns one slide; tall slides scroll first
   var acc=0,locked=false,lockAt=0,lastWheel=0,lastInner=0;
   viewport.addEventListener('wheel',function(e){
-    if(e.ctrlKey)return;
+    if(e.ctrlKey)return; // pinch zoom
     var now=performance.now(),gap=now-lastWheel;lastWheel=now;
-    var s=slides[cur],vert=Math.abs(e.deltaY)>=Math.abs(e.deltaX),d=vert?e.deltaY:e.deltaX;
-    if(vert){
-      var canDown=s.scrollTop+s.clientHeight<s.scrollHeight-2,canUp=s.scrollTop>1;
-      if((d>0&&canDown)||(d<0&&canUp)){lastInner=now;acc=0;return}
-    }
+    var unit=e.deltaMode===1?16:e.deltaMode===2?viewport.clientHeight:1;
+    var dx=e.deltaX*unit,dy=e.deltaY*unit,vert=Math.abs(dy)>=Math.abs(dx),d=vert?dy:dx;
+    var s=slides[cur];
+    if(vert&&canScroll(s,d>0?1:-1)){lastInner=now;acc=0;return}
     e.preventDefault();
-    if(now-lastInner<350)return;
-    if(locked){if(now-lockAt>650&&gap>160){locked=false;acc=0}else return}
+    if(now-lastInner<300)return;            // don't carry scroll momentum into a page turn
+    if(locked){if(now-lockAt>480&&gap>120){locked=false;acc=0}else return}
+    if(gap>250)acc=0;
     acc+=d;
-    if(Math.abs(acc)>45){go(cur+(acc>0?1:-1));acc=0;locked=true;lockAt=now}
+    if(Math.abs(acc)>=30){go(cur+(acc>0?1:-1));acc=0;locked=true;lockAt=now}
   },{passive:false});
 
-  // touch swipe
-  var sx=0,sy=0,st=0,skip=false;
-  viewport.addEventListener('touchstart',function(e){var p=e.touches[0];sx=p.clientX;sy=p.clientY;st=Date.now();skip=!!e.target.closest('input[type=range]')},{passive:true});
-  viewport.addEventListener('touchend',function(e){
-    if(skip)return;var p=e.changedTouches[0],dx=p.clientX-sx,dy=p.clientY-sy;
-    if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.4&&Date.now()-st<800)go(cur+(dx<0?1:-1));
+  // touch: the deck follows your finger, then snaps
+  var drag=null;
+  function endDrag(commit){
+    if(!drag)return;
+    var d=drag;drag=null;
+    track.classList.remove('dragging');track.style.setProperty('--drag','0px');
+    if(!commit||d.axis!=='x')return;
+    var v=performance.now()-d.lt>90?0:d.vx,thr=Math.min(110,d.w*.2);
+    if(d.dx<-thr||v<-.35)go(cur+1);else if(d.dx>thr||v>.35)go(cur-1);
+  }
+  viewport.addEventListener('touchstart',function(e){
+    if(e.touches.length!==1||e.target.closest('input[type=range]')){drag=null;return}
+    var t=e.touches[0];drag={x:t.clientX,y:t.clientY,dx:0,axis:null,w:viewport.clientWidth,lx:t.clientX,lt:performance.now(),vx:0};
   },{passive:true});
+  viewport.addEventListener('touchmove',function(e){
+    if(!drag)return;
+    if(e.touches.length!==1){endDrag(false);return}
+    var t=e.touches[0],dx=t.clientX-drag.x,dy=t.clientY-drag.y,now=performance.now();
+    if(!drag.axis){
+      if(Math.abs(dx)<8&&Math.abs(dy)<8)return;
+      drag.axis=Math.abs(dx)>Math.abs(dy)*1.15?'x':'y';
+      if(drag.axis==='x'){track.classList.add('dragging');closeIndex()}
+    }
+    if(drag.axis!=='x')return;
+    var ddt=now-drag.lt;if(ddt>0){drag.vx=.8*((t.clientX-drag.lx)/ddt)+.2*drag.vx}
+    drag.lx=t.clientX;drag.lt=now;
+    var d=dx;if((cur===0&&d>0)||(cur===N-1&&d<0))d=d/(1+Math.abs(d)/120); // soft resistance at the ends
+    drag.dx=d;track.style.setProperty('--drag',d+'px');
+  },{passive:true});
+  viewport.addEventListener('touchend',function(){endDrag(true)},{passive:true});
+  viewport.addEventListener('touchcancel',function(){endDrag(false)},{passive:true});
+
+  // slide index sheet (phones)
+  function closeIndex(){rail.classList.remove('open');indexBtn.setAttribute('aria-expanded','false')}
+  document.addEventListener('click',function(e){if(rail.classList.contains('open')&&!e.target.closest('#rail,#indexBtn'))closeIndex()});
 
   go(byHash(location.hash));
   requestAnimationFrame(function(){requestAnimationFrame(function(){track.classList.add('ready')})});

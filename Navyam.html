@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Navyam — Autonomous Drone // Sujal Negi</title>
 <meta name="description" content="Live simulation of Navyam: an autonomous industrial-monitoring drone flying a lawnmower search pattern with self-docking.">
+<link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=3" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
+<link rel="manifest" href="site.webmanifest?v=3">
+<meta name="theme-color" content="#ECEEEA">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
@@ -82,8 +88,9 @@ body::before,body::after,.bg-grid,.reg,#scan-progress{display:none!important}
 :focus-visible{outline:3px solid var(--scan);outline-offset:3px}
 nav{background:rgba(236,238,234,.93)!important;border-bottom:1px solid var(--line)!important;padding-top:max(15px,env(safe-area-inset-top,0px))}
 .brand{font-family:var(--body);font-size:1.05rem;font-weight:800;letter-spacing:-.01em;color:var(--ink);font-variation-settings:"wdth" 118}
-.brand i{display:block;width:26px;height:26px;background:var(--ink);position:relative;border-radius:3px}
-.brand i::after{content:"";position:absolute;left:4px;right:4px;bottom:5px;height:4px;background:var(--hivis)}
+.logo{display:block;width:30px;height:30px;flex:none;transition:transform .35s cubic-bezier(.22,.8,.26,1)}
+@media (hover:hover){a:hover>.logo{transform:rotate(-8deg) scale(1.06)}}
+@media (prefers-reduced-motion:reduce){.logo{transition:none}}
 .nav-links a{font-family:var(--body);font-size:.95rem;letter-spacing:0;text-transform:none;font-weight:500;color:var(--ink-dim)}
 .nav-links a::after{display:none}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
@@ -121,7 +128,7 @@ nav{background:rgba(236,238,234,.93)!important;border-bottom:1px solid var(--lin
 <div id="scan-progress" style="position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--scan-dim),var(--scan));box-shadow:0 0 12px var(--scan);z-index:120"></div>
 
 <nav id="nav">
-  <a href="index.html" class="brand"><i aria-hidden="true"></i>Sujal Negi</a>
+  <a href="index.html" class="brand"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="15" fill="#17202E"/><path d="M45 17H27.5a7.5 7.5 0 0 0 0 15h9a7.5 7.5 0 0 1 0 15H19" fill="none" stroke="#FFC61A" stroke-width="10"/><path d="M45 17H27.5a7.5 7.5 0 0 0 0 15h9a7.5 7.5 0 0 1 0 15H19" fill="none" stroke="#17202E" stroke-width="2.6"/><circle cx="46.5" cy="17" r="5" fill="#ECEEEA"/></svg>Sujal Negi</a>
   <button class="nav-toggle" id="navToggle" aria-controls="navLinks">Menu</button>
   <div class="nav-links" id="navLinks">
     <a href="index.html#limen">Work</a>

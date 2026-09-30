@@ -19,6 +19,7 @@ Live at [sujalnegi.tech](https://sujalnegi.tech)
 - `index.html` – the portfolio, including an interactive version of Limen's spending rule
 - `Navya.html`, `Navyam.html` – in-browser simulations of the two autonomous systems
 - `Sujal_Negi_Resume.pdf` – current résumé, linked from the site
+- `favicon.svg`, `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` – the rail-S logo for browser tabs, bookmarks and home screens
 - `CNAME` – custom domain for GitHub Pages
 
 Plain HTML, CSS and JavaScript. No build step: push to `main` and GitHub Pages serves it.

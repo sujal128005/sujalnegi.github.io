@@ -1,25 +1,28 @@
-# SUJAL NEGI // SYSTEM ARCHITECT
-### Engineering Perception. Architecting Autonomy.
+# sujalnegi.tech
 
-Welcome to the source code for my professional portfolio. This site is designed with a high-fidelity technical aesthetic, reflecting my work in Mechanical Engineering and Autonomous Systems.
+Portfolio of **Sujal Negi**, B.Tech Mechanical Engineering, IIITDM Kurnool (2023–2027).
+Engineer and builder working across manufacturing, software and program management. The site is laid out as a founder's deck: move through it with the arrow keys, scroll, swipe or the slide rail.
 
-## 🚀 Live Station
-**Access the uplink at:** [sujalnegi.tech](https://sujalnegi.tech)
+Live at [sujalnegi.tech](https://sujalnegi.tech)
 
-## 🛠️ Technical Stack
-* **Architecture:** HTML5, Tailwind CSS
-* **Design:** System UI, JetBrains Mono, Glassmorphism
-* **Logic:** Lucide Icons, Custom Signal Strength JavaScript
-* **Deployment:** GitHub Pages + custom .tech domain
+## What's on the site
 
-## 📂 Key Sections
-* **Primary Breakthroughs:** Highlights from Project Navya and Navyam.
-* **System Experience Log:** Professional journey and club coordination.
-* **Technical Data:** Full stack overview of engineering and coding skills.
+| Project | What it is | Links |
+|---|---|---|
+| Limen | Agentic procurement marketplace for industrial tenders. Winner, IBM SkillsBuild South Region Finale 2026 | [Live](https://limen-peqe.onrender.com) · [Code](https://github.com/sujal128005/limen) |
+| Khata | Real-time claim verification for live sales calls | [Live](https://khata-avs8.onrender.com/login) · [Code](https://github.com/sujal128005/khata) |
+| Navyam | Autonomous drone for industrial monitoring | [Simulation](https://sujalnegi.tech/Navyam.html) · [Drone code](https://github.com/sujal128005/gps-denied-drone) · [Sim code](https://github.com/sujal128005/Navyam-Simulation) |
+| Navya | Autonomous ground vehicle (project lead, 19-member team) | [Simulation](https://sujalnegi.tech/Navya.html) |
 
-## 🔗 Connected Nodes
-* **Nexara9 Industries:** [nexara9.me](https://nexara9.me)
-* **LinkedIn:** [Sujal Negi](https://linkedin.com/in/sujalnegi128005)
+## Files
 
----
-© 2026 // SUJAL NEGI // IIITDM KURNOOL
+- `index.html` – the portfolio, including an interactive version of Limen's spending rule
+- `Navya.html`, `Navyam.html` – in-browser simulations of the two autonomous systems
+- `Sujal_Negi_Resume.pdf` – current résumé, linked from the site
+- `CNAME` – custom domain for GitHub Pages
+
+Plain HTML, CSS and JavaScript. No build step: push to `main` and GitHub Pages serves it.
+
+## Contact
+
+[offsujal128005@gmail.com](mailto:offsujal128005@gmail.com) · [LinkedIn](https://linkedin.com/in/sujalnegi128005) · [GitHub](https://github.com/sujal128005)

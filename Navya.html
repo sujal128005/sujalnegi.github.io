@@ -86,6 +86,48 @@ nav.stuck{border-bottom:1px solid var(--line);background:rgba(4,6,11,.94)}
 .spec-card p{font-size:.94rem;color:var(--ink-dim)}
 @media(max-width:900px){.console{grid-template-columns:1fr}.hud{flex-direction:row;flex-wrap:wrap}.hud-card{flex:1;min-width:200px}}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+/* v2 theme: light drafting-paper chrome, dark simulation monitor */
+:root{--void:#ECEEEA;--void-2:#E2E5E0;--panel:#F7F8F5;--panel-2:#FFFFFF;--grid:transparent;--scan:#1F4FD1;--scan-dim:#8FA6E6;--signal:#8A5A00;--hot:#B3261E;--ink:#17202E;--ink-dim:#4E5866;--ink-faint:#8A93A0;--line:#C5CAD0;--disp:'Archivo',system-ui,sans-serif;--body:'Archivo',system-ui,sans-serif;--hivis:#FFC61A}
+body{background:var(--void);font-size:1.0625rem}
+body::before,body::after,.bg-grid,.reg,#scan-progress{display:none!important}
+::selection{background:var(--hivis);color:var(--ink)}
+:focus-visible{outline:3px solid var(--scan);outline-offset:3px}
+nav{background:rgba(236,238,234,.93)!important;border-bottom:1px solid var(--line)!important;padding-top:max(15px,env(safe-area-inset-top,0px))}
+.brand{font-family:var(--body);font-size:1.05rem;font-weight:800;letter-spacing:-.01em;color:var(--ink);font-variation-settings:"wdth" 118}
+.brand i{display:block;width:26px;height:26px;background:var(--ink);position:relative;border-radius:3px}
+.brand i::after{content:"";position:absolute;left:4px;right:4px;bottom:5px;height:4px;background:var(--hivis)}
+.nav-links a{font-family:var(--body);font-size:.95rem;letter-spacing:0;text-transform:none;font-weight:500;color:var(--ink-dim)}
+.nav-links a::after{display:none}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a.active{font-weight:700;text-decoration:underline;text-decoration-color:var(--hivis);text-decoration-thickness:4px;text-underline-offset:6px}
+.nav-toggle{font-family:var(--body);color:var(--ink);border:1.5px solid var(--ink);font-size:.9rem;font-weight:600;border-radius:4px}
+.demo-head h1{font-weight:800;font-variation-settings:"wdth" 120;letter-spacing:-.02em}
+.demo-head p{font-family:var(--body);font-size:1rem;letter-spacing:0;color:var(--ink-dim);max-width:40rem}
+.back{display:inline-block;margin-bottom:12px;font-family:var(--body);font-size:.95rem;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600}
+.btn{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:.95rem;font-weight:650;border-radius:4px}
+.btn-ghost{border:1.5px solid var(--ink)!important;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--void)}
+.btn-solid{background:var(--ink);color:var(--void);border:1.5px solid var(--ink)}
+.btn-solid:hover{background:#2A3850}
+.head-actions{display:flex;flex-wrap:wrap;gap:10px}
+.stage{border:2px solid var(--ink)!important;border-radius:6px!important}
+.stage-label{color:#FFC61A!important}
+.stage-label .rec{background:#FFC61A!important;box-shadow:0 0 8px #FFC61A!important}
+.hud-card,.spec-card{border:1.5px solid var(--ink)!important;border-radius:6px!important;background:var(--panel)!important}
+.hud-card h4{color:var(--ink)}
+.spec-card .n{font-family:var(--body);letter-spacing:0;font-size:.85rem;font-weight:700;color:var(--ink-dim)}
+.spec-card h3{font-variation-settings:"wdth" 112}
+.bar{background:var(--void-2)!important}
+.bar i{background:var(--ink)!important}
+.bar.batt i{background:#C98A00!important}
+.controls button{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:.9rem;background:var(--panel-2);border:1.5px solid var(--ink);border-radius:4px}
+.controls button:hover{background:var(--ink);color:var(--void);border-color:var(--ink)}
+.controls button.on{background:var(--ink);color:var(--void);border-color:var(--ink)}
+.phase{color:var(--ink)!important;border:1.5px dashed var(--ink)!important;font-weight:600}
+@media(max-width:820px){.nav-links{top:calc(64px + env(safe-area-inset-top,0px));background:var(--void)!important;border:1.5px solid var(--ink)!important;border-right:0!important}}
+</style>
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -93,24 +135,24 @@ nav.stuck{border-bottom:1px solid var(--line);background:rgba(4,6,11,.94)}
 <div id="scan-progress" style="position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--scan-dim),var(--scan));box-shadow:0 0 12px var(--scan);z-index:120"></div>
 
 <nav id="nav">
-  <a href="https://sujalnegi.tech/" class="brand"><span class="dot"></span>SN // AUTONOMOUS.SYS</a>
-  <button class="nav-toggle" id="navToggle">MENU</button>
+  <a href="index.html" class="brand"><i aria-hidden="true"></i>Sujal Negi</a>
+  <button class="nav-toggle" id="navToggle" aria-controls="navLinks">Menu</button>
   <div class="nav-links" id="navLinks">
-    <a href="https://sujalnegi.tech/">Home</a>
+    <a href="index.html#limen">Work</a>
     <a href="Navya.html" class="active">Navya</a>
     <a href="Navyam.html">Navyam</a>
-    <a href="https://nexara9.me/" target="_blank" rel="noopener" class="hot">NEXARA9 ↗</a>
+    <a href="index.html#contact">Contact</a>
   </div>
 </nav>
 
 <div class="demo-wrap">
   <div class="demo-head">
     <div>
-      <a href="https://sujalnegi.tech/" class="back">← RETURN TO BASE</a>
-      <h1>NAVYA <span>//</span> L3 DRIVE</h1>
-      <p>LIVE SIM · LiDAR SLAM + LANE DETECTION · PYTHON / OPENCV STACK</p>
+      <a href="index.html#navya" class="back">Back to the deck</a>
+      <h1>Navya</h1>
+      <p>A simplified live simulation of our autonomous ground vehicle: LiDAR mapping the surroundings while computer vision holds the lane. I lead the 19-member team building the real one.</p>
     </div>
-    <a href="Navyam.html" class="btn btn-ghost">Next: Navyam Drone →</a>
+    <div class="head-actions"><a href="Navyam.html" class="btn btn-ghost">Next: Navyam drone</a></div>
   </div>
 
   <div class="console">
@@ -139,8 +181,8 @@ nav.stuck{border-bottom:1px solid var(--line);background:rgba(4,6,11,.94)}
           <button id="tPath" class="on">Path</button>
         </div>
         <div class="legend" style="margin-top:12px">
-          <div class="k"><span class="sw" style="background:var(--scan)"></span>LiDAR return</div>
-          <div class="k"><span class="sw" style="background:var(--signal)"></span>Detected lane</div>
+          <div class="k"><span class="sw" style="background:#3ff0c4"></span>LiDAR return</div>
+          <div class="k"><span class="sw" style="background:#ff8c2b"></span>Detected lane</div>
           <div class="k"><span class="sw" style="background:#5b8dff"></span>Planned path</div>
         </div>
       </div>
@@ -152,10 +194,10 @@ nav.stuck{border-bottom:1px solid var(--line);background:rgba(4,6,11,.94)}
   </div>
 
   <div class="spec">
-    <div class="spec-card"><div class="n">/ TEAM</div><h3>19 Engineers</h3><p>Multi-disciplinary team across Computer Vision, Control Systems and CAD.</p></div>
-    <div class="spec-card"><div class="n">/ PERCEPTION</div><h3>LiDAR SLAM</h3><p>Simultaneous Localization &amp; Mapping builds the environment while tracking pose.</p></div>
-    <div class="spec-card"><div class="n">/ VISION</div><h3>Lane Detection</h3><p>OpenCV pipeline extracts lane geometry in real time to keep the vehicle centered.</p></div>
-    <div class="spec-card"><div class="n">/ LEVEL</div><h3>SAE Level 3</h3><p>Conditional automation — the system drives; the human is a fallback.</p></div>
+    <div class="spec-card"><div class="n">Team</div><h3>19 members</h3><p>Perception, controls, hardware and software, with delivery owned end to end.</p></div>
+    <div class="spec-card"><div class="n">Hardware</div><h3>Chassis, steering, drive</h3><p>I lead the mechanical design of the vehicle's chassis, steering and drive system.</p></div>
+    <div class="spec-card"><div class="n">Sensors</div><h3>LiDAR, camera, IMU</h3><p>Integrated on the vehicle for field testing.</p></div>
+    <div class="spec-card"><div class="n">Roadmap</div><h3>Toward a startup</h3><p>Sub-team interfaces, a risk register and a go-to-market plan, not just a demo.</p></div>
   </div>
 </div>
 

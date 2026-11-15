@@ -12,299 +12,342 @@
 <meta property="og:url" content="https://sujalnegi.tech/">
 <meta property="og:image" content="https://sujalnegi.tech/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#05060a">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png?v=4" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon.ico?v=4" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=4">
-<link rel="manifest" href="site.webmanifest?v=4">
-<link rel="preload" href="assets/sujal-900.webp" as="image" type="image/webp" imagesrcset="assets/sujal-560.webp 448w, assets/sujal-900.webp 720w" imagesizes="(max-width: 860px) 58vw, 420px">
+<link rel="manifest" href="site.webmanifest?v=5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preload" href="assets/img/sujal-desk.webp" as="image" type="image/webp" media="(min-width: 701px)">
+<link rel="preload" href="assets/img/sujal-desk-sm.webp" as="image" type="image/webp" media="(max-width: 700px)">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="assets/style.css?v=3">
-<script src="assets/main.js?v=3" defer></script>
+<link rel="stylesheet" href="assets/site.css?v=1">
+<script src="assets/js/fx.js?v=1" defer></script>
+<script src="assets/js/hero.js?v=1" defer></script>
+<script src="assets/js/head.js?v=1" defer></script>
+<script src="assets/js/work.js?v=1" defer></script>
+<script src="assets/js/game.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="nav" id="top">
-  <div class="nav-in">
-    <a class="nav-name" href="#top" aria-label="Sujal Negi, back to top">Sujal Negi</a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#work">Work</a>
-      <a href="#nexara9">Nexara9</a>
-      <a href="#about">About</a>
-      <a href="#recognition">Recognition</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="nav-cta" href="Sujal_Negi_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
-  </div>
+<div class="boot" aria-hidden="true">
+  <p class="boot-name"><span class="boot-type" data-text="sujal/negi"></span><i class="boot-caret"></i></p>
+  <p class="boot-sub">building the builder<span class="boot-dots"></span></p>
+</div>
+
+<header class="nav">
+  <a class="nav-mark" href="#top" aria-label="Sujal Negi, back to top"><b>Sujal Negi</b><span>/builder</span></a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#work" data-scramble>Work</a>
+    <a href="#head" data-scramble>Inside my head</a>
+    <a href="#wins" data-scramble>Wins</a>
+    <a href="#contact" data-scramble>Contact</a>
+  </nav>
+  <a class="nav-cta" href="Sujal_Negi_Resume.pdf" target="_blank" rel="noopener"><span data-scramble>Résumé</span></a>
 </header>
 
 <main id="main">
 
-  <!-- ===================================================== hero -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow reveal">Mechanical engineer · Co-founder, <a href="https://nexara9.me" target="_blank" rel="noopener">Nexara9</a></p>
-        <h1 class="hero-title reveal">Sujal Negi</h1>
-        <p class="hero-lead reveal">I design machines, ship AI products and lead the teams that build them.</p>
-        <blockquote class="hero-quote reveal">“I don’t start things to try them. I start them to finish them.”</blockquote>
-        <div class="hero-cta reveal">
-          <a class="btn btn-primary" href="#work">See my work</a>
-          <a class="btn btn-ghost" href="https://nexara9.me" target="_blank" rel="noopener">Visit Nexara9 <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-      <figure class="hero-photo reveal">
-        <img src="assets/sujal-900.webp" srcset="assets/sujal-560.webp 448w, assets/sujal-900.webp 720w" sizes="(max-width: 860px) 58vw, 420px" width="720" height="900" alt="Sujal Negi" fetchpriority="high">
-        <figcaption>B.Tech Mechanical Engineering · IIITDM Kurnool · 2023–2027</figcaption>
-      </figure>
-    </div>
-    <div class="wrap">
-      <dl class="stats reveal">
-        <div><dt>Products live on the web</dt><dd>7</dd></div>
-        <div><dt>People led on an autonomous vehicle team</dt><dd>19</dd></div>
-        <div><dt>Students reached through DataWorks</dt><dd>600+</dd></div>
-        <div><dt>Books written</dt><dd>10</dd></div>
-      </dl>
-    </div>
-  </section>
+<!-- 1. Hero: me at my desk. Every object is its own layer and breaks into code when you touch it. -->
+<section class="hero" id="top">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="hero-copy">
+    <p class="kicker">Mechanical engineer · Co-founder, Nexara9</p>
+    <h1 class="hero-title" data-glitch>I design machines, <em>ship AI products</em><br> and lead the teams that build them.</h1>
+    <a class="btn-line" href="#work">See my work</a>
+  </div>
 
-  <!-- ===================================================== work -->
-  <section class="section" id="work">
-    <div class="wrap">
-      <header class="sec-head reveal">
-        <p class="kicker">Work</p>
-        <h2>Things I’ve built and shipped.</h2>
-      </header>
+  <div class="scene" aria-label="Sujal at his desk with things he has built. Hover or tap an object.">
+    <div class="desk" aria-hidden="true"></div>
+    <i class="sq sq1" aria-hidden="true"><b></b></i>
+    <i class="sq sq2" aria-hidden="true"><b></b></i>
+    <i class="sq sq3" aria-hidden="true"><b></b></i>
+    <i class="sq sq4" aria-hidden="true"><b></b></i>
 
-      <!-- Limen -->
-      <article class="feature reveal" id="limen">
-        <div class="feature-copy">
-          <p class="badge badge-gold">Winner · IBM SkillsBuild South Region Finale 2026</p>
-          <h3>Limen</h3>
-          <p class="feature-lead">AI purchasing infrastructure where the spending limit is enforced, not trusted.</p>
-          <p>A multi-agent tender marketplace that compresses a two-to-three-month procurement cycle into days. Buyer ceilings and seller floors live in a Solidity contract, so no agent can raise its own spending limit.</p>
-          <ul class="points">
-            <li>Sealed bidding, escrow settlement and reputation scoring</li>
-            <li>Raise, approve and pay split across three role-gated desks</li>
-            <li>Every figure comes from a deterministic engine, verified by 539 automated checks</li>
-          </ul>
-          <p class="tags"><span>Solidity</span><span>Node.js</span><span>React</span><span>LLM integration</span></p>
-          <p class="links"><a class="btn btn-primary btn-sm" href="https://limen-peqe.onrender.com" target="_blank" rel="noopener" data-wake>Open live app <span aria-hidden="true">↗</span></a><a class="btn btn-ghost btn-sm" href="https://github.com/sujal128005/limen" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
-        </div>
-        <div class="demo" aria-label="Try Limen’s spending rule">
-          <p class="demo-k">Try the spending rule</p>
-          <p class="demo-t">Tender: 400 spindle bearings</p>
-          <div class="demo-range">
-            <div class="demo-bar" aria-hidden="true"><span class="demo-zone"></span><span class="demo-pin"></span></div>
-            <div class="demo-scale"><span>Seller floor<b>₹3,60,000</b></span><span>Buyer ceiling<b>₹4,80,000</b></span></div>
-          </div>
-          <label class="demo-label" for="limen-price">The agent proposes <output id="limen-out" for="limen-price">₹4,55,000</output></label>
+    <a class="lay lay-me" href="#about" data-src="assets/img/sujal-desk.webp" data-src-sm="assets/img/sujal-desk-sm.webp" data-label="Sujal Negi · Builder" data-note="Engineer by training, builder by instinct">
+      <span class="sr">About Sujal</span></a>
+    <a class="lay lay-drone" href="#autonomy" data-src="assets/img/drone.webp" data-label="Autonomous drone" data-note="Team lead · 8 members">
+      <span class="sr">The autonomous drone</span></a>
+    <a class="lay lay-rover" href="#autonomy" data-src="assets/img/rover.webp" data-label="Autonomous ground vehicle" data-note="Project lead · 19 members">
+      <span class="sr">The autonomous ground vehicle</span></a>
+    <a class="lay lay-books" href="https://alfaaz.sujalnegi.tech" target="_blank" rel="noopener" data-src="assets/img/books.webp" data-label="10 books" data-note="Written in English and Hindi">
+      <span class="sr">My books</span></a>
+    <a class="lay lay-mug" href="https://nexara9.me" target="_blank" rel="noopener" data-src="assets/img/mug.webp" data-label="Nexara9" data-note="The venture studio I co-founded">
+      <span class="sr">Nexara9</span></a>
+    <a class="lay lay-lantern" href="#words-open" data-src="assets/img/lantern.webp" data-label="In my own words" data-note="Hear me out, 45 seconds">
+      <span class="sr">Hear Sujal in his own words</span></a>
+    <a class="lay lay-win lay-win1" href="#work" data-src="assets/img/shot-stealth.webp" data-label="STEALTH" data-note="Know Your Agent" data-frame>
+      <span class="sr">STEALTH</span></a>
+    <a class="lay lay-win lay-win2" href="#work" data-src="assets/img/shot-arthanetra.webp" data-label="ArthaNetra" data-note="See the real price" data-frame>
+      <span class="sr">ArthaNetra</span></a>
+    <p class="tip" role="status" aria-live="polite"><b></b><span></span></p>
+  </div>
+  <p class="hint" aria-hidden="true"><span class="hint-dot"></span>Touch anything on the desk</p>
+</section>
+
+<!-- 2. A short statement that lights up as you read -->
+<section class="say" id="about">
+  <p class="say-text" data-light>Engineer by training, builder by instinct. I design vehicle hardware, ship live AI systems and lead a 19-member autonomous vehicle team. When I take on a problem I own all of it: the design, the team, the deadline and the result. <span class="say-quote">I don’t start things to try them. I start them to finish them.</span></p>
+  <ul class="tags" aria-label="In numbers">
+    <li data-scramble-in>/7 products live</li>
+    <li data-scramble-in>/19 people led</li>
+    <li data-scramble-in>/600+ students taught</li>
+    <li data-scramble-in>/10 books written</li>
+    <li data-scramble-in>/1 venture studio</li>
+  </ul>
+  <p class="edu">B.Tech Mechanical Engineering · IIITDM Kurnool · 2023–2027 · Mentored by Dolphin Tank India</p>
+</section>
+
+<!-- 3. Inside my head: a head made of dots, with three doors -->
+<section class="head" id="head" aria-labelledby="head-title">
+  <canvas class="bust" aria-hidden="true"></canvas>
+  <div class="spots">
+    <button class="spot" data-scene="brain" type="button"><i></i><span class="spot-lab">What I’m building</span></button>
+    <button class="spot" data-scene="eyes" type="button"><i></i><span class="spot-lab">What I’ve shipped</span></button>
+    <button class="spot" data-scene="words" type="button" id="words-open"><i></i><span class="spot-lab">In my own words</span></button>
+  </div>
+  <svg class="wires" aria-hidden="true"></svg>
+  <div class="head-copy">
+    <p class="kicker">Click a glowing point</p>
+    <h2 id="head-title">Step inside <em>my head.</em></h2>
+  </div>
+</section>
+
+<!-- the three rooms -->
+<div class="room" id="room-brain" role="dialog" aria-modal="true" aria-label="What I’m building" hidden>
+  <canvas class="room-cv" aria-hidden="true"></canvas>
+  <svg class="room-wires" aria-hidden="true"></svg>
+  <div class="cards">
+    <article class="card c1" data-anchor="0"><p class="card-k">Building now</p><h3>Limen</h3><p>AI purchasing infrastructure. Winner, IBM SkillsBuild South Region 2026.</p><a href="https://limen-peqe.onrender.com" target="_blank" rel="noopener" data-wake>Open live app ↗</a></article>
+    <article class="card c2" data-anchor="1"><p class="card-k">Building now</p><h3>Housefi</h3><p>Verified home services for India’s tier-2 and tier-3 cities. IBM SkillsBuild national finalist.</p></article>
+    <article class="card c3" data-anchor="2"><p class="card-k">Private</p><h3>The Autonomy Program</h3><p>An autonomous car and drone, built to work together.</p></article>
+    <article class="card c4 card-folder" data-anchor="3"><p class="card-k">Ideas at 2 AM</p><ul><li>Agents that can’t overspend</li><li>Calls that check every number</li><li>Machines that find their own way</li></ul></article>
+    <article class="card c5" data-anchor="4"><p class="card-k">How I operate</p><ol><li>Spend only after the proof</li><li>Separate who asks from who pays</li><li>Let the model talk, let the rules decide</li><li>Build toward a customer</li></ol></article>
+  </div>
+  <div class="panel"><p class="panel-t">In my head</p><dl><div><dt>Products live</dt><dd>7</dd></div><div><dt>Teams led</dt><dd>2</dd></div><div><dt>Ideas running</dt><dd data-tick="31">31</dd></div><div><dt>Hours slept</dt><dd>6</dd></div></dl></div>
+  <p class="room-hint">Drag to turn</p>
+  <button class="room-x" type="button">Close</button>
+</div>
+
+<div class="room" id="room-eyes" role="dialog" aria-modal="true" aria-label="What I’ve shipped" hidden>
+  <canvas class="room-cv" aria-hidden="true"></canvas>
+  <div class="fly"><div class="fly-world"></div></div>
+  <div class="panel"><p class="panel-t">Through my eyes</p><dl><div><dt>Screens passed</dt><dd class="eyes-n">0</dd></div><div><dt>Products live</dt><dd>7</dd></div></dl></div>
+  <p class="room-hint">Scroll to fly through</p>
+  <button class="room-x" type="button">Close</button>
+</div>
+
+<div class="room" id="room-words" role="dialog" aria-modal="true" aria-label="In my own words" hidden>
+  <canvas class="room-cv" aria-hidden="true"></canvas>
+  <p class="words-cap" aria-live="polite"></p>
+  <button class="words-mute" type="button" aria-label="Mute">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="w-on" d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="w-off" d="M16.5 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <div class="panel"><p class="panel-t">In my words</p><dl><div><dt>Line</dt><dd class="words-n">1 / 9</dd></div><div><dt>Voice</dt><dd>AI</dd></div></dl></div>
+  <button class="room-x" type="button">Close</button>
+  <audio preload="none" src="assets/audio/words.mp3"></audio>
+</div>
+
+<!-- 4. Work -->
+<section class="work" id="work" aria-labelledby="work-title">
+  <div class="sec-head">
+    <p class="kicker">Work</p>
+    <h2 id="work-title">Things I’ve built. <em>Every one of them live.</em></h2>
+  </div>
+  <div class="deck" tabindex="0" aria-roledescription="carousel" aria-label="Projects">
+    <div class="deck-view"><div class="deck-track">
+
+      <article class="slide" aria-label="Limen">
+        <div class="slide-vis demo" aria-label="Try the spending rule">
+          <p class="demo-k">Try the spending rule · Tender: 400 spindle bearings</p>
+          <div class="limen-bar"><span class="limen-zone"></span><span class="limen-pin"></span></div>
+          <div class="limen-ends"><span>Seller floor ₹3,60,000</span><span>Buyer ceiling ₹4,80,000</span></div>
+          <label class="limen-lab" for="limen-price">The agent proposes <output id="limen-out">₹4,55,000</output></label>
           <input id="limen-price" type="range" min="300000" max="540000" step="5000" value="455000">
-          <p class="demo-verdict" id="limen-verdict" aria-live="polite">Within limits. Escrow can settle.</p>
-          <p class="demo-foot">Drag past the ceiling to see what the contract does. Enforced in Solidity, not in a prompt.</p>
+          <p class="verdict ok" id="limen-verdict" aria-live="polite">Within limits. Escrow can settle.</p>
+          <p class="demo-foot">Drag past the ceiling. Enforced in Solidity, not in a prompt.</p>
+        </div>
+        <div class="slide-txt">
+          <p class="award">Winner · IBM SkillsBuild South Region Finale 2026</p>
+          <h3><small>01</small>Limen</h3>
+          <p>AI purchasing infrastructure where the spending limit is enforced, not trusted. A multi-agent tender marketplace that turns a two-to-three-month procurement cycle into days.</p>
+          <p class="stack">Solidity · Node.js · React · LLM integration</p>
+          <p class="links"><a href="https://limen-peqe.onrender.com" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/limen" target="_blank" rel="noopener">Code ↗</a></p>
         </div>
       </article>
 
-      <!-- Khata -->
-      <article class="feature feature-flip reveal" id="khata">
-        <div class="feature-copy">
-          <p class="badge badge-gold">2nd Runner-Up · KL University AI Build 2026</p>
-          <h3>Khata</h3>
-          <p class="feature-lead">A live co-pilot for sales calls.</p>
-          <p>It checks every number a rep quotes against the real product rules and corrects mistakes in about a second. The model only explains; a deterministic rules engine decides what is true, held in place by 324 automated checks.</p>
-          <p class="note">Won at a 24+ hour offline hackathon with 1,039 students from 75+ colleges. Built with Vaishnavi C R.</p>
-          <p class="tags"><span>Next.js</span><span>TypeScript</span><span>SQLite</span><span>LLM integration</span></p>
-          <p class="links"><a class="btn btn-primary btn-sm" href="https://khata-avs8.onrender.com/login" target="_blank" rel="noopener" data-wake>Open live app <span aria-hidden="true">↗</span></a><a class="btn btn-ghost btn-sm" href="https://github.com/sujal128005/khata" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a><a class="btn btn-ghost btn-sm" href="https://nexara9.me/projects/khata/" target="_blank" rel="noopener">Deep dive <span aria-hidden="true">↗</span></a></p>
+      <article class="slide" aria-label="Khata">
+        <div class="slide-vis demo" aria-label="A sample sales call">
+          <p class="demo-k">On a call · the rules decide, the model only explains</p>
+          <ul class="call" id="khata-call">
+            <li><p>“We can deliver the full order in 3 days.”</p><span class="verdict wait" data-v="no" data-say="Not supported. Standard lead time on file is 7 days.">Waiting to check</span></li>
+            <li><p>“This plan includes round-the-clock support.”</p><span class="verdict wait" data-v="ok" data-say="Supported. Matches the plan terms.">Waiting to check</span></li>
+            <li><p>“I can give you 25% off if you sign today.”</p><span class="verdict wait" data-v="no" data-say="Not supported. Approved discount limit is 15%.">Waiting to check</span></li>
+          </ul>
+          <button class="btn-gold" id="khata-run" type="button">Check the claims</button>
         </div>
-        <div class="demo demo-call" aria-label="What Khata does on a call">
-          <p class="demo-k">On a call</p>
-          <ol class="call" id="khata-call">
-            <li><span class="who">Sales rep</span><span class="said">We can deliver the full order in 3 days.</span><span class="verdict" data-v="no" data-say="Not supported. Standard lead time on file is 7 days.">Waiting to check</span></li>
-            <li><span class="who">Sales rep</span><span class="said">This plan includes round-the-clock support.</span><span class="verdict" data-v="ok" data-say="Supported. Matches the plan terms.">Waiting to check</span></li>
-            <li><span class="who">Sales rep</span><span class="said">I can give you 25% off if you sign today.</span><span class="verdict" data-v="no" data-say="Not supported. Approved discount limit is 15%.">Waiting to check</span></li>
-          </ol>
-          <button type="button" class="btn btn-ghost btn-sm" id="khata-run">Check the claims</button>
-          <p class="demo-foot">A sample call. The rules decide, the model only explains.</p>
+        <div class="slide-txt">
+          <p class="award">2nd Runner-Up · KL University AI Build 2026</p>
+          <h3><small>02</small>Khata</h3>
+          <p>A live co-pilot for sales calls. It checks every number a rep quotes against the real product rules and corrects mistakes in about a second. Won at a 24+ hour offline hackathon with 1,039 students from 75+ colleges. Built with Vaishnavi C R.</p>
+          <p class="stack">Next.js · TypeScript · SQLite · LLM integration</p>
+          <p class="links"><a href="https://khata-avs8.onrender.com/login" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/khata" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/khata/" target="_blank" rel="noopener">Deep dive ↗</a></p>
         </div>
       </article>
 
-      <!-- more -->
-      <h3 class="grid-title reveal">More projects</h3>
-      <div class="cards">
-        <article class="card reveal">
-          <p class="card-k">Razorpay AI Buildathon</p>
-          <h4>STEALTH · Know Your Agent</h4>
-          <p>A trust gateway between AI shopping agents and checkout: it checks that what the agent is buying matches what the human authorised.</p>
-          <p class="tags"><span>Next.js</span><span>Prisma</span><span>Ed25519</span></p>
-          <p class="card-links"><a href="https://bouncerkya.onrender.com" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/bouncerkya" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/stealth/" target="_blank" rel="noopener">Deep dive ↗</a></p>
-        </article>
-        <article class="card reveal">
-          <p class="card-k">Built on the PayPal developer platform</p>
-          <h4>PayPal Attribute</h4>
+      <article class="slide" aria-label="STEALTH">
+        <div class="slide-vis"><div class="win"><i></i><img src="assets/img/shot-stealth.webp" alt="STEALTH dashboard: an agent is about to spend your money" loading="lazy" width="1100" height="688"></div></div>
+        <div class="slide-txt">
+          <p class="award">Razorpay AI Buildathon</p>
+          <h3><small>03</small>STEALTH · Know Your Agent</h3>
+          <p>A trust gateway between AI shopping agents and checkout. It checks that what the agent is buying matches what the human authorised, before anything reaches payment.</p>
+          <p class="stack">Next.js · Prisma · Ed25519</p>
+          <p class="links"><a href="https://bouncerkya.onrender.com" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/bouncerkya" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/stealth/" target="_blank" rel="noopener">Deep dive ↗</a></p>
+        </div>
+      </article>
+
+      <article class="slide" aria-label="PayPal Attribute">
+        <div class="slide-vis"><div class="win"><i></i><img src="assets/img/shot-paypal.webp" alt="PayPal Attribute: every AI answer has sources, now every source gets paid" loading="lazy" width="1100" height="688"></div></div>
+        <div class="slide-txt">
+          <p class="award">Built on the PayPal developer platform</p>
+          <h3><small>04</small>PayPal Attribute</h3>
           <p>When an AI shopping agent recommends a product, the creators it cited get a fair share of the sale, paid through PayPal.</p>
-          <p class="tags"><span>Next.js 15</span><span>PayPal Orders &amp; Payouts</span><span>Groq · Gemini</span></p>
-          <p class="card-links"><a href="https://paypal-attribute.onrender.com/" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/paypal-attribute" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/paypal-attribute/" target="_blank" rel="noopener">Deep dive ↗</a></p>
-        </article>
-        <article class="card reveal">
-          <p class="card-k">Swiggy Food for Thought 2.0</p>
-          <h4>FlexDrop</h4>
-          <p>Customers trade a little delivery flexibility for a small reward; FlexDrop uses it to batch orders onto fewer, shorter routes.</p>
-          <p class="tags"><span>OR-Tools CP-SAT</span><span>FastAPI</span><span>Machine learning</span></p>
-          <p class="card-links"><a href="https://flexdrop.onrender.com/app/" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/FlexDrop" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/flexdrop/" target="_blank" rel="noopener">Deep dive ↗</a></p>
-        </article>
-        <article class="card reveal">
-          <p class="card-k">Vision-model evaluation</p>
-          <h4>PixelProof</h4>
+          <p class="stack">Next.js 15 · PayPal Orders &amp; Payouts · Groq · Gemini</p>
+          <p class="links"><a href="https://paypal-attribute.onrender.com/" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/paypal-attribute" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/paypal-attribute/" target="_blank" rel="noopener">Deep dive ↗</a></p>
+        </div>
+      </article>
+
+      <article class="slide" aria-label="FlexDrop">
+        <div class="slide-vis"><div class="win"><i></i><img src="assets/img/flexdrop-world-overview-night.webp" alt="FlexDrop: delivery routes over a city at night" loading="lazy"></div></div>
+        <div class="slide-txt">
+          <p class="award">Swiggy Food for Thought 2.0</p>
+          <h3><small>05</small>FlexDrop</h3>
+          <p>Customers trade a little delivery flexibility for a small reward. FlexDrop uses it to batch orders onto fewer, shorter routes.</p>
+          <p class="stack">OR-Tools CP-SAT · FastAPI · Machine learning</p>
+          <p class="links"><a href="https://flexdrop.onrender.com/app/" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/FlexDrop" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/flexdrop/" target="_blank" rel="noopener">Deep dive ↗</a></p>
+        </div>
+      </article>
+
+      <article class="slide" aria-label="PixelProof">
+        <div class="slide-vis"><div class="win"><i></i><img src="assets/img/shot-pixelproof.webp" alt="PixelProof Studio: twin gauge puzzles for vision models" loading="lazy" width="1100" height="688"></div></div>
+        <div class="slide-txt">
+          <p class="award">Vision-model evaluation</p>
+          <h3><small>06</small>PixelProof</h3>
           <p>A factory of verified visual puzzles that tests whether AI vision models really read gauges, charts and diagrams.</p>
-          <p class="tags"><span>Python</span><span>NumPy</span><span>Pillow</span></p>
-          <p class="card-links"><a href="https://pixelproof-gk2j.onrender.com" target="_blank" rel="noopener" data-wake>Studio ↗</a><a href="https://github.com/sujal128005/Qwen" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/pixelproof/" target="_blank" rel="noopener">Deep dive ↗</a></p>
-        </article>
-        <article class="card reveal">
-          <p class="card-k">Arthaton 2026 · AI for Finance</p>
-          <h4>ArthaNetra</h4>
+          <p class="stack">Python · NumPy · Pillow</p>
+          <p class="links"><a href="https://pixelproof-gk2j.onrender.com" target="_blank" rel="noopener" data-wake>Studio ↗</a><a href="https://github.com/sujal128005/Qwen" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/pixelproof/" target="_blank" rel="noopener">Deep dive ↗</a></p>
+        </div>
+      </article>
+
+      <article class="slide" aria-label="ArthaNetra">
+        <div class="slide-vis"><div class="win"><i></i><img src="assets/img/shot-arthanetra.webp" alt="ArthaNetra: see the real price of a loan offer" loading="lazy" width="1100" height="688"></div></div>
+        <div class="slide-txt">
+          <p class="award">Arthaton 2026 · AI for Finance</p>
+          <h3><small>07</small>ArthaNetra</h3>
           <p>Paste any loan, EMI, credit card or insurance offer and see what it will really cost you, explained in 12 Indian languages.</p>
-          <p class="tags"><span>FastAPI</span><span>Groq</span><span>Gemini</span></p>
-          <p class="card-links"><a href="https://arthanetra.onrender.com" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/ArthaNetra" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/arthanetra/" target="_blank" rel="noopener">Deep dive ↗</a></p>
-        </article>
-        <a class="card card-more reveal" href="https://nexara9.me/projects/" target="_blank" rel="noopener">
-          <p class="card-k">nexara9.me</p>
-          <h4>Every project, with its code</h4>
-          <p>Architecture, demos and every source file, readable line by line, with an AI that explains the code.</p>
-          <span class="card-go">Explore all projects <span aria-hidden="true">↗</span></span>
-        </a>
-      </div>
-      <p class="wake-note reveal">The live apps sleep on free hosting. This page wakes them up as you arrive, so they open fast.</p>
-    </div>
-  </section>
-
-  <!-- ===================================================== Nexara9 -->
-  <section class="section section-dark" id="nexara9">
-    <div class="wrap">
-      <div class="n9">
-        <div class="n9-copy reveal">
-          <p class="kicker kicker-gold">Venture studio</p>
-          <h2>Nexara9</h2>
-          <p class="n9-lead">The company I co-founded with Made Navya. Autonomous machines, AI systems and everyday products, built under one name and one standard.</p>
-          <a class="btn btn-gold" href="https://nexara9.me" target="_blank" rel="noopener">Visit nexara9.me <span aria-hidden="true">↗</span></a>
+          <p class="stack">FastAPI · Groq · Gemini</p>
+          <p class="links"><a href="https://arthanetra.onrender.com" target="_blank" rel="noopener" data-wake>Live ↗</a><a href="https://github.com/sujal128005/ArthaNetra" target="_blank" rel="noopener">Code ↗</a><a href="https://nexara9.me/projects/arthanetra/" target="_blank" rel="noopener">Deep dive ↗</a></p>
         </div>
-        <ul class="n9-list reveal">
-          <li><span class="n9-name">Limen</span><span class="n9-what">AI purchasing infrastructure</span><span class="n9-tag">Winner · IBM SkillsBuild South Region 2026</span></li>
-          <li><span class="n9-name">Housefi</span><span class="n9-what">Verified home services for India’s tier-2 and tier-3 cities</span><span class="n9-tag">IBM SkillsBuild National Finalist 2026</span></li>
-          <li><span class="n9-name">The Autonomy Program</span><span class="n9-what">An autonomous car and drone, built to work together</span><span class="n9-tag">Private</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <!-- ===================================================== about -->
-  <section class="section" id="about">
-    <div class="wrap">
-      <header class="sec-head reveal">
-        <p class="kicker">About</p>
-        <h2>Engineer by training, builder by instinct.</h2>
-      </header>
-      <div class="about">
-        <div class="about-text reveal">
-          <p>I’m a mechanical engineer who works across manufacturing, software and program management. I design vehicle hardware, ship live AI systems and lead a 19-member autonomous vehicle team.</p>
-          <p>On the hardware side that means chassis, steering and drive design for a ground vehicle, and mass and component placement for a drone. On the software side it means agentic marketplaces and real-time verification tools that people can open and use today.</p>
-          <p>When I take on a problem I own all of it: the design, the team, the deadline and the result.</p>
-        </div>
-        <dl class="facts reveal">
-          <div><dt>Studying</dt><dd>B.Tech Mechanical Engineering, IIITDM Kurnool, 2023–2027</dd></div>
-          <div><dt>Building</dt><dd><a href="https://nexara9.me" target="_blank" rel="noopener">Nexara9</a>, co-founder</dd></div>
-          <div><dt>Mentored by</dt><dd>Dolphin Tank India Founder Mentorship Program</dd></div>
-          <div><dt>Also</dt><dd>Author of 10 books in English and Hindi as <a href="https://alfaaz.sujalnegi.tech" target="_blank" rel="noopener">alfaazsujalke</a></dd></div>
-        </dl>
-      </div>
-
-      <h3 class="grid-title reveal">How I operate</h3>
-      <div class="principles">
-        <div class="principle reveal"><span class="p-n">01</span><h4>Spend only after the proof</h4><p>On our autonomous drone, hardware spend waited for a milestone in simulation. Cheap proof first, expensive parts second.</p></div>
-        <div class="principle reveal"><span class="p-n">02</span><h4>Separate who asks from who pays</h4><p>Limen splits raise, approve and pay across three role-gated desks: the control a good purchasing team uses, built into software.</p></div>
-        <div class="principle reveal"><span class="p-n">03</span><h4>Let the model talk, let the rules decide</h4><p>In Limen and Khata the AI writes the words and a deterministic engine owns the facts, backed by 863 automated checks.</p></div>
-        <div class="principle reveal"><span class="p-n">04</span><h4>Build toward a customer</h4><p>The autonomous vehicle runs with a risk register and a go-to-market plan, not just a demo. Limen was pitched to IBM judges and won.</p></div>
-      </div>
+    </div></div>
+    <div class="deck-nav">
+      <button class="deck-btn prev" type="button" aria-label="Previous project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <p class="deck-count" aria-live="polite"><b>01</b> / 07</p>
+      <button class="deck-btn next" type="button" aria-label="Next project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
     </div>
-  </section>
+  </div>
+  <p class="work-more">Every project with its full code and an AI that explains it: <a href="https://nexara9.me/projects/" target="_blank" rel="noopener">nexara9.me/projects ↗</a></p>
+</section>
 
-  <!-- ===================================================== leadership -->
-  <section class="section section-soft" id="leadership">
-    <div class="wrap">
-      <header class="sec-head reveal">
-        <p class="kicker">Leadership</p>
-        <h2>Teams and events I’ve run.</h2>
-      </header>
-      <ol class="timeline">
-        <li class="reveal"><span class="t-when">2025 – now</span><div><h4>Project lead, autonomous ground vehicle</h4><p class="t-where">Nexara9 Autonomy Program</p><p>19 members across perception, controls, hardware and software. I own the chassis, steering and drive design, the sub-team interfaces, the risk register and the roadmap.</p></div></li>
-        <li class="reveal"><span class="t-when">Dec 2025 – now</span><div><h4>Team lead, autonomous drone</h4><p class="t-where">Nexara9 Autonomy Program</p><p>8 members across airframe, propulsion and payload, managing mass and component placement.</p></div></li>
-        <li class="reveal"><span class="t-when">Jan 2025 – now</span><div><h4>Club lead, DataWorks Club</h4><p class="t-where">AI/ML and Data Science · IIITDM Kurnool</p><p>Workshops and hackathons reaching 600+ students. I own the annual plan, budget, sponsors and core team.</p></div></li>
-        <li class="reveal"><span class="t-when">Aug 2025</span><div><h4>Institute coordinator, Udbhav Inter-IIIT Tech Meet</h4><p class="t-where">IIIT Sri City</p><p>Sole point of contact for a meet across 23 institutes, and ran the campus hackathon for 350 students.</p></div></li>
-        <li class="reveal"><span class="t-when">2026</span><div><h4>Industrial visit, Kia India Manufacturing Plant</h4><p class="t-where">Anantapur</p><p>Studied automotive manufacturing, assembly-line workflows and production systems on a working plant floor.</p></div></li>
-      </ol>
+<!-- 5. The monitor: space for my video. Until then, an AI hello. -->
+<section class="hello" id="hello" aria-labelledby="hello-title">
+  <div class="mon-wrap">
+    <div class="mon" data-video="">
+      <canvas class="mon-cv" aria-hidden="true"></canvas>
+      <video class="mon-video" playsinline hidden></video>
+      <button class="mon-play" type="button" aria-label="Play hello"><span>Play</span></button>
+      <p class="mon-cap" aria-live="polite"></p>
     </div>
-  </section>
+    <div class="mon-stand" aria-hidden="true"></div>
+    <audio class="mon-audio" preload="none" src="assets/audio/hello.mp3"></audio>
+  </div>
+  <div class="hello-txt">
+    <h2 id="hello-title">No cover letters. <em>Just build with me.</em></h2>
+    <p class="hello-sub">Three steps. No nonsense.</p>
+    <ol class="steps">
+      <li><b>1/</b>Say hello</li>
+      <li><b>2/</b>Tell me what you’re building</li>
+      <li><b>3/</b>We find a time to talk</li>
+    </ol>
+    <a class="btn-line" href="mailto:offsujal128005@gmail.com?subject=Hello%20Sujal">Say hello</a>
+  </div>
+</section>
 
-  <!-- ===================================================== recognition -->
-  <section class="section" id="recognition">
-    <div class="wrap">
-      <header class="sec-head reveal">
-        <p class="kicker">Recognition</p>
-        <h2>Wins and selections.</h2>
-      </header>
-      <div class="awards">
-        <article class="award award-big reveal"><p class="a-when">2026 · Bengaluru</p><h4>Winner, IBM SkillsBuild Hackathon South Region Finale</h4><p>National finalist. I pitched Limen to IBM judges, in a field of 12,000+ participants in 1,000+ teams.</p></article>
-        <article class="award reveal"><p class="a-when">2026</p><h4>2nd Runner-Up, KL University AI Build</h4><p>Khata, at a 24+ hour offline hackathon with 1,039 students from 75+ colleges.</p></article>
-        <article class="award reveal"><p class="a-when">2026</p><h4>Bangalore finalist, Paytm Build for India AI Hackathon</h4><p>Selected as a finalist for the Bangalore round.</p></article>
-        <article class="award reveal"><p class="a-when">2026</p><h4>Dolphin Tank India Founder Mentorship Program</h4><p>Selected for ₹18 lakh worth of mentorship (IAC, Cloud Counselage).</p></article>
-        <article class="award reveal"><p class="a-when">Certifications</p><h4>Agile and Scrum, Google Analytics, MATLAB</h4><p>Alison Agile and Scrum (84%), Google Analytics for Beginners (98.25%), MATLAB and Simscape Onramps.</p></article>
-      </div>
-    </div>
-  </section>
+<!-- 6. Wins and teams -->
+<section class="wins" id="wins" aria-labelledby="wins-title">
+  <div class="sec-head">
+    <p class="kicker">Wins and teams</p>
+    <h2 id="wins-title">I keep score. <em>Here it is.</em></h2>
+  </div>
+  <div class="wins-grid">
+    <ol class="list">
+      <li><span class="yr">2026 · Bengaluru</span><h3>Winner, IBM SkillsBuild Hackathon South Region Finale</h3><p>National finalist. I pitched Limen to IBM judges, in a field of 12,000+ participants in 1,000+ teams.</p></li>
+      <li><span class="yr">2026</span><h3>2nd Runner-Up, KL University AI Build</h3><p>Khata, at a 24+ hour offline hackathon with 1,039 students from 75+ colleges.</p></li>
+      <li><span class="yr">2026</span><h3>Bangalore finalist, Paytm Build for India AI Hackathon</h3><p>Selected as a finalist for the Bangalore round.</p></li>
+      <li><span class="yr">2026</span><h3>Dolphin Tank India Founder Mentorship Program</h3><p>Selected for ₹18 lakh worth of mentorship (IAC, Cloud Counselage).</p></li>
+    </ol>
+    <ol class="list" id="autonomy">
+      <li><span class="yr">2025 – now</span><h3>Project lead, autonomous ground vehicle</h3><p>Nexara9 Autonomy Program · 19 members across perception, controls, hardware and software. I own the chassis, steering and drive design, the risk register and the roadmap.</p></li>
+      <li><span class="yr">Dec 2025 – now</span><h3>Team lead, autonomous drone</h3><p>Nexara9 Autonomy Program · 8 members across airframe, propulsion and payload.</p></li>
+      <li><span class="yr">Jan 2025 – now</span><h3>Club lead, DataWorks Club</h3><p>AI/ML and Data Science, IIITDM Kurnool. Workshops and hackathons reaching 600+ students.</p></li>
+      <li><span class="yr">Aug 2025</span><h3>Institute coordinator, Udbhav Inter-IIIT Tech Meet</h3><p>Sole point of contact across 23 institutes; ran the campus hackathon for 350 students.</p></li>
+    </ol>
+  </div>
+  <div class="skills" aria-label="Skills">
+    <p><b>Engineering</b>CATIA · AutoCAD · GD&amp;T · CNC programming · DFM / DFA · MATLAB · Simulink</p>
+    <p><b>Software</b>Python · TypeScript · Solidity · Node.js · React · Next.js · SQL</p>
+    <p><b>AI and agents</b>LLM integration · Deterministic agent design · Output verification · Adversarial testing</p>
+    <p><b>Management</b>Agile and Scrum · Project planning · Team coordination · B2B marketing</p>
+  </div>
+</section>
 
-  <!-- ===================================================== skills -->
-  <section class="section section-soft" id="skills">
-    <div class="wrap">
-      <header class="sec-head reveal">
-        <p class="kicker">Skills</p>
-        <h2>From the drawing board to the deploy.</h2>
-      </header>
-      <div class="skills">
-        <div class="skill reveal"><h4>Engineering</h4><p class="tags"><span>CATIA</span><span>AutoCAD</span><span>GD&amp;T</span><span>CNC programming</span><span>Machining</span><span>Quality inspection</span><span>DFM / DFA</span></p></div>
-        <div class="skill reveal"><h4>Programming</h4><p class="tags"><span>Python</span><span>TypeScript</span><span>JavaScript</span><span>SQL</span><span>Solidity</span><span>Node.js</span><span>React</span><span>Next.js</span><span>Git</span></p></div>
-        <div class="skill reveal"><h4>AI and agents</h4><p class="tags"><span>LLM integration</span><span>Prompt engineering</span><span>Deterministic agent design</span><span>Output verification</span><span>Adversarial testing</span></p></div>
-        <div class="skill reveal"><h4>Management</h4><p class="tags"><span>Agile and Scrum</span><span>Project planning</span><span>Team coordination</span><span>B2B marketing</span><span>Entrepreneurship</span><span>Google Analytics</span></p></div>
-        <div class="skill reveal"><h4>Tools</h4><p class="tags"><span>MATLAB</span><span>Simulink</span><span>Excel</span><span>PowerPoint</span><span>Word</span></p></div>
-      </div>
-    </div>
-  </section>
+<!-- 7. Nexara9 -->
+<section class="n9" aria-labelledby="n9-title">
+  <a class="n9-card" href="https://nexara9.me" target="_blank" rel="noopener">
+    <canvas class="n9-cv" aria-hidden="true"></canvas>
+    <span class="n9-txt"><span class="kicker">Venture studio</span><b id="n9-title">Building something bigger?</b><span>Nexara9 is the company I co-founded with Made Navya. Autonomous machines, AI systems and everyday products, under one name and one standard.</span></span>
+    <span class="n9-go">nexara9.me ↗</span>
+  </a>
+</section>
 
-  <!-- ===================================================== contact -->
-  <section class="section contact" id="contact">
-    <div class="wrap">
-      <h2 class="contact-title reveal">Let’s build something.</h2>
-      <p class="contact-lead reveal">A product, a team or a hard engineering problem: I’d like to hear about it. Email is the fastest way to reach me.</p>
-      <p class="contact-main reveal"><a class="btn btn-primary btn-lg" href="mailto:offsujal128005@gmail.com">offsujal128005@gmail.com</a></p>
-      <ul class="contact-links reveal">
-        <li><a href="tel:+917807609929">+91 78076 09929</a></li>
-        <li><a href="https://www.linkedin.com/in/sujal128005/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-        <li><a href="https://github.com/sujal128005" target="_blank" rel="noopener">GitHub ↗</a></li>
-        <li><a href="https://nexara9.me" target="_blank" rel="noopener">Nexara9 ↗</a></li>
-        <li><a href="https://alfaaz.sujalnegi.tech" target="_blank" rel="noopener">Poetry · alfaazsujalke ↗</a></li>
-        <li><a href="Sujal_Negi_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></li>
-      </ul>
-    </div>
-  </section>
 </main>
 
-<footer class="foot">
-  <div class="wrap foot-in">
-    <span>© 2026 Sujal Negi</span>
-    <span>Co-founder, <a href="https://nexara9.me" target="_blank" rel="noopener">Nexara9</a></span>
+<!-- 8. Footer with a game: land the drone -->
+<footer class="foot" id="contact">
+  <canvas class="game-cv" aria-hidden="true"></canvas>
+  <div class="foot-top">
+    <p class="foot-name" data-scramble-hover aria-label="Sujal Negi"><span>Sujal Negi</span><span>/builder</span></p>
+    <div class="foot-game">
+      <p><button class="game-btn" type="button">Play</button> land the drone.<br>Bet you can’t land it.</p>
+      <p class="game-help" hidden>Hold to lift · move to steer · land soft on a pad</p>
+      <p class="game-score" aria-live="polite" hidden></p>
+    </div>
   </div>
+  <div class="foot-links">
+    <a href="mailto:offsujal128005@gmail.com">offsujal128005@gmail.com</a>
+    <a href="tel:+917807609929">+91 78076 09929</a>
+    <a href="https://www.linkedin.com/in/sujal128005/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/sujal128005" target="_blank" rel="noopener">GitHub</a>
+    <a href="Sujal_Negi_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    <a href="https://alfaaz.sujalnegi.tech" target="_blank" rel="noopener">Poetry · alfaazsujalke</a>
+  </div>
+  <p class="foot-c">© 2026 Sujal Negi · Co-founder, Nexara9</p>
 </footer>
 </body>
 </html>

@@ -20,13 +20,21 @@ Every project, with its full code, is also on [nexara9.me](https://nexara9.me/pr
 
 ## Files
 
-- `index.html`: the page
-- `assets/style.css`, `assets/main.js`: the look (light and dark) and the small interactions (Limen's spending rule, Khata's sample call)
-- `assets/sujal-*.webp`: the portrait, sized for the web; `Sujal_img.jpeg` is the original
+- `index.html`: the page. A dark room with one desk: every object on it is its own image and breaks into code when you touch it
+- `assets/site.css`: the look
+- `assets/js/fx.js`: boot screen, scrambling letters, text that lights up as you read, the dot field, reveals
+- `assets/js/hero.js`: the desk and the "break into code" effect (hit-testing uses each image's own transparency)
+- `assets/js/head.js`: "Step inside my head": a head of dots built from a photo, and its three rooms (brain, eyes, words)
+- `assets/js/work.js`: the project slider, Limen's spending rule, Khata's sample call, the monitor, the Nexara9 card
+- `assets/js/game.js`: "Land the drone", the game in the footer
+- `assets/img/`: the cut-out photo, the 3D-rendered drone, robot car, books and mug, project screenshots, `bust.json` (the dot head)
+- `assets/audio/`: the AI voice clips (Kokoro, voice hm_omega)
 - `og.png`: the preview image shown when the link is shared
 - `Sujal_Negi_Resume.pdf`: résumé
-- `favicon.svg`, `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest`: icons
+- favicons and `site.webmanifest`: icons
 - `CNAME`: custom domain for GitHub Pages
+
+**Adding the hello video later:** put the file at `assets/video/hello.mp4` and set `data-video="assets/video/hello.mp4"` on the `<div class="mon">` in `index.html`. The monitor plays it instead of the AI hello.
 
 Plain HTML, CSS and JavaScript. No build step: push to `main` and GitHub Pages serves it.
 

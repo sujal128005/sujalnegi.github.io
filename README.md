@@ -28,14 +28,14 @@ Every project, with its full code, is also on [nexara9.me](https://nexara9.me/pr
 - `assets/js/work.js`: the project tabs and slider, Limen's spending rule, Khata's sample call, the intro video
 - `assets/js/game.js`: the drone test range in the footer
 - `assets/img/`: the cut-out photo, the 3D-rendered drone, robot car, books and mug, project screenshots, the Nexara9 logo, `bust.json` (the head)
-- `assets/video/hello.mp4`: the 24-second intro (AI voice, captions); `hello-poster.webp` is its cover
+- `assets/video/hello.mp4`: the 22-second intro (AI voice, captions), played on the monitor; the monitor shows my face in amber code until Play
 - `assets/audio/words.mp3`: the "In my own words" voice (Kokoro, voice hm_omega)
 - `og.png`: the preview image shown when the link is shared
 - `Sujal_Negi_Resume.pdf`: résumé
 - favicons and `site.webmanifest`: icons
 - `CNAME`: custom domain for GitHub Pages
 
-**Swapping in a real video later:** replace `assets/video/hello.mp4` (and its cover `hello-poster.webp`) with the new files. Nothing else needs to change.
+**Swapping in a real video later:** replace `assets/video/hello.mp4` with the new file. Nothing else needs to change.
 
 Plain HTML, CSS and JavaScript. No build step: push to `main` and GitHub Pages serves it.
 

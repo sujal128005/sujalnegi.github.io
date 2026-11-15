@@ -67,18 +67,62 @@
     });
   }
 
-  // ---------------- the monitor: a 24-second video about me, with an AI voice and captions ----------------
+  // ---------------- the monitor: my face in amber code; Play shows the 22-second intro video ----------------
   const mon = document.querySelector('.mon');
   if (mon) {
-    const video = mon.querySelector('.mon-video'), btn = mon.querySelector('.mon-play');
-    const play = () => {
-      mon.classList.add('playing'); video.controls = true; video.preload = 'auto';
-      const p = video.play(); if (p && p.catch) p.catch(() => mon.classList.remove('playing'));
+    const cv = mon.querySelector('.mon-cv'), ctx = cv.getContext('2d'), video = mon.querySelector('.mon-video'), btn = mon.querySelector('.mon-play');
+    const RAMP = ' .,:;-=+*#%@';
+    let grid = null, cols = 0, rows = 0, W = 0, H = 0, d = 1, cell = 8, raf = 0, on = false;
+    const img = new Image(); img.src = 'assets/img/sujal-desk-sm.webp';
+    const build = () => {
+      if (!img.complete || !img.naturalWidth) return;
+      d = SN.dpr ? SN.dpr() : 1; W = mon.clientWidth; H = mon.clientHeight; if (!W || !H) return;
+      cv.width = Math.round(W * d); cv.height = Math.round(H * d);
+      cell = Math.max(5, Math.round(W / 104));
+      cols = Math.ceil(W / cell); rows = Math.ceil(H / (cell * 1.25));
+      // head and shoulders from the desk photo, a little right of centre
+      const sw = img.naturalWidth * .86, sh = sw * (rows * 1.25) / cols, sy = img.naturalHeight * .02;
+      const t = document.createElement('canvas'); t.width = cols; t.height = rows;
+      const c = t.getContext('2d'); c.fillStyle = '#000'; c.fillRect(0, 0, cols, rows);
+      c.drawImage(img, 0, sy, sw, Math.min(sh, img.naturalHeight - sy), cols * .14, 0, cols * .86, rows * Math.min(1, (img.naturalHeight - sy) / sh));
+      const data = c.getImageData(0, 0, cols, rows).data;
+      grid = new Float32Array(cols * rows);
+      for (let k = 0; k < grid.length; k++) grid[k] = (.3 * data[k * 4] + .59 * data[k * 4 + 1] + .11 * data[k * 4 + 2]) / 255;
+      draw(performance.now());
     };
-    btn.addEventListener('click', play);
-    video.addEventListener('play', () => mon.classList.add('playing'));
-    video.addEventListener('ended', () => { mon.classList.remove('playing'); video.controls = false; video.load(); });
+    const draw = (now) => {
+      raf = 0;
+      if (!grid) return;
+      const t = now / 1000;
+      ctx.setTransform(d, 0, 0, d, 0, 0); ctx.fillStyle = '#050402'; ctx.fillRect(0, 0, W, H);
+      ctx.font = `500 ${Math.round(cell * 1.18)}px "IBM Plex Mono", ui-monospace, monospace`; ctx.textBaseline = 'top';
+      const scan = (t * .22) % 1.2;
+      for (let y = 0; y < rows; y++) {
+        const band = Math.max(0, 1 - Math.abs(y / rows - scan) * 14);
+        for (let x = 0; x < cols; x++) {
+          const l = Math.min(1, grid[y * cols + x] * 1.5);
+          if (l < .1) continue;
+          let ch = RAMP[Math.min(RAMP.length - 1, Math.round(l * (RAMP.length - 1)))];
+          if (!reduce && Math.random() < .004) ch = rnd(GLYPHS);
+          const a = Math.min(1, .25 + l * .85 + band * .35);
+          ctx.fillStyle = `rgba(240,${Math.round(180 + l * 40)},${Math.round(90 + l * 50)},${a.toFixed(3)})`;
+          ctx.fillText(ch, x * cell, y * cell * 1.25);
+        }
+      }
+      ctx.fillStyle = 'rgba(0,0,0,.18)'; for (let y = 0; y < H; y += 3) ctx.fillRect(0, y, W, 1);   // scanlines
+      if (on && !reduce && !mon.classList.contains('playing')) raf = requestAnimationFrame(draw);
+    };
+    const loop = () => { if (!raf && !reduce) raf = requestAnimationFrame(draw); };
+    img.addEventListener('load', build); if (img.complete) build();
+    if (SN.onVisible) SN.onVisible(mon, () => { on = true; loop(); }, () => { on = false; cancelAnimationFrame(raf); raf = 0; }); else on = true;
+    window.addEventListener('resize', () => { clearTimeout(build._t); build._t = setTimeout(build, 150); });
+    const stopVideo = () => { mon.classList.remove('playing'); video.controls = false; loop(); };
+    btn.addEventListener('click', () => {
+      mon.classList.add('playing'); video.controls = true; video.preload = 'auto'; video.currentTime = 0;
+      const p = video.play(); if (p && p.catch) p.catch(stopVideo);
+    });
+    video.addEventListener('ended', stopVideo);
     // stop it if you scroll away, so it never talks over the rest of the page
-    if ('IntersectionObserver' in window) new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting && !video.paused) video.pause(); }), { threshold: .2 }).observe(mon);
+    if ('IntersectionObserver' in window) new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting && !video.paused) { video.pause(); stopVideo(); } }), { threshold: .2 }).observe(mon);
   }
 })();

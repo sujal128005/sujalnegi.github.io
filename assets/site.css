@@ -284,12 +284,13 @@ h1 em, h2 em, h3 em, .foot-say em { font-style: normal; }
 .mon-wrap { position: relative; padding-bottom: 60px; }
 .mon { position: relative; aspect-ratio: 16 / 10; background: #000; border: 12px solid #1b1d24; border-bottom-width: 26px; border-radius: 14px; box-shadow: 0 0 0 1px #2a2d36, 0 40px 90px rgba(0, 0, 0, .7), 0 0 120px rgba(91, 108, 255, .08); overflow: hidden; }
 .mon::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255, 255, 255, .05), transparent 40%); pointer-events: none; }
-.mon-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #05060a; }
-.mon-play { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 78px; height: 78px; padding: 24px 22px 24px 26px; border-radius: 50%; border: 0; cursor: pointer; background: var(--gold); color: #000; box-shadow: 0 0 0 0 rgba(217, 180, 90, .55); animation: ping 2.2s infinite; transition: transform .3s var(--ease), opacity .3s; }
-.mon-play:hover { transform: translate(-50%, -50%) scale(1.06); }
+.mon-cv, .mon-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mon-video { background: #05060a; opacity: 0; transition: opacity .4s; }
+.mon.playing .mon-video { opacity: 1; }
+.mon-play { position: absolute; z-index: 2; left: 16px; bottom: 16px; display: flex; align-items: center; gap: 9px; height: 40px; padding: 0 16px 0 12px; border-radius: 999px; border: 0; cursor: pointer; background: var(--gold); color: #000; font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; box-shadow: 0 0 0 0 rgba(217, 180, 90, .55); animation: ping 2.2s infinite; transition: transform .3s var(--ease), opacity .3s, background .2s; }
+.mon-play svg { width: 15px; height: 15px; }
+.mon-play:hover { background: var(--gold2); transform: translateY(-2px); }
 .mon.playing .mon-play { opacity: 0; pointer-events: none; }
-.mon-tag { position: absolute; z-index: 2; left: 14px; top: 12px; font: 500 10px/1 var(--mono); letter-spacing: .12em; color: rgba(255, 255, 255, .7); background: rgba(0, 0, 0, .45); padding: 6px 8px; border-radius: 4px; transition: opacity .3s; }
-.mon.playing .mon-tag { opacity: 0; }
 .mon-stand { position: absolute; left: 50%; bottom: 0; width: 34%; height: 60px; transform: translateX(-50%); }
 .mon-stand::before { content: ''; position: absolute; left: 41%; right: 41%; top: 0; bottom: 8px; background: linear-gradient(90deg, #22252d, #3a3e48 50%, #22252d); }
 .mon-stand::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 9px; border-radius: 4px 4px 2px 2px; background: linear-gradient(180deg, #3a3e48, #1b1d24); }
@@ -431,7 +432,7 @@ h1 em, h2 em, h3 em, .foot-say em { font-style: normal; }
   .demo { min-height: 0; }
   .slide-txt > p:not(.award):not(.stack):not(.links) { font-size: 16px; }
   .mon { border-width: 8px; border-bottom-width: 18px; }
-  .mon-play { width: 70px; height: 70px; }
+  .mon-play { left: 10px; bottom: 10px; height: 34px; font-size: 10px; }
   .foot { min-height: 520px; }
   .foot-links { gap: 10px 18px; }
   .foot-links a { font-size: 14px; }

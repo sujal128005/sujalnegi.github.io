@@ -53,14 +53,19 @@
     try { seen = sessionStorage.getItem('sn-boot') === '1'; sessionStorage.setItem('sn-boot', '1'); } catch (_) { /* private mode */ }
     if (reduce) finishBoot();
     else {
-      const typeEl = boot.querySelector('.boot-type'), word = typeEl.dataset.text, per = seen ? 30 : 75;
-      let i = 0;
-      const type = () => { typeEl.textContent = word.slice(0, ++i); if (i < word.length) setTimeout(type, per); };
-      setTimeout(type, seen ? 60 : 220);
-      const minTime = seen ? 520 : 1450;
-      const t0 = performance.now();
-      const done = () => setTimeout(finishBoot, Math.max(0, minTime - (performance.now() - t0)));
-      if (document.readyState === 'complete') done(); else window.addEventListener('load', done, { once: true });
+      const bar = boot.querySelector('.boot-bar i'), pct = boot.querySelector('.boot-pct'), step = boot.querySelector('.boot-step');
+      const steps = ['Calibrating sensors', 'Loading the desk', 'Warming up the drone', 'Ready'];
+      const minTime = seen ? 520 : 1500, t0 = performance.now();
+      let loaded = document.readyState === 'complete';
+      window.addEventListener('load', () => { loaded = true; }, { once: true });
+      const tick = (now) => {
+        if (booted) return;
+        const p = Math.min(loaded ? 1 : .9, (now - t0) / minTime);
+        bar.style.width = `${(p * 100).toFixed(1)}%`; pct.textContent = `${String(Math.round(p * 100)).padStart(3, '0')}%`;
+        step.textContent = steps[Math.min(steps.length - 1, Math.floor(p * (steps.length - .01)))];
+        if (p >= 1) setTimeout(finishBoot, 160); else requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
       setTimeout(finishBoot, 3800);            // never keep anyone waiting on a slow image
     }
   } else finishBoot();
@@ -118,51 +123,51 @@
     };
     window.addEventListener('scroll', light, { passive: true }); window.addEventListener('resize', light); light();
   }
-  // the number tags scramble in once
-  const tags = document.querySelectorAll('[data-scramble-in]');
-  if (tags.length && 'IntersectionObserver' in window) {
-    const tio = new IntersectionObserver((es) => es.forEach((e) => {
+  // the numbers count up once, when they come into view
+  const counts = document.querySelectorAll('[data-count]');
+  if (counts.length && 'IntersectionObserver' in window && !reduce) {
+    const cio = new IntersectionObserver((es) => es.forEach((e) => {
       if (!e.isIntersecting) return;
-      tio.unobserve(e.target);
-      const i = Array.prototype.indexOf.call(tags, e.target);
-      setTimeout(() => SN.scramble(e.target, { duration: 700 }), i * 110);
+      cio.unobserve(e.target);
+      const el = e.target, n = +el.dataset.count, plus = el.hasAttribute('data-plus') ? '+' : '', t0 = performance.now(), dur = 1100;
+      const step = (now) => { const p = Math.min(1, (now - t0) / dur), v = Math.round(n * (1 - Math.pow(1 - p, 3))); el.textContent = v + (p === 1 ? plus : ''); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
     }), { threshold: .6 });
-    tags.forEach((t) => tio.observe(t));
+    counts.forEach((c) => cio.observe(c));
   }
 
-  // ---- the dot field behind the hero: brighter and gold near the cursor ----
-  const hero = document.querySelector('.hero'), dots = document.querySelector('.dots');
-  if (hero && dots) {
-    const ctx = dots.getContext('2d'), base = document.createElement('canvas'), bctx = base.getContext('2d');
-    const GAP = 9;
-    let W = 0, H = 0, d = 1, mx = -999, my = -999, raf = 0, glow = 0;
+  // ---- a blueprint grid behind the hero; the cursor becomes a crosshair that reads out coordinates ----
+  const hero = document.querySelector('.hero'), gridCv = document.querySelector('.hero .grid');
+  if (hero && gridCv) {
+    const ctx = gridCv.getContext('2d'), base = document.createElement('canvas'), bctx = base.getContext('2d');
+    const G = 40;
+    let W = 0, H = 0, d = 1, mx = -999, my = -999, raf = 0, on = false;
     const size = () => {
       d = SN.dpr(); W = hero.clientWidth; H = hero.clientHeight;
-      for (const c of [dots, base]) { c.width = Math.round(W * d); c.height = Math.round(H * d); }
+      for (const c of [gridCv, base]) { c.width = Math.round(W * d); c.height = Math.round(H * d); }
       bctx.setTransform(d, 0, 0, d, 0, 0); bctx.clearRect(0, 0, W, H);
-      for (let y = GAP / 2; y < H; y += GAP) for (let x = GAP / 2; x < W; x += GAP) {
-        const v = .07 + .06 * Math.random();
-        bctx.fillStyle = `rgba(190,200,255,${v.toFixed(3)})`; bctx.fillRect(x, y, 1, 1);
-      }
+      const ox = (W / 2) % G;
+      for (let x = ox; x < W; x += G) { const major = Math.round((x - ox) / G) % 5 === 0; bctx.fillStyle = major ? 'rgba(150,165,255,.075)' : 'rgba(150,165,255,.035)'; bctx.fillRect(Math.round(x), 0, 1, H); }
+      for (let y = 0; y < H; y += G) { const major = Math.round(y / G) % 5 === 0; bctx.fillStyle = major ? 'rgba(150,165,255,.075)' : 'rgba(150,165,255,.035)'; bctx.fillRect(0, Math.round(y), W, 1); }
+      bctx.fillStyle = 'rgba(190,200,255,.28)';
+      for (let x = ox; x < W; x += G * 5) for (let y = 0; y < H; y += G * 5) { bctx.fillRect(x - 4, y, 9, 1); bctx.fillRect(x, y - 4, 1, 9); }
       draw();
     };
     const draw = () => {
       raf = 0;
-      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, dots.width, dots.height); ctx.drawImage(base, 0, 0);
-      if (glow < .01) return;
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, gridCv.width, gridCv.height); ctx.drawImage(base, 0, 0);
+      if (!on) return;
       ctx.setTransform(d, 0, 0, d, 0, 0);
-      const R = 170, x0 = Math.max(GAP / 2, Math.floor((mx - R) / GAP) * GAP + GAP / 2), y0 = Math.max(GAP / 2, Math.floor((my - R) / GAP) * GAP + GAP / 2);
-      for (let y = y0; y < my + R && y < H; y += GAP) for (let x = x0; x < mx + R && x < W; x += GAP) {
-        const dd = Math.hypot(x - mx, y - my);
-        if (dd > R) continue;
-        const k = (1 - dd / R) ** 1.6 * glow;
-        ctx.fillStyle = `rgba(240,211,140,${(k * .85).toFixed(3)})`;
-        const s = 1 + k * 1.6; ctx.fillRect(x - s / 2 + .5, y - s / 2 + .5, s, s);
-      }
+      ctx.fillStyle = 'rgba(217,180,90,.22)'; ctx.fillRect(0, Math.round(my), W, 1); ctx.fillRect(Math.round(mx), 0, 1, H);
+      ctx.strokeStyle = 'rgba(240,211,140,.9)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(mx, my, 9, 0, Math.PI * 2); ctx.stroke();
+      ctx.font = '500 10px "IBM Plex Mono", ui-monospace, monospace'; ctx.fillStyle = 'rgba(240,211,140,.95)';
+      const xmm = String(Math.round(mx * .2645 * 4)).padStart(4, '0'), ymm = String(Math.round(my * .2645 * 4)).padStart(4, '0');
+      const lab = `X ${xmm}  Y ${ymm} mm`, tx = mx + 16 + 120 > W ? mx - 136 : mx + 16;
+      ctx.fillText(lab, tx, my - 10);
     };
     const req = () => { if (!raf) raf = requestAnimationFrame(draw); };
-    hero.addEventListener('pointermove', (e) => { const r = hero.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; glow = 1; req(); }, { passive: true });
-    hero.addEventListener('pointerleave', () => { glow = 0; req(); });
+    hero.addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') return; const r = hero.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; on = true; req(); }, { passive: true });
+    hero.addEventListener('pointerleave', () => { on = false; req(); });
     window.addEventListener('resize', () => { clearTimeout(size._t); size._t = setTimeout(size, 150); });
     size();
   }
@@ -194,28 +199,6 @@
     };
     let gt = 0;
     SN.onVisible(title, () => { if (!gt) gt = setInterval(() => { if (!document.hidden) glitch(); }, 3600); }, () => { clearInterval(gt); gt = 0; });
-  }
-
-  // ---- gold squares stuffed with code ----
-  const sqs = Array.from(document.querySelectorAll('.sq b'));
-  if (sqs.length) {
-    const fill = (b, frac = 1) => {
-      const cols = 12, rows = 10;
-      const lines = (b.textContent || '').split('\n');
-      let out = '';
-      for (let r = 0; r < rows; r++) {
-        let line = lines[r] || '';
-        let nl = '';
-        for (let c = 0; c < cols; c++) nl += Math.random() < frac || !line[c] ? (Math.random() < .3 ? ' ' : rnd(GLYPHS)) : line[c];
-        out += (r ? '\n' : '') + nl;
-      }
-      b.textContent = out;
-    };
-    sqs.forEach((b) => fill(b));
-    if (!reduce) {
-      let st = 0;
-      SN.onVisible(hero, () => { if (!st) st = setInterval(() => sqs.forEach((b) => fill(b, .12)), 140); }, () => { clearInterval(st); st = 0; });
-    }
   }
 
   // ---- wake the live apps (free hosting puts them to sleep), quietly, once the page has settled ----

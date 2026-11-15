@@ -14,7 +14,7 @@
 
   // ---------------- the bust ----------------
   let pts = null, anchors = null, W = 0, H = 0, d = 1, yaw = 0, pitch = 0, tYaw = 0, tPitch = 0, drag = null, raf = 0, on = false, t0 = performance.now();
-  const size = () => { d = SN.dpr(); W = sec.clientWidth; H = sec.clientHeight; cv.width = Math.round(W * d); cv.height = Math.round(H * d); if (pts) frame(performance.now(), true); };
+  const size = () => { d = SN.dpr(); W = cv.clientWidth; H = cv.clientHeight; cv.width = Math.round(W * d); cv.height = Math.round(H * d); if (pts) frame(performance.now(), true); };
   fetch('assets/img/bust.json').then((r) => r.json()).then((j) => {
     const p = j.p, n = p.length / 4; pts = new Float32Array(n * 4);
     for (let i = 0; i < n; i++) { pts[i * 4] = p[i * 4]; pts[i * 4 + 1] = p[i * 4 + 1]; pts[i * 4 + 2] = p[i * 4 + 2]; pts[i * 4 + 3] = p[i * 4 + 3] / 255; }
@@ -29,9 +29,9 @@
     return [cx0 + x1 * S * f, cy0 + y1 * S * f, z2];
   };
   const layout = () => {
-    const small = W < 700;
-    const S = Math.min(W * (small ? .0034 : .0021), H * .0024);
-    return { S, cx0: W / 2, cy0: H * (small ? .36 : .38) };
+    const small = W < 820;
+    if (small) return { S: Math.min(W * .0036, H * .0027), cx0: W / 2, cy0: H * .4 };
+    return { S: Math.min(W * .0019, H * .0026), cx0: W * .68, cy0: H * .44 };
   };
   function frame(now, still) {
     raf = 0;
@@ -41,28 +41,34 @@
     const { S, cx0, cy0 } = layout(), cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
     ctx.setTransform(d, 0, 0, d, 0, 0); ctx.clearRect(0, 0, W, H);
     const scan = reduce ? -9 : ((t * .28) % 1.4) - .2;             // a slow bright band sweeps down the face
-    const n = pts.length / 4, dot = Math.max(1.2, S * 1.55);
+    const n = pts.length / 4, step = 5;
+    const B = 8, blue = Array.from({ length: B }, () => new Path2D()), gold = Array.from({ length: B }, () => new Path2D());
+    let prev = null;
     for (let i = 0; i < n; i++) {
       const x = pts[i * 4], y = pts[i * 4 + 1], z = pts[i * 4 + 2], l = pts[i * 4 + 3];
-      const [px, py, pz] = project(x, y, z, cy, sy, cp, sp, S, cx0, cy0);
-      const yn = (y + 110) / 420, band = Math.max(0, 1 - Math.abs(yn - scan) * 9);
-      const depth = .55 + Math.max(-.3, Math.min(.45, pz / 160));
-      const a = Math.min(1, (.1 + l * .85) * depth + band * .5);
-      ctx.fillStyle = band > .2 ? `rgba(240,211,140,${a.toFixed(3)})` : `rgba(${110 + (l * 90) | 0},${125 + (l * 90) | 0},255,${a.toFixed(3)})`;
-      ctx.fillRect(px - dot / 2, py - dot / 2, dot, dot);
+      const q = project(x, y, z, cy, sy, cp, sp, S, cx0, cy0);
+      if (prev && prev.y === y && x - prev.x === step) {          // the next point on the same scan line
+        const yn = (y + 110) / 420, band = Math.max(0, 1 - Math.abs(yn - scan) * 9);
+        const depth = .55 + Math.max(-.3, Math.min(.45, z / 160));
+        const a = Math.min(.999, (.08 + (l + prev.l) * .45) * depth + band * .45);
+        const k = Math.min(B - 1, Math.floor(a * B)), path = (band > .25 ? gold : blue)[k];
+        path.moveTo(prev.q[0], prev.q[1]); path.lineTo(q[0], q[1]);
+      }
+      prev = { x, y, l, q };
+    }
+    ctx.lineWidth = Math.max(1, S * .85); ctx.lineCap = 'round';
+    for (let k = 0; k < B; k++) {
+      const a = ((k + .5) / B).toFixed(3);
+      ctx.strokeStyle = `rgba(130,148,255,${a})`; ctx.stroke(blue[k]);
+      ctx.strokeStyle = `rgba(240,211,140,${a})`; ctx.stroke(gold[k]);
     }
     // the three doors follow the face
     while (wires.firstChild) wires.firstChild.remove();
-    const gap = Math.max(48, Math.min(200, W * .13));
     anchors.forEach((a, i) => {
       const [px, py] = project(a[0], a[1], a[2], cy, sy, cp, sp, S, cx0, cy0);
-      const sp_ = spots[i], right = i !== 1;
-      sp_.style.transform = `translate(${px.toFixed(1)}px, ${py.toFixed(1)}px)`;
-      sp_.classList.toggle('r', right); sp_.classList.toggle('l', !right); sp_.style.setProperty('--d', `${gap}px`);
-      const bx = 26 + i * 6;
-      wires.append(svgEl('rect', { x: px - bx, y: py - bx * .62, width: bx * 2, height: bx * 1.24 }));
-      const x1 = right ? px + bx : px - bx, x2 = right ? px + gap + 22 : px - gap - 22;
-      wires.append(svgEl('line', { x1, y1: py, x2, y2: py }));
+      spots[i].style.transform = `translate(${px.toFixed(1)}px, ${py.toFixed(1)}px)`;
+      wires.append(svgEl('circle', { cx: px, cy: py, r: 17 }));
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) wires.append(svgEl('line', { x1: px + dx * 20, y1: py + dy * 20, x2: px + dx * 27, y2: py + dy * 27 }));
     });
     if (on && !still && !reduce) raf = requestAnimationFrame(frame);
   }
@@ -77,6 +83,14 @@
   cv.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, yaw }; });
   window.addEventListener('pointerup', () => { if (drag) { tYaw = yaw * .5; drag = null; } });
   window.addEventListener('resize', () => { clearTimeout(size._t); size._t = setTimeout(size, 150); });
+
+  // doors (the list) and spots (on the face) light each other up
+  const doors = Array.from(sec.querySelectorAll('.doors button'));
+  const pair = (k, onOff) => { if (spots[k]) spots[k].classList.toggle('on', onOff); if (doors[k]) doors[k].classList.toggle('on', onOff); };
+  [doors, spots].forEach((list) => list.forEach((b, k) => {
+    b.addEventListener('mouseenter', () => pair(k, true)); b.addEventListener('mouseleave', () => pair(k, false));
+  }));
+  doors.forEach((b) => b.addEventListener('click', () => SN.openRoom(b.dataset.scene, b)));
 
   // ---------------- the rooms ----------------
   const rooms = {};

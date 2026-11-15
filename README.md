@@ -20,21 +20,22 @@ Every project, with its full code, is also on [nexara9.me](https://nexara9.me/pr
 
 ## Files
 
-- `index.html`: the page. A dark room with one desk: every object on it is its own image and breaks into code when you touch it
-- `assets/site.css`: the look
-- `assets/js/fx.js`: boot screen, scrambling letters, text that lights up as you read, the dot field, reveals
-- `assets/js/hero.js`: the desk and the "break into code" effect (hit-testing uses each image's own transparency)
-- `assets/js/head.js`: "Step inside my head": a head of dots built from a photo, and its three rooms (brain, eyes, words)
-- `assets/js/work.js`: the project slider, Limen's spending rule, Khata's sample call, the monitor, the Nexara9 card
-- `assets/js/game.js`: "Land the drone", the game in the footer
-- `assets/img/`: the cut-out photo, the 3D-rendered drone, robot car, books and mug, project screenshots, `bust.json` (the dot head)
-- `assets/audio/`: the AI voice clips (Kokoro, voice hm_omega)
+- `index.html`: the page. A dark room with one desk on a blueprint grid: every object is its own image, and a scanning beam turns it into code when you point at it
+- `assets/site.css`: the look (Space Grotesk, Manrope, IBM Plex Mono)
+- `assets/js/fx.js`: the calibration screen, the blueprint grid and crosshair, text that lights up as you read, counting numbers, reveals
+- `assets/js/hero.js`: the desk and the scanning-beam effect (hit-testing uses each image's own transparency)
+- `assets/js/head.js`: "Step inside my head": a LiDAR-style scan of a photo, and its three rooms (brain, eyes, words)
+- `assets/js/work.js`: the project tabs and slider, Limen's spending rule, Khata's sample call, the intro video
+- `assets/js/game.js`: the drone test range in the footer
+- `assets/img/`: the cut-out photo, the 3D-rendered drone, robot car, books and mug, project screenshots, the Nexara9 logo, `bust.json` (the head)
+- `assets/video/hello.mp4`: the 24-second intro (AI voice, captions); `hello-poster.webp` is its cover
+- `assets/audio/words.mp3`: the "In my own words" voice (Kokoro, voice hm_omega)
 - `og.png`: the preview image shown when the link is shared
 - `Sujal_Negi_Resume.pdf`: résumé
 - favicons and `site.webmanifest`: icons
 - `CNAME`: custom domain for GitHub Pages
 
-**Adding the hello video later:** put the file at `assets/video/hello.mp4` and set `data-video="assets/video/hello.mp4"` on the `<div class="mon">` in `index.html`. The monitor plays it instead of the AI hello.
+**Swapping in a real video later:** replace `assets/video/hello.mp4` (and its cover `hello-poster.webp`) with the new files. Nothing else needs to change.
 
 Plain HTML, CSS and JavaScript. No build step: push to `main` and GitHub Pages serves it.
 

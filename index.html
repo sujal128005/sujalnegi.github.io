@@ -21,27 +21,28 @@
 <link rel="manifest" href="site.webmanifest?v=5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Manrope:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="preload" href="assets/img/sujal-desk.webp" as="image" type="image/webp" media="(min-width: 701px)">
 <link rel="preload" href="assets/img/sujal-desk-sm.webp" as="image" type="image/webp" media="(max-width: 700px)">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="assets/site.css?v=1">
-<script src="assets/js/fx.js?v=1" defer></script>
-<script src="assets/js/hero.js?v=1" defer></script>
-<script src="assets/js/head.js?v=1" defer></script>
-<script src="assets/js/work.js?v=1" defer></script>
-<script src="assets/js/game.js?v=1" defer></script>
+<link rel="stylesheet" href="assets/site.css?v=2">
+<script src="assets/js/fx.js?v=2" defer></script>
+<script src="assets/js/hero.js?v=2" defer></script>
+<script src="assets/js/head.js?v=2" defer></script>
+<script src="assets/js/work.js?v=2" defer></script>
+<script src="assets/js/game.js?v=2" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="boot" aria-hidden="true">
-  <p class="boot-name"><span class="boot-type" data-text="sujal/negi"></span><i class="boot-caret"></i></p>
-  <p class="boot-sub">building the builder<span class="boot-dots"></span></p>
+  <svg class="boot-mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M45 17H27.5a7.5 7.5 0 0 0 0 15h9a7.5 7.5 0 0 1 0 15H19" fill="none" stroke="currentColor" stroke-width="6"/><circle cx="46.5" cy="17" r="4" fill="#f1efe9"/></svg>
+  <p class="boot-k"><span class="boot-step">Calibrating sensors</span><span class="boot-pct">000%</span></p>
+  <div class="boot-bar"><i></i></div>
 </div>
 
 <header class="nav">
-  <a class="nav-mark" href="#top" aria-label="Sujal Negi, back to top"><b>Sujal Negi</b><span>/builder</span></a>
+  <a class="nav-mark" href="#top" aria-label="Sujal Negi, back to top"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#17202E"/><path d="M45 17H27.5a7.5 7.5 0 0 0 0 15h9a7.5 7.5 0 0 1 0 15H19" fill="none" stroke="#FFC61A" stroke-width="8"/><circle cx="46.5" cy="17" r="4.5" fill="#ECEEEA"/></svg><b>Sujal Negi</b></a>
   <nav class="nav-links" aria-label="Sections">
     <a href="#work" data-scramble>Work</a>
     <a href="#head" data-scramble>Inside my head</a>
@@ -55,19 +56,24 @@
 
 <!-- 1. Hero: me at my desk. Every object is its own layer and breaks into code when you touch it. -->
 <section class="hero" id="top">
-  <canvas class="dots" aria-hidden="true"></canvas>
+  <canvas class="grid" aria-hidden="true"></canvas>
   <div class="hero-copy">
-    <p class="kicker">Mechanical engineer · Co-founder, Nexara9</p>
-    <h1 class="hero-title" data-glitch>I design machines, <em>ship AI products</em><br> and lead the teams that build them.</h1>
-    <a class="btn-line" href="#work">See my work</a>
+    <div class="hero-l">
+      <p class="kicker"><span class="live"></span>Mechanical engineer · Co-founder, Nexara9</p>
+      <h1 class="hero-title" data-glitch>I design machines, <em>ship AI products</em> and lead the teams that build them.</h1>
+    </div>
+    <div class="hero-r">
+      <p class="lede">Everything on this desk is something I’ve built, led or written. Point at it, and it shows you what it’s made of.</p>
+      <p class="hero-btns"><a class="btn-pill" href="#work">See my work</a><a class="btn-text" href="#head">Inside my head →</a></p>
+    </div>
   </div>
 
   <div class="scene" aria-label="Sujal at his desk with things he has built. Hover or tap an object.">
     <div class="desk" aria-hidden="true"></div>
-    <i class="sq sq1" aria-hidden="true"><b></b></i>
-    <i class="sq sq2" aria-hidden="true"><b></b></i>
-    <i class="sq sq3" aria-hidden="true"><b></b></i>
-    <i class="sq sq4" aria-hidden="true"><b></b></i>
+    <i class="chip chip1" aria-hidden="true">while (alive) build();</i>
+    <i class="chip chip2" aria-hidden="true">{ ship: true }</i>
+    <i class="chip chip3" aria-hidden="true">git push origin main</i>
+    <i class="chip chip4" aria-hidden="true">// 2 AM idea</i>
 
     <a class="lay lay-me" href="#about" data-src="assets/img/sujal-desk.webp" data-src-sm="assets/img/sujal-desk-sm.webp" data-label="Sujal Negi · Builder" data-note="Engineer by training, builder by instinct">
       <span class="sr">About Sujal</span></a>
@@ -79,7 +85,7 @@
       <span class="sr">My books</span></a>
     <a class="lay lay-mug" href="https://nexara9.me" target="_blank" rel="noopener" data-src="assets/img/mug.webp" data-label="Nexara9" data-note="The venture studio I co-founded">
       <span class="sr">Nexara9</span></a>
-    <a class="lay lay-lantern" href="#words-open" data-src="assets/img/lantern.webp" data-label="In my own words" data-note="Hear me out, 45 seconds">
+    <a class="lay lay-lantern" href="#words-open" data-src="assets/img/lantern.webp" data-label="In my own words" data-note="45 seconds, with sound">
       <span class="sr">Hear Sujal in his own words</span></a>
     <a class="lay lay-win lay-win1" href="#work" data-src="assets/img/shot-stealth.webp" data-label="STEALTH" data-note="Know Your Agent" data-frame>
       <span class="sr">STEALTH</span></a>
@@ -87,18 +93,17 @@
       <span class="sr">ArthaNetra</span></a>
     <p class="tip" role="status" aria-live="polite"><b></b><span></span></p>
   </div>
-  <p class="hint" aria-hidden="true"><span class="hint-dot"></span>Touch anything on the desk</p>
+  <p class="hint" aria-hidden="true"><span class="hint-dot"></span>Every object here opens something</p>
 </section>
 
 <!-- 2. A short statement that lights up as you read -->
 <section class="say" id="about">
   <p class="say-text" data-light>Engineer by training, builder by instinct. I design vehicle hardware, ship live AI systems and lead a 19-member autonomous vehicle team. When I take on a problem I own all of it: the design, the team, the deadline and the result. <span class="say-quote">I don’t start things to try them. I start them to finish them.</span></p>
-  <ul class="tags" aria-label="In numbers">
-    <li data-scramble-in>/7 products live</li>
-    <li data-scramble-in>/19 people led</li>
-    <li data-scramble-in>/600+ students taught</li>
-    <li data-scramble-in>/10 books written</li>
-    <li data-scramble-in>/1 venture studio</li>
+  <ul class="stats" aria-label="In numbers">
+    <li><b data-count="7">7</b><span>products live on the web</span></li>
+    <li><b data-count="19">19</b><span>people on my vehicle team</span></li>
+    <li><b data-count="600" data-plus>600+</b><span>students reached through DataWorks</span></li>
+    <li><b data-count="10">10</b><span>books written, English and Hindi</span></li>
   </ul>
   <p class="edu">B.Tech Mechanical Engineering · IIITDM Kurnool · 2023–2027 · Mentored by Dolphin Tank India</p>
 </section>
@@ -106,15 +111,21 @@
 <!-- 3. Inside my head: a head made of dots, with three doors -->
 <section class="head" id="head" aria-labelledby="head-title">
   <canvas class="bust" aria-hidden="true"></canvas>
-  <div class="spots">
-    <button class="spot" data-scene="brain" type="button"><i></i><span class="spot-lab">What I’m building</span></button>
-    <button class="spot" data-scene="eyes" type="button"><i></i><span class="spot-lab">What I’ve shipped</span></button>
-    <button class="spot" data-scene="words" type="button" id="words-open"><i></i><span class="spot-lab">In my own words</span></button>
+  <div class="spots" aria-hidden="true">
+    <button class="spot" data-scene="brain" type="button" tabindex="-1"><i></i><span class="spot-lab">01</span></button>
+    <button class="spot" data-scene="eyes" type="button" tabindex="-1"><i></i><span class="spot-lab">02</span></button>
+    <button class="spot" data-scene="words" type="button" tabindex="-1"><i></i><span class="spot-lab">03</span></button>
   </div>
   <svg class="wires" aria-hidden="true"></svg>
   <div class="head-copy">
-    <p class="kicker">Click a glowing point</p>
+    <p class="kicker">A LiDAR scan of me</p>
     <h2 id="head-title">Step inside <em>my head.</em></h2>
+    <p class="head-sub">Three doors. Each opens a room.</p>
+    <ol class="doors">
+      <li><button type="button" data-scene="brain"><b>01</b>What I’m building<span>→</span></button></li>
+      <li><button type="button" data-scene="eyes"><b>02</b>What I’ve shipped<span>→</span></button></li>
+      <li><button type="button" data-scene="words" id="words-open"><b>03</b>In my own words<span>→</span></button></li>
+    </ol>
   </div>
 </section>
 
@@ -131,7 +142,7 @@
   </div>
   <div class="panel"><p class="panel-t">In my head</p><dl><div><dt>Products live</dt><dd>7</dd></div><div><dt>Teams led</dt><dd>2</dd></div><div><dt>Ideas running</dt><dd data-tick="31">31</dd></div><div><dt>Hours slept</dt><dd>6</dd></div></dl></div>
   <p class="room-hint">Drag to turn</p>
-  <button class="room-x" type="button">Close</button>
+  <button class="room-x" type="button" aria-label="Close"></button>
 </div>
 
 <div class="room" id="room-eyes" role="dialog" aria-modal="true" aria-label="What I’ve shipped" hidden>
@@ -139,7 +150,7 @@
   <div class="fly"><div class="fly-world"></div></div>
   <div class="panel"><p class="panel-t">Through my eyes</p><dl><div><dt>Screens passed</dt><dd class="eyes-n">0</dd></div><div><dt>Products live</dt><dd>7</dd></div></dl></div>
   <p class="room-hint">Scroll to fly through</p>
-  <button class="room-x" type="button">Close</button>
+  <button class="room-x" type="button" aria-label="Close"></button>
 </div>
 
 <div class="room" id="room-words" role="dialog" aria-modal="true" aria-label="In my own words" hidden>
@@ -149,7 +160,7 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="w-on" d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="w-off" d="M16.5 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
   </button>
   <div class="panel"><p class="panel-t">In my words</p><dl><div><dt>Line</dt><dd class="words-n">1 / 9</dd></div><div><dt>Voice</dt><dd>AI</dd></div></dl></div>
-  <button class="room-x" type="button">Close</button>
+  <button class="room-x" type="button" aria-label="Close"></button>
   <audio preload="none" src="assets/audio/words.mp3"></audio>
 </div>
 
@@ -160,6 +171,15 @@
     <h2 id="work-title">Things I’ve built. <em>Every one of them live.</em></h2>
   </div>
   <div class="deck" tabindex="0" aria-roledescription="carousel" aria-label="Projects">
+    <div class="deck-tabs" role="tablist" aria-label="Choose a project">
+      <button type="button" role="tab" data-i="0">Limen</button>
+      <button type="button" role="tab" data-i="1">Khata</button>
+      <button type="button" role="tab" data-i="2">STEALTH</button>
+      <button type="button" role="tab" data-i="3">PayPal Attribute</button>
+      <button type="button" role="tab" data-i="4">FlexDrop</button>
+      <button type="button" role="tab" data-i="5">PixelProof</button>
+      <button type="button" role="tab" data-i="6">ArthaNetra</button>
+    </div>
     <div class="deck-view"><div class="deck-track">
 
       <article class="slide" aria-label="Limen">
@@ -258,34 +278,28 @@
     </div></div>
     <div class="deck-nav">
       <button class="deck-btn prev" type="button" aria-label="Previous project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
-      <p class="deck-count" aria-live="polite"><b>01</b> / 07</p>
+      <p class="deck-count" aria-live="polite"><b>01</b><span class="deck-prog"><i></i></span>07</p>
       <button class="deck-btn next" type="button" aria-label="Next project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
     </div>
   </div>
   <p class="work-more">Every project with its full code and an AI that explains it: <a href="https://nexara9.me/projects/" target="_blank" rel="noopener">nexara9.me/projects ↗</a></p>
 </section>
 
-<!-- 5. The monitor: space for my video. Until then, an AI hello. -->
+<!-- 5. The monitor: me, in 24 seconds -->
 <section class="hello" id="hello" aria-labelledby="hello-title">
   <div class="mon-wrap">
-    <div class="mon" data-video="">
-      <canvas class="mon-cv" aria-hidden="true"></canvas>
-      <video class="mon-video" playsinline hidden></video>
-      <button class="mon-play" type="button" aria-label="Play hello"><span>Play</span></button>
-      <p class="mon-cap" aria-live="polite"></p>
+    <div class="mon">
+      <video class="mon-video" playsinline preload="none" poster="assets/video/hello-poster.webp" src="assets/video/hello.mp4"></video>
+      <button class="mon-play" type="button" aria-label="Play the 24-second intro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+      <p class="mon-tag">hello.mp4 · 0:24</p>
     </div>
     <div class="mon-stand" aria-hidden="true"></div>
-    <audio class="mon-audio" preload="none" src="assets/audio/hello.mp3"></audio>
   </div>
   <div class="hello-txt">
-    <h2 id="hello-title">No cover letters. <em>Just build with me.</em></h2>
-    <p class="hello-sub">Three steps. No nonsense.</p>
-    <ol class="steps">
-      <li><b>1/</b>Say hello</li>
-      <li><b>2/</b>Tell me what you’re building</li>
-      <li><b>3/</b>We find a time to talk</li>
-    </ol>
-    <a class="btn-line" href="mailto:offsujal128005@gmail.com?subject=Hello%20Sujal">Say hello</a>
+    <p class="kicker">The short version</p>
+    <h2 id="hello-title">Me, in under <em>half a minute.</em></h2>
+    <p class="hello-sub">No time to scroll? Press play. If you’re building something hard, or you need someone who builds both the machine and the software, write to me.</p>
+    <p class="hero-btns"><a class="btn-pill" href="mailto:offsujal128005@gmail.com?subject=Hello%20Sujal">Email me</a><a class="btn-text" href="https://www.linkedin.com/in/sujal128005/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn-text" href="tel:+917807609929">Call</a></p>
   </div>
 </section>
 
@@ -320,22 +334,24 @@
 <!-- 7. Nexara9 -->
 <section class="n9" aria-labelledby="n9-title">
   <a class="n9-card" href="https://nexara9.me" target="_blank" rel="noopener">
-    <canvas class="n9-cv" aria-hidden="true"></canvas>
-    <span class="n9-txt"><span class="kicker">Venture studio</span><b id="n9-title">Building something bigger?</b><span>Nexara9 is the company I co-founded with Made Navya. Autonomous machines, AI systems and everyday products, under one name and one standard.</span></span>
-    <span class="n9-go">nexara9.me ↗</span>
+    <img class="n9-logo" src="assets/img/nexara9-logo.webp" alt="" width="240" height="387" loading="lazy">
+    <span class="n9-txt"><span class="kicker">The company</span><b id="n9-title">Nexara9</b><span>The venture studio I co-founded with Made Navya: autonomous machines, AI systems and everyday products, under one name and one standard.</span><span class="n9-go">Visit nexara9.me ↗</span></span>
+    <span class="n9-strip" aria-hidden="true"><span>Autonomy · AI systems · Everyday products · One standard · Autonomy · AI systems · Everyday products · One standard · </span><span>Autonomy · AI systems · Everyday products · One standard · Autonomy · AI systems · Everyday products · One standard · </span></span>
   </a>
 </section>
 
 </main>
 
-<!-- 8. Footer with a game: land the drone -->
+<!-- 8. Footer, with a drone test range -->
 <footer class="foot" id="contact">
   <canvas class="game-cv" aria-hidden="true"></canvas>
   <div class="foot-top">
-    <p class="foot-name" data-scramble-hover aria-label="Sujal Negi"><span>Sujal Negi</span><span>/builder</span></p>
-    <div class="foot-game">
-      <p><button class="game-btn" type="button">Play</button> land the drone.<br>Bet you can’t land it.</p>
-      <p class="game-help" hidden>Hold to lift · move to steer · land soft on a pad</p>
+    <h2 class="foot-say">Let’s build <em>something.</em></h2>
+    <div class="range">
+      <p class="range-k">Drone test range</p>
+      <p class="range-t">Land it softly on a pad. Gold pads score more, and the wind picks up.</p>
+      <button class="game-btn" type="button">Start flight</button>
+      <p class="game-help" hidden>Hold to lift · move to steer · Esc to stop</p>
       <p class="game-score" aria-live="polite" hidden></p>
     </div>
   </div>

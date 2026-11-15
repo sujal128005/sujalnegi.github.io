@@ -10,7 +10,7 @@
   const RAMP = ' .:-=+*#%@';
   const tip = scene.querySelector('.tip'), tipB = tip.querySelector('b'), tipS = tip.querySelector('span');
   const small = () => window.matchMedia('(max-width: 700px)').matches;
-  const DUR = 1500;
+  const DUR = 1700;
 
   const loadImg = (src) => new Promise((res, rej) => { const i = new Image(); i.decoding = 'async'; i.onload = () => res(i); i.onerror = rej; i.src = src; });
 
@@ -56,7 +56,6 @@
       }
       this.fall = Float32Array.from({ length: this.cols }, () => .3 + Math.random());
       this.chars = Array.from({ length: this.cols * this.rows }, () => rnd(GLYPHS));
-      this.tiny = document.createElement('canvas');
       this.draw(this.running ? (performance.now() - this.t0) / DUR : 1);
     }
     alphaAt(px, py) {           // px, py in CSS pixels inside the element
@@ -65,17 +64,9 @@
       if (gx < 0 || gy < 0 || gx >= this.cols || gy >= this.rows) return 0;
       return this.grid[(gy * this.cols + gx) * 2];
     }
-    pixelate(block) {
-      const { ctx, w, h } = this;
-      if (block <= 1.05) { ctx.drawImage(this.src, 0, 0); return; }
-      const tw = Math.max(1, Math.round(w / block)), th = Math.max(1, Math.round(h / block));
-      this.tiny.width = tw; this.tiny.height = th;
-      const t = this.tiny.getContext('2d'); t.imageSmoothingEnabled = true; t.drawImage(this.src, 0, 0, tw, th);
-      ctx.imageSmoothingEnabled = false; ctx.drawImage(this.tiny, 0, 0, tw, th, 0, 0, w, h); ctx.imageSmoothingEnabled = true;
-    }
     ascii(alpha, fall, flicker) {
       const { ctx, cell, cols, rows, grid, chars } = this;
-      ctx.font = `500 ${Math.round(cell * 1.08)}px "JetBrains Mono", ui-monospace, monospace`;
+      ctx.font = `500 ${Math.round(cell * 1.08)}px "IBM Plex Mono", ui-monospace, monospace`;
       ctx.textBaseline = 'top';
       for (let gy = 0; gy < rows; gy++) for (let gx = 0; gx < cols; gx++) {
         const k = gy * cols + gx, a = grid[k * 2];
@@ -90,24 +81,32 @@
         ctx.fillText(chars[k], gx * cell, gy * cell + dy);
       }
     }
-    // p: 0..1 through the effect; p = 1 is the plain image
+    // p: 0..1 through the effect; p = 1 is the plain image.
+    // A scanning beam runs down the object and turns it into code, holds, then runs again and rebuilds it.
     draw(p) {
       if (!this.src) return;
       const { ctx, w, h } = this;
       ctx.clearRect(0, 0, w, h);
       if (p >= 1) { ctx.drawImage(this.src, 0, 0); return; }
       const ease = (x) => x * x * (3 - 2 * x);
-      if (p < .2) this.pixelate(1 + ease(p / .2) * 15);                    // break into blocks
-      else if (p < .34) {                                                    // blocks give way to code
-        const q = (p - .2) / .14;
-        ctx.globalAlpha = 1 - q; this.pixelate(16); ctx.globalAlpha = 1;
-        this.ascii(q, 0, .5);
-      } else if (p < .68) this.ascii(1, ease((p - .34) / .34) * .55, .35);  // code scrambles and slips down
-      else {                                                                 // and pulls itself back together
-        const q = (p - .68) / .32;
-        this.pixelate(16 - ease(q) * 15);
-        ctx.globalAlpha = Math.max(0, 1 - q * 1.6); ctx.globalCompositeOperation = 'source-over';
-        this.ascii(1, .55 * (1 - ease(q)), .2); ctx.globalAlpha = 1;
+      let y, codeAbove;
+      if (p < .42) { y = ease(p / .42) * h; codeAbove = true; }
+      else if (p < .55) { y = h; codeAbove = true; }
+      else { y = ease((p - .55) / .45) * h; codeAbove = false; }
+      const part = (top, bottom, code) => {
+        if (bottom <= top) return;
+        ctx.save(); ctx.beginPath(); ctx.rect(0, top, w, bottom - top); ctx.clip();
+        if (code) this.ascii(1, 0, p > .42 && p < .55 ? .3 : .12); else ctx.drawImage(this.src, 0, 0);
+        ctx.restore();
+      };
+      part(0, y, codeAbove); part(y, h, !codeAbove);
+      if (y > 0 && y < h) {                         // the beam itself, only where the object is
+        ctx.save(); ctx.globalCompositeOperation = 'source-atop';
+        const band = 16 * this.d, g = ctx.createLinearGradient(0, y - band, 0, y + 2);
+        g.addColorStop(0, 'rgba(240,211,140,0)'); g.addColorStop(1, 'rgba(240,211,140,.55)');
+        ctx.fillStyle = g; ctx.fillRect(0, y - band, w, band + 2);
+        ctx.fillStyle = 'rgba(255,236,190,.95)'; ctx.fillRect(0, y, w, Math.max(1, 1.5 * this.d));
+        ctx.restore();
       }
     }
     play(from = 0) {

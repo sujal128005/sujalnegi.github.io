@@ -35,11 +35,11 @@
 
   const start = () => {
     size(); newPads(); parts = []; pops = []; score = 0; lives = 3; battery = 100; wind = 0;
-    playing = true; foot.classList.add('playing'); btn.textContent = 'Stop'; help.hidden = false; scoreEl.hidden = false;
+    playing = true; foot.classList.add('playing'); btn.textContent = 'End flight'; help.hidden = false; scoreEl.hidden = false;
     spawn(); hud(); last = performance.now(); raf = requestAnimationFrame(step);
   };
   const stop = (over) => {
-    playing = false; cancelAnimationFrame(raf); foot.classList.remove('playing'); btn.textContent = over ? 'Play again' : 'Play';
+    playing = false; cancelAnimationFrame(raf); foot.classList.remove('playing'); btn.textContent = over ? 'Fly again' : 'Start flight';
     help.hidden = true; held = false;
     if (score > best) { best = score; try { localStorage.setItem('sn-drone-best', String(best)); } catch (_) { /* ignore */ } }
     scoreEl.textContent = over ? `GAME OVER · SCORE ${score} · BEST ${best}` : `SCORE ${score} · BEST ${best}`;
@@ -107,7 +107,7 @@
     ctx.fillStyle = 'rgba(255,255,255,.06)'; ctx.fillRect(0, g, W, 1);
     (pads || []).forEach((p) => {
       ctx.fillStyle = p.gold ? '#d9b45a' : 'rgba(235,235,240,.85)'; ctx.fillRect(p.x, g - 6, p.w, 6);
-      ctx.font = '500 10px "JetBrains Mono", monospace'; ctx.textAlign = 'center'; ctx.fillStyle = p.gold ? '#f0d38c' : 'rgba(255,255,255,.5)';
+      ctx.font = '500 10px "IBM Plex Mono", monospace'; ctx.textAlign = 'center'; ctx.fillStyle = p.gold ? '#f0d38c' : 'rgba(255,255,255,.5)';
       ctx.fillText(`+${p.pts}`, p.x + p.w / 2, g + 16);
     });
     // the drone
@@ -115,11 +115,11 @@
       ctx.save(); ctx.translate(D.x, D.y); ctx.rotate(D.tilt); ctx.drawImage(drone, -D.w / 2, -D.h / 2, D.w, D.h); ctx.restore();
     }
     // wind
-    if (wind > 0) { ctx.font = '400 10px "JetBrains Mono", monospace'; ctx.textAlign = 'left'; ctx.fillStyle = 'rgba(255,255,255,.35)'; ctx.fillText(`WIND ${'›'.repeat(Math.min(8, Math.round(wind / 26)))}`, 14, g - 14); }
+    if (wind > 0) { ctx.font = '400 10px "IBM Plex Mono", monospace'; ctx.textAlign = 'left'; ctx.fillStyle = 'rgba(255,255,255,.35)'; ctx.fillText(`WIND ${'›'.repeat(Math.min(8, Math.round(wind / 26)))}`, 14, g - 14); }
     // sparks and words
-    ctx.textAlign = 'center'; ctx.font = '500 13px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center'; ctx.font = '500 13px "IBM Plex Mono", monospace';
     (parts || []).forEach((p) => { ctx.fillStyle = p.gold ? `rgba(240,211,140,${p.life.toFixed(2)})` : `rgba(255,120,110,${p.life.toFixed(2)})`; ctx.fillText(p.ch, p.x, p.y); });
-    ctx.font = '600 15px "JetBrains Mono", monospace';
+    ctx.font = '600 15px "IBM Plex Mono", monospace';
     (pops || []).forEach((p) => { ctx.fillStyle = p.gold ? `rgba(240,211,140,${(1 - p.t / 1.3).toFixed(2)})` : `rgba(255,255,255,${(1 - p.t / 1.3).toFixed(2)})`; ctx.fillText(p.text, p.x, p.y); });
   }
 })();

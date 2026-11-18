@@ -75,7 +75,7 @@
 
 <section>
   <h2>Summary</h2>
-  <p class="summary">Final-year Mechanical Engineering student at IIITDM Kurnool with hands-on work in vehicle design, manufacturing and quality, and team leadership. Own the chassis, steering and drive workstreams of a 19-member autonomous ground vehicle team and lead an 8-member drone team. Combine CAD, GD&amp;T and DFM/DFA with simulation, optimisation and data analysis.</p>
+  <p class="summary">Final-year Mechanical Engineering student at IIITDM Kurnool with hands-on work in vehicle design, manufacturing and quality, and team leadership. Own the chassis, steering and drive of a 19-member autonomous car team and lead an 8-member GPS-denied drone team. Combine CAD, GD&amp;T and DFM/DFA with simulation, optimisation and data analysis.</p>
 </section>
 
 <section>
@@ -107,23 +107,29 @@
 
   <div class="item">
     <div class="row">
-      <span class="title">Project Lead · Autonomous Ground Vehicle <span class="role">· Nexara9 Autonomy Program</span></span>
+      <span class="title">Project Lead · Navya Autonomous Car <span class="role">· Nexara9 Autonomy Program</span></span>
       <span class="when">2025 – Present</span>
     </div>
+    <div class="meta"><span class="stack">TZ-306 4×4 chassis, BLDC hub motors, Arduino, Jetson Orin Nano, RealSense D435i, LiDAR</span></div>
     <ul>
-      <li>Own the vehicle's mechanical workstreams: <b>chassis, steering and drive</b>.</li>
-      <li>Lead a <b>19-member team</b> across perception, controls, hardware and software; plan the roadmap and milestones.</li>
+      <li>Lead a <b>19-member team</b> converting a 4×4 ride-on (~31 kg, 0.745 m wheelbase) into an autonomous car; own the chassis, steering and drive workstreams.</li>
+      <li>Drive: two rear 350 W BLDC hub motors on 6S LiPo, with an Arduino safety layer (manual override, emergency stop) between the computer and the motors.</li>
+      <li>Steering retrofit on a ₹2,302 parts budget: kept the original motor and gearbox, added a BTS7960 driver, potentiometer feedback and limit switches.</li>
+      <li>Demo 1 (Oct 2026): stops for obstacles and drives on when clear; tape-measured braking from 1.97 m to rest at <b>1.10 m</b>. Found the car coasts ~0.9 m and retuned stop and slow-down distances to 2.0 m and 3.8 m.</li>
+      <li>Traced false obstacles to a camera mount that pitched 8° under braking; replaced it with a rigid mount and recalibrated height (0.554 m) and tilt (4.4°).</li>
     </ul>
   </div>
 
   <div class="item">
     <div class="row">
-      <span class="title">Team Lead · Autonomous Drone (Navyam) <span class="role">· Nexara9 Autonomy Program</span></span>
+      <span class="title">Team Lead · Navyam GPS-Denied Drone <span class="role">· NIDAR Track 1, Nexara9 Autonomy Program</span></span>
       <span class="when">Dec 2025 – Present</span>
     </div>
-    <div class="meta"><span class="stack">UAV design, Python, ROS 2, PX4, Gazebo</span></div>
+    <div class="meta"><span class="stack">Cube Orange+, ArduPilot, 4× T-Motor MN4006 KV380, 6S LiPo, RealSense D435i, ROS 2, Gazebo</span></div>
     <ul>
-      <li>Lead an <b>8-member team</b> building a UAV for GPS-denied flight; gated spending behind a 0.5 m docking milestone in Gazebo simulation, then flew 20 m × 20 m GPS-denied survey missions.</li>
+      <li>Lead an <b>8-member team</b>; flew a quadcopter that held position autonomously on vision alone, with no GPS (camera-based odometry fused into the ArduPilot EKF3).</li>
+      <li>Diagnosed a thrust warning from flight logs: motors were saturating at hover because the propellers were undersized; switched to the recommended 15×5 carbon-fibre propellers, bringing hover throttle back to a safe margin.</li>
+      <li>Gated spending behind a 0.5 m docking milestone in Gazebo simulation before 20 m × 20 m GPS-denied survey flights.</li>
     </ul>
   </div>
 

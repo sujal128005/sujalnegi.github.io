@@ -8,7 +8,7 @@ Live at [sujalnegi.tech](https://sujalnegi.tech)
 
 | Project | What it is | Links |
 |---|---|---|
-| Limen | AI purchasing infrastructure where the spending limit is enforced, not trusted. Winner, IBM SkillsBuild South Region Finale 2026 | [Live](https://limen-peqe.onrender.com) · [Code](https://github.com/sujal128005/limen) |
+| Limen | AI purchasing infrastructure where the spending limit is enforced, not trusted. Winner, IBM SkillsBuild South Region Finale 2026 | [Live](https://limen-peqe.onrender.com) |
 | Khata | A live co-pilot for sales calls. 2nd Runner-Up, AI Build 2026, Vijayawada | [Live](https://khata-avs8.onrender.com/login) · [Code](https://github.com/sujal128005/khata) |
 | STEALTH · Know Your Agent | A trust gateway between AI shopping agents and checkout | [Live](https://bouncerkya.onrender.com) · [Code](https://github.com/sujal128005/bouncerkya) |
 | PayPal Attribute | Fair pay for the creators an AI shopping agent cites | [Live](https://paypal-attribute.onrender.com/) · [Code](https://github.com/sujal128005/paypal-attribute) |

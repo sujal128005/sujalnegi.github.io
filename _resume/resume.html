@@ -2,58 +2,60 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Sujal Negi · Résumé</title>
+<title>Sujal Negi</title>
 <style>
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/inter-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/inter-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/inter-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/inter-latin-700-normal.woff2") format("woff2"); }
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --ink: #16181d; --muted: #4a505c; --accent: #1f3a5f; --rule: #c9ced8; }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body {
     font-family: "Inter", "Liberation Sans", Arial, sans-serif;
-    font-size: 8.55pt; line-height: 1.3; color: var(--ink); background: #fff;
-    width: 210mm; height: 297mm; padding: 9mm 12mm 8mm;
-    font-feature-settings: "tnum" 0, "cv11" 1;
+    font-size: 8.2pt; line-height: 1.25; color: var(--ink); background: #fff;
+    width: 210mm; height: 297mm; padding: 8mm 11mm 7mm;
   }
   a { color: inherit; text-decoration: none; }
 
-  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm;
-           padding-bottom: 2.4mm; border-bottom: 1.3pt solid var(--accent); }
+  header { text-align: center; padding-bottom: 2.2mm; border-bottom: 1.3pt solid var(--accent); }
   h1 { font-size: 21pt; font-weight: 700; letter-spacing: -0.4pt; line-height: 1; color: var(--accent); }
-  .tagline { margin-top: 1.5mm; white-space: nowrap; font-size: 9.2pt; font-weight: 500; color: var(--muted); }
-  .contact { text-align: right; font-size: 8.3pt; line-height: 1.45; color: var(--muted); }
-  .contact b { color: var(--ink); font-weight: 600; }
-  .contact .sep { color: var(--rule); padding: 0 1.2mm; }
+  .tagline { margin-top: 1.4mm; font-size: 9pt; font-weight: 500; color: var(--muted); }
+  .contact { margin-top: 1.3mm; font-size: 8.1pt; color: var(--muted); }
+  .contact a { color: var(--accent); }
+  .contact .sep { color: var(--rule); padding: 0 1.6mm; }
 
-  section { margin-top: 2.5mm; }
+  section { margin-top: 2.1mm; }
   h2 { font-size: 8.6pt; font-weight: 700; letter-spacing: 1.1pt; text-transform: uppercase; color: var(--accent);
-       padding-bottom: 0.8mm; border-bottom: 0.6pt solid var(--rule); margin-bottom: 1.5mm; }
-  .summary { color: #262a31; }
+       padding-bottom: 0.8mm; border-bottom: 0.6pt solid var(--rule); margin-bottom: 1.2mm; }
+  .summary { color: #262a31; text-align: justify; }
 
-  .item { margin-top: 1.4mm; }
+  .item { margin-top: 1.2mm; }
   .item:first-of-type { margin-top: 0; }
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
-  .title { font-weight: 650; font-size: 9.2pt; }
+  .title { font-weight: 600; font-size: 9pt; }
   .title .role { font-weight: 500; color: var(--muted); }
-  .when { font-size: 8.3pt; color: var(--muted); white-space: nowrap; font-weight: 500; }
-  .meta { display: flex; justify-content: space-between; gap: 4mm; font-size: 8.15pt; color: var(--muted); margin-top: 0.3mm; }
+  .when { font-size: 8.2pt; color: var(--muted); white-space: nowrap; font-weight: 500; }
+  .meta { display: flex; justify-content: space-between; gap: 4mm; font-size: 8pt; color: var(--muted); margin-top: 0.3mm; }
   .stack { font-style: italic; }
   .links a { color: var(--accent); font-weight: 600; }
   .links .sep { color: var(--rule); padding: 0 0.9mm; }
-  .award { display: inline-block; font-size: 7.6pt; font-weight: 650; color: var(--accent); background: #e9eef5;
-           border-radius: 2pt; padding: 0.2mm 1.4mm; margin-left: 1.4mm; vertical-align: 1pt; letter-spacing: 0.1pt; }
+  .award { display: inline-block; font-size: 7.4pt; font-weight: 600; color: var(--accent); background: #e9eef5;
+           border-radius: 2pt; padding: 0.2mm 1.4mm; margin-left: 1.4mm; vertical-align: 1pt; }
+  .tag { font-weight: 600; color: var(--accent); }
 
-  ul { list-style: none; margin-top: 0.7mm; }
-  li { position: relative; padding-left: 3.4mm; margin-top: 0.35mm; }
-  li::before { content: ""; position: absolute; left: 0.6mm; top: 1.55mm; width: 1.15mm; height: 1.15mm;
+  ul { list-style: none; margin-top: 0.6mm; }
+  li { position: relative; padding-left: 3.4mm; margin-top: 0.2mm; }
+  li::before { content: ""; position: absolute; left: 0.6mm; top: 1.5mm; width: 1.1mm; height: 1.1mm;
                border-radius: 50%; background: var(--accent); }
-  b, strong { font-weight: 650; }
+  b { font-weight: 600; }
 
-  .grid2 .item { margin-top: 1.4mm; }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; }
-  .ach { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; }
-  .skills { display: grid; grid-template-columns: 24mm 1fr; row-gap: 0.6mm; column-gap: 2mm; }
-  .skills dt { font-weight: 650; }
+  .skills { display: grid; grid-template-columns: 31mm 1fr; row-gap: 0.3mm; column-gap: 2mm; }
+  .skills dt { font-weight: 600; }
   .skills dd { color: #262a31; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; }
+  .also { margin-top: 1.1mm; }
 </style>
 </head>
 <body>
@@ -61,150 +63,138 @@
 <header>
   <div>
     <h1>Sujal Negi</h1>
-    <p class="tagline">Mechanical Engineer · AI Product Builder · Co-founder, Nexara9</p>
+    <p class="tagline">Founder · Product &amp; Project Management · Backend Engineering · Mechanical Design</p>
   </div>
-  <div class="contact">
-    <div><a href="mailto:offsujal128005@gmail.com"><b>offsujal128005@gmail.com</b></a><span class="sep">|</span>+91 78076 09929</div>
-    <div><a href="https://sujalnegi.tech">sujalnegi.tech</a><span class="sep">|</span><a href="https://nexara9.me">nexara9.me</a></div>
-    <div><a href="https://github.com/sujal128005">github.com/sujal128005</a><span class="sep">|</span><a href="https://linkedin.com/in/sujalnegi128005">linkedin.com/in/sujalnegi128005</a></div>
-  </div>
+  <div class="contact"><a href="mailto:offsujal128005@gmail.com">offsujal128005@gmail.com</a><span class="sep">|</span><a href="tel:+917807609929">+91 78076 09929</a><span class="sep">|</span><a href="https://sujalnegi.tech">sujalnegi.tech</a><span class="sep">|</span><a href="https://nexara9.me">nexara9.me</a><span class="sep">|</span><a href="https://github.com/sujal128005">github.com/sujal128005</a><span class="sep">|</span><a href="https://www.linkedin.com/in/sujal128005/">linkedin.com/in/sujal128005</a></div>
 </header>
 
 <section>
   <h2>Summary</h2>
-  <p class="summary">Mechanical engineer who designs vehicle hardware, ships live AI products and leads the teams that build them. Co-founder of Nexara9, leading 19-member vehicle and 8-member drone teams, with seven products live on the web built on one rule: <b>let the model talk, let deterministic rules decide</b>.</p>
+  <p class="summary">Co-founder of Nexara9 and Mechanical Engineering student who works across the whole product: deciding what to build, running the teams that build it, writing the backend and designing the hardware. Seven products live on the web; lead a 19-member vehicle team and an 8-member drone team. One rule throughout: the model talks, deterministic rules decide.</p>
 </section>
 
 <section>
-  <h2>Education</h2>
-  <div class="row">
-    <span class="title">B.Tech, Mechanical Engineering <span class="role">· IIITDM Kurnool, Andhra Pradesh</span></span>
-    <span class="when">2023 – 2027</span>
-  </div>
+  <h2>Core Skills</h2>
+  <dl class="skills">
+    <dt>Product Management</dt><dd>Product strategy, workflow and requirements design, prioritisation, go-to-market, investor pitching</dd>
+    <dt>Project Management</dt><dd>Roadmaps, milestone-gated budgets, Agile/Scrum, cross-functional team leadership, stakeholders</dd>
+    <dt>Backend Engineering</dt><dd>Node.js, Python, FastAPI, TypeScript, PostgreSQL, SQLite, Prisma, REST APIs, Solidity, testing, Git</dd>
+    <dt>AI &amp; Optimisation</dt><dd>LLM integration (Gemini, Gemma, Groq), agentic systems, output verification, OR-Tools CP-SAT</dd>
+    <dt>Mechanical</dt><dd>CATIA, AutoCAD, GD&amp;T, DFM/DFA, CNC programming, quality inspection, MATLAB, Simulink, ROS 2, PX4</dd>
+  </dl>
 </section>
 
 <section>
-  <h2>Projects</h2>
+  <h2>Founder Experience</h2>
 
   <div class="item">
     <div class="row">
-      <span class="title">Limen · Agentic procurement marketplace<span class="award">IBM SkillsBuild Winner</span><span class="award">RizeOS Winner</span></span>
+      <span class="title">Co-founder · Limen <span class="role">· AI procurement platform, Nexara9</span><span class="award">IBM SkillsBuild Winner</span><span class="award">RizeOS Winner</span></span>
       <span class="when">Aug 2026 – Present</span>
     </div>
-    <div class="meta"><span class="stack">Solidity, Node.js, React, LLM integration</span><span class="links"><a href="https://limen-peqe.onrender.com">Live</a><span class="sep">|</span><a href="https://github.com/sujal128005/limen">Code</a></span></div>
+    <div class="meta"><span class="stack">Node.js, PostgreSQL, Solidity, React, Gemini/Gemma</span><span class="links"><a href="https://limen-peqe.onrender.com">Live</a></span></div>
     <ul>
-      <li>Built a multi-agent tender marketplace that compresses a 2–3 month manual procurement cycle into days, scoring suppliers on cost, specs and availability with sealed bidding, escrow and reputation.</li>
-      <li>Enforced buyer ceilings and seller floors in Solidity so no agent can lift its own limit; role-gated raise, approve and pay.</li>
-      <li>Kept the LLM to text only: every figure comes from a deterministic engine, verified by <b>539 automated checks</b>.</li>
+      <li><span class="tag">Product:</span> designed buyer and supplier workflows for a multi-agent tender marketplace that aims to cut a 2–3-month procurement cycle to days; planned a buyer-first go-to-market where each buyer's vendors seed the supply side.</li>
+      <li><span class="tag">Backend:</span> built the service that scores suppliers on cost, specs and availability, with sealed bidding, escrow, role-gated raise/approve/pay and a tamper-evident audit log.</li>
+      <li><span class="tag">Trust:</span> budget ceilings and price floors are enforced outside the AI so no agent can raise its own limit; the LLM only writes text and a deterministic engine produces every figure (<b>539 automated checks</b>).</li>
     </ul>
   </div>
 
   <div class="item">
     <div class="row">
-      <span class="title">Khata · Real-time claim verification for sales calls<span class="award">2nd Runner-Up, AI Build</span></span>
+      <span class="title">Project Lead · Autonomous Ground Vehicle <span class="role">· Nexara9 Autonomy Program</span></span>
+      <span class="when">2025 – Present</span>
+    </div>
+    <ul>
+      <li>Lead a <b>19-member team</b> across perception, controls, hardware and software; own the roadmap and the mechanical workstreams: chassis, steering and drive.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="row">
+      <span class="title">Team Lead · Autonomous Drone (Navyam) <span class="role">· Nexara9 Autonomy Program</span></span>
+      <span class="when">Dec 2025 – Present</span>
+    </div>
+    <div class="meta"><span class="stack">UAV design, Python, ROS 2, PX4, Gazebo</span></div>
+    <ul>
+      <li>Lead an <b>8-member team</b>; gated spending behind a 0.5 m docking milestone in Gazebo simulation, then flew 20 m × 20 m GPS-denied survey missions.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Selected Projects</h2>
+
+  <div class="item">
+    <div class="row">
+      <span class="title">Khata <span class="role">· Real-time claim verification for sales calls</span><span class="award">2nd Runner-Up, AI Build</span></span>
       <span class="when">Aug 2026</span>
     </div>
     <div class="meta"><span class="stack">Next.js, TypeScript, SQLite, Web Speech API, LLM integration</span><span class="links"><a href="https://khata-avs8.onrender.com/login">Live</a><span class="sep">|</span><a href="https://github.com/sujal128005/khata">Code</a></span></div>
-    <ul>
-      <li>Built a live co-pilot that checks every number a rep quotes against product rules and corrects it in about a second; the rules engine decides, the model only explains, held in place by <b>324 automated checks</b>.</li>
-    </ul>
+    <ul><li>Built a live co-pilot that checks every number a sales rep quotes against product rules and corrects it in about a second; a rules engine decides and the model only explains, backed by <b>324 automated checks</b>.</li></ul>
   </div>
 
   <div class="item">
     <div class="row">
-      <span class="title">FlexDrop · Flexible-delivery batching engine <span class="role">· Swiggy Food for Thought 2.0</span></span>
+      <span class="title">FlexDrop <span class="role">· Flexible-delivery batching engine · Swiggy Food for Thought 2.0</span></span>
       <span class="when">2026</span>
     </div>
-    <div class="meta"><span class="stack">Python, OR-Tools CP-SAT, FastAPI, machine learning</span><span class="links"><a href="https://flexdrop.onrender.com/app/">Live</a><span class="sep">|</span><a href="https://github.com/sujal128005/FlexDrop">Code</a></span></div>
-    <ul>
-      <li>Batched orders onto fewer, shorter routes using CP-SAT set packing and column generation; in discrete-event simulation it cut <b>cost per order by 15.7%</b> and distance by 28% while raising on-time delivery (5-seed runs with ablation).</li>
-    </ul>
+    <div class="meta"><span class="stack">Python, FastAPI, OR-Tools CP-SAT, machine learning</span><span class="links"><a href="https://flexdrop.onrender.com/app/">Live</a><span class="sep">|</span><a href="https://github.com/sujal128005/FlexDrop">Code</a></span></div>
+    <ul><li>Batched orders onto fewer, shorter routes using CP-SAT set packing and column generation; in discrete-event simulation it cut cost per order by <b>15.7%</b> and distance by <b>28%</b> while improving on-time delivery (5-seed runs with ablations).</li></ul>
   </div>
 
   <div class="item">
     <div class="row">
-      <span class="title">STEALTH · Trust gateway for AI shopping agents <span class="role">· Razorpay AI Buildathon</span></span>
+      <span class="title">STEALTH <span class="role">· Trust gateway for AI shopping agents · Razorpay AI Buildathon</span></span>
       <span class="when">2026</span>
     </div>
     <div class="meta"><span class="stack">Next.js, TypeScript, Prisma, Ed25519, Zod</span><span class="links"><a href="https://bouncerkya.onrender.com">Live</a><span class="sep">|</span><a href="https://github.com/sujal128005/bouncerkya">Code</a></span></div>
-    <ul>
-      <li>Checks an agent’s purchase against the human’s signed Ed25519 mandate before payment; tested on 8 injection attacks.</li>
-    </ul>
+    <ul><li>Built an API gateway that verifies an AI agent's purchase against the user's signed Ed25519 mandate before payment; tested against 8 prompt-injection attacks.</li></ul>
   </div>
 
   <div class="item">
     <div class="row">
-      <span class="title">ArthaNetra · True cost of any loan or credit offer <span class="role">· Arthaton 2026</span></span>
+      <span class="title">ArthaNetra <span class="role">· True cost of any loan or credit offer · Arthaton 2026</span></span>
       <span class="when">2026</span>
     </div>
     <div class="meta"><span class="stack">Python, FastAPI, Groq, Gemini</span><span class="links"><a href="https://arthanetra.onrender.com">Live</a><span class="sep">|</span><a href="https://github.com/sujal128005/ArthaNetra">Code</a></span></div>
-    <ul>
-      <li>Shows the real cost of any loan, EMI, card or insurance offer in 12 Indian languages, every number cited.</li>
-    </ul>
+    <ul><li>Built a FastAPI service showing the real cost of any loan, EMI, card or insurance offer in 12 Indian languages, every number cited.</li></ul>
   </div>
 
-  <div class="item">
-    <p><span class="title">Also built:</span> <b>PixelProof</b>, a reproducible benchmark that tests whether vision models really read gauges and charts (<a href="https://github.com/sujal128005/Qwen" style="color:var(--accent);font-weight:600">Code</a>) · <b>PayPal Attribute</b>, paying the creators an AI agent cites a share of each sale via PayPal Payouts (<a href="https://github.com/sujal128005/paypal-attribute" style="color:var(--accent);font-weight:600">Code</a>).</p>
-  </div>
+  <p class="also"><b>Also built:</b> PayPal Attribute, which credits and pays creators via PayPal Payouts when an AI agent cites their work (<a class="tag" href="https://github.com/sujal128005/paypal-attribute">Code</a>); PixelProof, a reproducible benchmark that tests whether vision models truly read gauges and charts (<a class="tag" href="https://github.com/sujal128005/Qwen">Code</a>).</p>
 </section>
 
 <section>
   <h2>Leadership</h2>
-
-  <div class="item">
-    <div class="row">
-      <span class="title">Project Lead, Autonomous Ground Vehicle <span class="role">· Nexara9 Autonomy Program</span></span>
-      <span class="when">2025 – Present</span>
-    </div>
-    <ul>
-      <li>Lead 19 members across perception, controls, hardware and software; own chassis, steering, drive and roadmap.</li>
-    </ul>
-  </div>
-
-  <div class="item">
-    <div class="row">
-      <span class="title">Team Lead, Autonomous Drone (Navyam) <span class="role">· Nexara9 Autonomy Program</span></span>
-      <span class="when">Dec 2025 – Present</span>
-    </div>
-    <div class="meta"><span class="stack">UAV design, Python, ROS 2, PX4, Gazebo</span><span class="links"><a href="https://github.com/sujal128005/gps-denied-drone">Drone Code</a><span class="sep">|</span><a href="https://github.com/sujal128005/Navyam-Simulation">Sim Code</a></span></div>
-    <ul>
-      <li>Lead 8 members; gated spend behind a 0.5 m Gazebo docking milestone, then flew 20 m × 20 m GPS-denied surveys.</li>
-    </ul>
-  </div>
-
   <div class="grid2">
-    <div class="item">
+    <div>
       <div class="row"><span class="title">Club Lead, DataWorks Club</span><span class="when">Jan 2025 – Present</span></div>
-      <ul><li>AI/ML &amp; Data Science, IIITDM Kurnool: workshops and hackathons for 600+ students; own budget and sponsors.</li></ul>
+      <p>AI/ML &amp; Data Science, IIITDM Kurnool: run workshops and hackathons for 600+ students; manage the budget and sponsorships.</p>
     </div>
-    <div class="item">
+    <div>
       <div class="row"><span class="title">Institute Coordinator, Udbhav</span><span class="when">Aug 2025</span></div>
-      <ul><li>Inter-IIIT Tech Meet: sole point of contact across 23 institutes; ran the campus hackathon for 350 students.</li></ul>
+      <p>Inter-IIIT Tech Meet: sole point of contact across 23 institutes; ran the campus hackathon for 350 students.</p>
     </div>
   </div>
 </section>
 
 <section>
   <h2>Achievements</h2>
-  <ul>
-    <li><b>Winner, IBM SkillsBuild Hackathon South Region Finale 2026</b>, Bengaluru, with Limen: Top 4 of 25 finalist teams from 1,000+; National Finalist.</li>
-    <li><b>Winner, RizeOS Hackathon 2026</b>, with Limen.</li>
-    <li><b>2nd Runner-Up, AI Build 2026</b>, Vijayawada, with Khata, among 1,039 students from 75+ colleges.</li>
-    <li><b>Bangalore Finalist</b>, Paytm Build for India AI Hackathon.</li>
-    <li><b>Dolphin Tank India Founder Mentorship Program 2026</b> (IAC, Cloud Counselage): selected for ₹18 lakh worth of mentorship.</li>
-    <li><b>Author of 10 books</b> in English and Hindi as <a href="https://alfaaz.sujalnegi.tech/" style="color:var(--accent);font-weight:600">alfaazsujalke</a>.</li>
+  <ul style="margin-top:0">
+    <li><b>Winner</b>, IBM SkillsBuild Hackathon South Region Finale 2026, Bengaluru, with Limen: top 4 of 25 finalists; National Finalist.</li>
+    <li><b>Winner</b>, RizeOS Hackathon 2026, with Limen · <b>Bangalore Finalist</b>, Paytm Build for India AI Hackathon · Selected, Dolphin Tank India Founder Mentorship 2026.</li>
+    <li><b>2nd Runner-Up</b>, AI Build 2026, Vijayawada, with Khata, among 1,039 students from 75+ colleges.</li>
+    <li>Author of 10 anthologies in English and Hindi under the pen name <a class="tag" href="https://alfaaz.sujalnegi.tech/">alfaazsujalke</a>.</li>
   </ul>
 </section>
 
 <section>
-  <h2>Skills &amp; Certifications</h2>
-  <dl class="skills">
-    <dt>Software</dt><dd>Python, TypeScript, JavaScript, SQL, Solidity, Node.js, React, Next.js, FastAPI, Prisma, Git</dd>
-    <dt>AI &amp; Agents</dt><dd>LLM integration, prompt engineering, deterministic agent design, output verification, adversarial testing</dd>
-    <dt>Engineering</dt><dd>CATIA, AutoCAD, GD&amp;T, CNC programming, quality inspection, DFM/DFA, MATLAB, Simulink, ROS 2, PX4</dd>
-    <dt>Operations</dt><dd>Agile/Scrum, project planning, OR-Tools optimisation, team coordination, B2B marketing, MS Excel, PowerPoint</dd>
-    <dt>Certifications</dt><dd>Agile &amp; Scrum (Alison, 84%) · Google Analytics for Beginners (98.25%) · MATLAB &amp; Simscape Onramps</dd>
-  </dl>
+  <h2>Education &amp; Certifications</h2>
+  <div class="row">
+    <span class="title">B.Tech, Mechanical Engineering <span class="role">· IIITDM Kurnool, Andhra Pradesh</span></span>
+    <span class="when">2023 – 2027</span>
+  </div>
+  <p style="margin-top:0.5mm;color:var(--muted)">Agile &amp; Scrum (Alison, 84%) · Google Analytics for Beginners (98.25%) · MATLAB &amp; Simscape Onramps (MathWorks)</p>
 </section>
 
 </body>

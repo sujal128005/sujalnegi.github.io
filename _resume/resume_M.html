@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sujal Negi</title>
+<style>
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/inter-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/inter-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/inter-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/inter-latin-700-normal.woff2") format("woff2"); }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #16181d; --muted: #4a505c; --accent: #1f3a5f; --rule: #c9ced8; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Inter", "Liberation Sans", Arial, sans-serif;
+    font-size: 8.3pt; line-height: 1.28; color: var(--ink); background: #fff;
+    width: 210mm; height: 297mm; padding: 8mm 11mm 7mm;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  header { text-align: center; padding-bottom: 2.2mm; border-bottom: 1.3pt solid var(--accent); }
+  h1 { font-size: 21pt; font-weight: 700; letter-spacing: -0.4pt; line-height: 1; color: var(--accent); }
+  .tagline { margin-top: 1.4mm; font-size: 9pt; font-weight: 500; color: var(--muted); }
+  .contact { margin-top: 1.3mm; font-size: 8.1pt; color: var(--muted); }
+  .contact a { color: var(--accent); }
+  .contact .sep { color: var(--rule); padding: 0 1.6mm; }
+
+  section { margin-top: 2.1mm; }
+  h2 { font-size: 8.6pt; font-weight: 700; letter-spacing: 1.1pt; text-transform: uppercase; color: var(--accent);
+       padding-bottom: 0.8mm; border-bottom: 0.6pt solid var(--rule); margin-bottom: 1.2mm; }
+  .summary { color: #262a31; text-align: justify; }
+
+  .item { margin-top: 1.2mm; }
+  .item:first-of-type { margin-top: 0; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .title { font-weight: 600; font-size: 9pt; }
+  .title .role { font-weight: 500; color: var(--muted); }
+  .when { font-size: 8.2pt; color: var(--muted); white-space: nowrap; font-weight: 500; }
+  .meta { display: flex; justify-content: space-between; gap: 4mm; font-size: 8pt; color: var(--muted); margin-top: 0.3mm; }
+  .stack { font-style: italic; }
+  .links a { color: var(--accent); font-weight: 600; }
+  .links .sep { color: var(--rule); padding: 0 0.9mm; }
+  .award { display: inline-block; font-size: 7.4pt; font-weight: 600; color: var(--accent); background: #e9eef5;
+           border-radius: 2pt; padding: 0.2mm 1.4mm; margin-left: 1.4mm; vertical-align: 1pt; }
+  .tag { font-weight: 600; color: var(--accent); }
+
+  ul { list-style: none; margin-top: 0.6mm; }
+  li { position: relative; padding-left: 3.4mm; margin-top: 0.2mm; }
+  li::before { content: ""; position: absolute; left: 0.6mm; top: 1.5mm; width: 1.1mm; height: 1.1mm;
+               border-radius: 50%; background: var(--accent); }
+  b { font-weight: 600; }
+
+  .skills { display: grid; grid-template-columns: 33mm 1fr; row-gap: 0.3mm; column-gap: 2mm; }
+  .skills dt { font-weight: 600; }
+  .skills dd { color: #262a31; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; }
+  .also { margin-top: 1.1mm; }
+</style>
+<style>
+  .cw { display: grid; grid-template-columns: 33mm 1fr; row-gap: 0.3mm; column-gap: 2mm; margin-top: 1mm; }
+  .cw dt { font-weight: 600; }
+  .cw dd { color: #262a31; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Sujal Negi</h1>
+    <p class="tagline">Mechanical Engineering · Product Design &amp; Manufacturing · Autonomous Vehicles · Project Leadership</p>
+  </div>
+  <div class="contact"><a href="mailto:offsujal128005@gmail.com">offsujal128005@gmail.com</a><span class="sep">|</span><a href="tel:+917807609929">+91 78076 09929</a><span class="sep">|</span><a href="https://sujalnegi.tech">sujalnegi.tech</a><span class="sep">|</span><a href="https://www.linkedin.com/in/sujal128005/">linkedin.com/in/sujal128005</a><span class="sep">|</span><a href="https://github.com/sujal128005">github.com/sujal128005</a></div>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p class="summary">Final-year Mechanical Engineering student at IIITDM Kurnool with hands-on work in vehicle design, manufacturing and quality, and team leadership. Own the chassis, steering and drive workstreams of a 19-member autonomous ground vehicle team and lead an 8-member drone team. Combine CAD, GD&amp;T and DFM/DFA with simulation, optimisation and data analysis.</p>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="row">
+    <span class="title">B.Tech, Mechanical Engineering <span class="role">· IIITDM Kurnool, Andhra Pradesh</span></span>
+    <span class="when">2023 – 2027</span>
+  </div>
+  <dl class="cw">
+    <dt>Design</dt><dd>Design of Machine Elements, Mechanics of Materials, Kinematics of Machines, Dynamics of Machines, Machine Drawing &amp; Manufacturability Analysis, Product Design &amp; Development, Engineering Graphics</dd>
+    <dt>Manufacturing</dt><dd>Manufacturing Processes, Machine Tool Technology, Additive Manufacturing, Automation in Manufacturing, Quality Inspection &amp; Product Validation, Failure Analysis &amp; Prevention</dd>
+    <dt>Thermal &amp; Fluids</dt><dd>Thermodynamics, Thermal Engineering, Heat Transfer, Fluid Mechanics &amp; Hydraulic Machinery</dd>
+    <dt>Analysis</dt><dd>Computational Methods in Engineering, Operations Research, Material Science &amp; Metallurgy, Electrical Drives, Sensors &amp; Microprocessors, Probability &amp; Statistics</dd>
+    <dt>NPTEL</dt><dd>AI-Driven Perception, Learning &amp; Mapping for Drones · Python, Data Structures &amp; Algorithms</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
+  <dl class="skills">
+    <dt>CAD &amp; Design</dt><dd>CATIA, AutoCAD, GD&amp;T, DFM/DFA, engineering drawing, manufacturability analysis</dd>
+    <dt>Manufacturing</dt><dd>CNC programming, quality inspection, product validation, failure analysis</dd>
+    <dt>Simulation &amp; Analysis</dt><dd>MATLAB, Simulink, Simscape, Gazebo, Python, OR-Tools optimisation, discrete-event simulation</dd>
+    <dt>Robotics &amp; Controls</dt><dd>ROS 2, PX4, UAV design, sensors and microprocessors</dd>
+    <dt>Office &amp; Tools</dt><dd>MS Excel, MS PowerPoint, MS Word, Git</dd>
+    <dt>Management</dt><dd>Project planning, milestone tracking, Agile/Scrum, team leadership, supplier evaluation</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Engineering Projects &amp; Experience</h2>
+
+  <div class="item">
+    <div class="row">
+      <span class="title">Project Lead · Autonomous Ground Vehicle <span class="role">· Nexara9 Autonomy Program</span></span>
+      <span class="when">2025 – Present</span>
+    </div>
+    <ul>
+      <li>Own the vehicle's mechanical workstreams: <b>chassis, steering and drive</b>.</li>
+      <li>Lead a <b>19-member team</b> across perception, controls, hardware and software; plan the roadmap and milestones.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="row">
+      <span class="title">Team Lead · Autonomous Drone (Navyam) <span class="role">· Nexara9 Autonomy Program</span></span>
+      <span class="when">Dec 2025 – Present</span>
+    </div>
+    <div class="meta"><span class="stack">UAV design, Python, ROS 2, PX4, Gazebo</span></div>
+    <ul>
+      <li>Lead an <b>8-member team</b> building a UAV for GPS-denied flight; gated spending behind a 0.5 m docking milestone in Gazebo simulation, then flew 20 m × 20 m GPS-denied survey missions.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="row">
+      <span class="title">Co-founder · Limen <span class="role">· AI procurement for manufacturers</span><span class="award">IBM SkillsBuild Winner</span><span class="award">RizeOS Winner</span></span>
+      <span class="when">Aug 2026 – Present</span>
+    </div>
+    <div class="meta"><span class="stack">Procurement for resins, metals and packaging</span><span class="links"><a href="https://limen-peqe.onrender.com">Live</a></span></div>
+    <ul>
+      <li>Designed how mid-sized manufacturers evaluate suppliers: technical specs, certifications, capacity, lead time and total landed cost (freight, GST and credit terms).</li>
+      <li>Took it to a working product that runs a full purchase end to end, from sourcing to approval, shipping, receipt and payment, verified by <b>539 automated checks</b>.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="row">
+      <span class="title">FlexDrop <span class="role">· Delivery batching optimisation · Swiggy Food for Thought 2.0</span></span>
+      <span class="when">2026</span>
+    </div>
+    <div class="meta"><span class="stack">Python, OR-Tools CP-SAT, discrete-event simulation</span><span class="links"><a href="https://flexdrop.onrender.com/app/">Live</a><span class="sep">|</span><a href="https://github.com/sujal128005/FlexDrop">Code</a></span></div>
+    <ul>
+      <li>Applied operations research (CP-SAT set packing and column generation) to batch orders onto fewer, shorter routes; in simulation it cut cost per order by <b>15.7%</b> and distance by <b>28%</b> while improving on-time delivery.</li>
+    </ul>
+  </div>
+
+  <p class="also"><b>Also built:</b> PixelProof, a reproducible benchmark that tests whether vision models correctly read gauges and charts (<a class="tag" href="https://github.com/sujal128005/Qwen">Code</a>), and live software products including Khata, ArthaNetra and STEALTH (<a class="tag" href="https://sujalnegi.tech">sujalnegi.tech</a>).</p>
+</section>
+
+<section>
+  <h2>Leadership</h2>
+  <div class="grid2">
+    <div>
+      <div class="row"><span class="title">Club Lead, DataWorks Club</span><span class="when">Jan 2025 – Present</span></div>
+      <p>IIITDM Kurnool: run workshops and hackathons for 600+ students; manage the budget and sponsorships.</p>
+    </div>
+    <div>
+      <div class="row"><span class="title">Institute Coordinator, Udbhav</span><span class="when">Aug 2025</span></div>
+      <p>Inter-IIIT Tech Meet: sole point of contact across 23 institutes; ran the campus hackathon for 350 students.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Achievements &amp; Certifications</h2>
+  <ul style="margin-top:0">
+    <li><b>Winner</b>, IBM SkillsBuild Hackathon South Region Finale 2026, Bengaluru, with Limen: top 4 of 25 finalists; National Finalist.</li>
+    <li><b>Winner</b>, RizeOS Hackathon 2026, with Limen · <b>2nd Runner-Up</b>, AI Build 2026, Vijayawada, among 1,039 students from 75+ colleges.</li>
+    <li><b>Bangalore Finalist</b>, Paytm Build for India AI Hackathon · Selected, Dolphin Tank India Founder Mentorship Program 2026.</li>
+    <li><b>Certifications:</b> MATLAB &amp; Simscape Onramps (MathWorks) · Agile &amp; Scrum (Alison, 84%).</li>
+    <li>Author of 10 anthologies in English and Hindi under the pen name <a class="tag" href="https://alfaaz.sujalnegi.tech/">alfaazsujalke</a>.</li>
+  </ul>
+</section>
+
+</body>
+</html>

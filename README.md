@@ -32,7 +32,8 @@ Every project, with its full code, is also on [nexara9.me](https://nexara9.me/pr
 - `assets/audio/words.mp3`: the "In my own words" voice (Kokoro, voice hm_omega)
 - `og.png`: the preview image shown when the link is shared
 - `Sujal_Negi_Resume.pdf`: résumé, shared as [sujalnegi.tech/resume](https://sujalnegi.tech/resume) (`resume/index.html` opens the PDF)
-- `_resume/`: résumé source; edit `_resume/resume.html`, then run `node _resume/build.mjs` (needs Playwright) to rebuild the PDF. GitHub Pages does not publish this folder.
+- `Sujal_Resume_M.pdf`: mechanical / core-engineering résumé, shared as [sujalnegi.tech/resume-m](https://sujalnegi.tech/resume-m) (`resume-m/index.html` opens the PDF)
+- `_resume/`: résumé source; edit `_resume/resume.html` or `_resume/resume_M.html`, then run `node _resume/build.mjs` (needs Playwright) to rebuild the PDF. GitHub Pages does not publish this folder.
 - favicons and `site.webmanifest`: icons
 - `CNAME`: custom domain for GitHub Pages
 
